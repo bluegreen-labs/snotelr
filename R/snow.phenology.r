@@ -70,15 +70,23 @@ snow.phenology = function(df){
     doy[na_loc] = NA
 
     year = as.numeric(format(x$date[min(minmax_loc)],"%Y"))
+    
+    # first occurence of 0 cover
     min_loc = as.numeric(format(x$date[min(minmax_loc)],"%j"))
+    
+    # last occurence of 0 cover (start of new accumulation)
     max_loc = as.numeric(format(x$date[max(minmax_loc)],"%j"))
+    
+    # first day of the longest continous snow free period
     min_na_loc = as.numeric(format(x$date[min(doy, na.rm = TRUE)],"%j"))
+    
+    # last day of the longest continous snow free period
     max_na_loc = as.numeric(format(x$date[max(doy, na.rm = TRUE)],"%j"))
 
-    # in addition grab the yearly maximum SWE value
-    # this should work as long as this maximum doesn't
-    # hover around Jan 1 (I pick the first match of the max value)
-    max_swe = max(x$snow_water_equivalent,na.rm=TRUE)
+    # highest value before snow melt in a given year, makes the assumption
+    # that this occurs in the same year. Ideally needs to be processed
+    # on a snow season basis not on a yearly basis
+    max_swe = max(x$snow_water_equivalent[1:min(minmax_loc)],na.rm=TRUE)
     max_swe_doy = as.numeric(format(x$date[which(x$snow_water_equivalent == max_swe)[1]],"%j"))
 
     # return a data frame (easier on the formatting)
@@ -111,7 +119,7 @@ snow.phenology = function(df){
                          "last_snow_melt",
                          "first_snow_acc",
                          "max_swe",
-                         "max_swe_date"
+                         "max_swe_doy"
                          )
 
     # return the matrix

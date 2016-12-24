@@ -9,27 +9,9 @@ library(DT) # interactive tables for shiny
 library(data.table) # loads data far faster than read.table()
 library(zoo) # call passive
 
-# grab the OS info
-OS = Sys.info()[1]
-machine = Sys.info()[6]
-
 # When on the machine of the developer, sideload the code locally
 # for quick reviewing of changes to the GUI
-if (machine == "squeeze" | machine == "khufkens") {
-
-  # load all functions
-  files = list.files(
-    "/data/Dropbox/Research_Projects/code_repository/bitbucket/snotelr/R",
-    "*.r",
-    full.names = TRUE
-  )
-  for (i in files) {
-    source(i)
-  }
-  path = "/data/Dropbox/Research_Projects/code_repository/bitbucket/snotelr/inst/shiny/snotel_explorer"
-} else{
-  path = sprintf("%s/shiny/snotel_explorer", path.package("snotelr"))
-}
+path = sprintf("%s/shiny/snotel_explorer", path.package("snotelr"))
 
 # set the base directory to the session cache directory
 setwd(tempdir())
@@ -375,6 +357,7 @@ server = function(input, output, session) {
 
       # nee transition dates
       transitions = snow.phenology(data)
+      print(transitions)
 
       # combine data in nested list
       output = list(data, transitions)
@@ -479,6 +462,11 @@ server = function(input, output, session) {
                                       transition_data$first_snow_acc),
                               "%Y-%j")
 
+      # convert the max accumulation date
+      max_swe_date = as.Date(sprintf("%s-%s",transition_data$year,
+                                       transition_data$max_swe_doy),
+                               "%Y-%j")
+      
       # check the plotting type
       if (input$plot_type == "daily") {
 
@@ -553,6 +541,16 @@ server = function(input, output, session) {
             marker = list(color = "blue", symbol = "square"),
             line = list(width = 0),
             name = "continuous snow accumulation"
+          ) %>%
+          add_trace(
+            x = max_swe_date,
+            y = max_swe,
+            mode = "markers",
+            type = 'scatter',
+            yaxis = "y1",
+            marker = list(color = "green", symbol = "square"),
+            line = list(width = 0),
+            name = "maximum SWE"
           ) %>%
           layout(
             xaxis = list(title = "Date"),
