@@ -16,7 +16,7 @@ download.snotel = function(site = NULL, path = "."){
   # working directory
   if (!file.exists("snotel_metadata.csv")) {
     print("no metadata cached, downloading metadata")
-    meta_data = snotel.info()
+    meta_data = snotel.info(path = path)
   } else {
     meta_data = utils::read.csv("snotel_metadata.csv", header = TRUE, sep = ",")
   }
@@ -26,16 +26,19 @@ download.snotel = function(site = NULL, path = "."){
   if (is.null(site)){
     stop("no site specified")
   } else {
-    if (site != "all" | site != "ALL"){
+    # for some reason using != here doesn't work for strings?
+    if (any(site == "all" | site == "ALL")){
+      meta_data = meta_data
+    } else {
       meta_data = meta_data[which(meta_data$site_id %in% site),]
     }
   }
-
+  
   # loop over selection, and download the data
   for (i in 1:nrow(meta_data)){
 
     # some feedback
-    cat(sprintf("processing site: %s, with id: %s\n",meta_data$site_name[i],meta_data$site_id[i]))
+    cat(sprintf("Downloading site: %s, with id: %s\n",meta_data$site_name[i],meta_data$site_id[i]))
 
     # download url
     base_url = paste("https://wcc.sc.egov.usda.gov/reportGenerator/view_csv/customSingleStationReport,metric/daily/",
@@ -46,7 +49,13 @@ download.snotel = function(site = NULL, path = "."){
     filename = sprintf("%s/%s_%s.csv",path,"snotel",meta_data$site_id[i])
 
     # download the data
-    curl::curl_download(base_url,destfile = filename)
+    error = try(curl::curl_download(base_url,destfile = filename))
 
+    # catch error and remove resulting zero byte files
+    if (inherits(error,"try-error")) {
+      file.remove(filename)
+      cat(sprintf("Downloading site %s failed, removed empty file.",meta_data$site_id[i]))
+    }
+    
   }
 }

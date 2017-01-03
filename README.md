@@ -30,7 +30,7 @@ This will start a shiny application with an R backend in your default browser.
 
 ```R
 snotel.info(path = ".") # returns the site info as snotel_metadata.txt in the current working directory
-data = ameriflux.info(path = NULL) # export to data frame
+data = snotel.info(path = NULL) # export to data frame
 ```
 
 To query data use for example site is 924 (further info can be found in the meta-data file).

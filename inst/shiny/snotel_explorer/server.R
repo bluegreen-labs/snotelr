@@ -378,7 +378,7 @@ server = function(input, output, session) {
 
     # set colours
     labels_covariate_col = "rgb(231,41,138)"
-    covariate_col = "rgba(255,51,0,0.8)"
+    covariate_col = "rgba(255,51,0,0.5)"
     primary_col = "rgba(51,102,255,0.8)"
     envelope_col = "rgba(128,128,128,0.05)"
     ltm_col = "rgba(128,128,128,0.8)"
@@ -475,7 +475,6 @@ server = function(input, output, session) {
                    tickfont = list(color = primary_col),
                    titlefont = list(color = primary_col),
                    showgrid = FALSE)
-
         ay2 = list(
           tickfont = list(color = covariate_col),
           titlefont = list(color = covariate_col),
@@ -484,23 +483,25 @@ server = function(input, output, session) {
           side = "right",
           showgrid = FALSE
         )
-
+        
+        # plot structure
         p = plot_ly(
           data = plot_data,
           x = ~date,
-          y = ~primary,
+          y = ~covariate,
+          yaxis = "y2",
           mode = "lines",
           type = 'scatter',
-          name = primary_label,
-          line = list(color = primary_col)
+          name = covariate_label,
+          line = list(color = covariate_col)
         ) %>%
         add_trace(
-            y = ~covariate,
+            y = ~primary,
             mode = "lines",
             type = 'scatter',
-            yaxis = "y2",
-            line = list(color = covariate_col),
-            name = covariate_label
+            yaxis = "y1",
+            line = list(color = primary_col),
+            name = primary_label
           ) %>%
           add_trace(
             x = first_snow_melt,
@@ -544,7 +545,7 @@ server = function(input, output, session) {
           ) %>%
           add_trace(
             x = max_swe_date,
-            y = max_swe,
+            y = transition_data$max_swe,
             mode = "markers",
             type = 'scatter',
             yaxis = "y1",
