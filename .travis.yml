@@ -1,0 +1,20 @@
+language: r
+r:
+  - release
+  - devel
+
+sudo: required
+
+warnings_are_errors: false
+
+r_packages:
+  - devtools
+  - shiny
+  - shinydashboard
+  - plotly
+  - leaflet
+  - DT
+  - curl
+  - rvest
+  - magrittr
+  - zoo
