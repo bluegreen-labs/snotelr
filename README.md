@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/khufkens/snotelr.svg?branch=master)](https://travis-ci.org/khufkens/snotelr)
+
 # snotelr
 
 SnotelR is a R toolbox to facilitate easy SNOTEL data exploration and downloads through a convenient R [shiny](http://shiny.rstudio.com/) based GUI. In addition it provides a routine to extract basic snow phenology metrics.
