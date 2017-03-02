@@ -27,7 +27,7 @@ snotel.info = function(url="http://wcc.sc.egov.usda.gov/nwcc/yearcount?network=s
   base_url="http://wcc.sc.egov.usda.gov/reportGenerator/view_csv/customSingleStationReport/daily/1:AK:SNTL%7Cid=%22%22%7Cname/POR_BEGIN,POR_END/WTEQ::value,PREC::value,TMAX::value,TMIN::value,TAVG::value,PRCP::value"
 
   # assume phantomjs in the current working directory
-  phantomjs_path = "/data/Dropbox/Research_Projects/working/evergreen_phenology/code/phantomjs/"
+  phantomjs_path = sprintf("%s/phantomjs/",path.package("snotelr"))
 
   # subroutines for triming leading spaces
   # and converting factors to numeric
