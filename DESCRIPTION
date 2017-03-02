@@ -14,7 +14,8 @@ Depends:
     curl,
     rvest,
     magrittr,
-    zoo
+    zoo,
+    XML
 License: AGPLv3
 LazyData: true
 RoxygenNote: 5.0.1
