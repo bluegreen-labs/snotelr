@@ -38,7 +38,7 @@ The *plot data* tab allows for interactive viewing of the soil water equivalent 
 - a continuous snow free season (last snow melt)
 - first snow accumulation (first snow deposited)
 - continuous snow accumulation (permanent snow cover)
-- maximum SWE (and it's amount)
+- maximum SWE (and its amount)
 
 ![](https://farm1.staticflickr.com/429/31959389961_90723239f3_b_d.jpg)
 
