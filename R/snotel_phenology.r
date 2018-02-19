@@ -4,14 +4,14 @@
 #' snow accumulation and continous snow accumulation
 #' are reported.
 #'
-#' @param df: a snotel data file or data frame
+#' @param df a snotel data file or data frame
 #' @keywords SNOTEL, USDA, time series, phenology, snow
 #' @export
 #' @examples
 #'
-#' # stats = snow.phenology(df)
+#' # stats = estimate_phenology(df)
 
-snow.phenology = function(df){
+snotel_phenology = function(df){
 
   # check if it's a filename or data frame
   df_check = is.data.frame(df)
@@ -33,7 +33,7 @@ snow.phenology = function(df){
   # check and convert to metric if necessary
   metric = "temperature_min" %in% colnames(df)
   if ( !metric ) {
-    df = snotel.metric(df)
+    df = snotel_metric(df)
   }
 
   # check if there is SWE data, if not return NULL
@@ -102,7 +102,8 @@ snow.phenology = function(df){
   # calculate metrics by year and bind the rows of the list
   # with a do.call()
   output = do.call("rbind",
-                   by(df, INDICES = c(year),FUN = minmax))
+                   by(df, INDICES = c(year),
+                      FUN = minmax))
 
   # remove years with missing values
   output = stats::na.omit(output)

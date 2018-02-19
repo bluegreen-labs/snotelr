@@ -20,7 +20,7 @@ setwd(tempdir())
 # use the metadata file if present and not older than 1 year!
 if (!file.exists("snotel_metadata.csv")) {
   print("no metadata cached, downloading metadata")
-  snotel.info(path=".")
+  snotel_info(path=".")
 }
 
 # grab the file info from the metadata file and compare
@@ -32,7 +32,7 @@ diff_days = as.Date(m_time) - as.Date(Sys.Date())
 # check years
 if (diff_days > 30) {
   print("metadata outdated (> 30 days), refreshing")
-  snotel.info()
+  snotel_info()
 }
 
 # finally read in the metadata if all checks are go
@@ -335,7 +335,7 @@ server = function(input, output, session) {
 
     # if the file does not exist, download it
     if (is.na(status)) {
-      status = try(download.snotel(site = site, path = "."))
+      status = try(download_snotel(site = site, path = "."))
     }
 
     # if the download fails, print NULL
@@ -350,14 +350,13 @@ server = function(input, output, session) {
       data = read.table(file, header = TRUE, sep = ",")
 
       # convert to metric
-      data = snotel.metric(data)
+      data = snotel_metric(data)
 
       # smooth productivity values
       progress$set(value = 0.5, detail = "Calculating snow phenology")
 
       # nee transition dates
-      transitions = snow.phenology(data)
-      print(transitions)
+      transitions = snotel_phenology(data)
 
       # combine data in nested list
       output = list(data, transitions)
@@ -712,9 +711,6 @@ server = function(input, output, session) {
             layout(
               xaxis = list(title = "Year"),
               yaxis = ay1,
-              #xaxis2 = list(title = "Year"),
-              #title = df$site_id[as.numeric(input$table_row_last_clicked)],
-              #yaxis2 = ay2,
               showlegend = TRUE
             )
           }

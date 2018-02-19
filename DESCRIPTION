@@ -1,20 +1,24 @@
 Package: snotelr
 Title: R toolbox to facilitate easy access / visualize SNOTEL data
-Version: 0.1
+Version: 0.2
 Authors@R: person("Koen", "Hufkens", email = "koen.hufkens@gmail.com", role = c("aut", "cre"))
 Description: Provides easy access to SNOTEL data and provides summarizing statistics
 Depends:
-    R (>= 3.0.0),
+    R (>= 3.0.0)
+Imports:
     devtools,
     shiny,
     leaflet,
     plotly,
     DT,
+    xml2,
     shinydashboard,
     curl,
+    stats,
     rvest,
     magrittr,
     zoo
-License: AGPLv3
+License: AGPL-3
 LazyData: true
-RoxygenNote: 5.0.1
+ByteCompile: true
+RoxygenNote: 6.0.1

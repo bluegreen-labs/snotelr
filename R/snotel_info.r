@@ -1,20 +1,20 @@
 #' Grabs the sno-tel site listing for further processing
 #'
-#' @param url: Location of the FLUXNET2015 site table
+#' @param url Location of the FLUXNET2015 site table
 #' (hopefully will not change to often, default is ok for now)
-#' @param path: location of the phantomjs binary (system specific)
+#' @param path location of the phantomjs binary (system specific)
 #' @keywords sno-tel, USDA, sites, locations, web scraping
 #' @export
 #' @examples
 #'
 #' # with defaults, outputting a data frame
-#' # df = snotel.info()
+#' # df = snotel_info()
 #'
 #' # [requires the rvest package for post-processing]
 #' # http://phantomjs.org/download.html
 #  # selection string
 
-snotel.info = function(url="http://wcc.sc.egov.usda.gov/nwcc/yearcount?network=sntl&counttype=listwithdiscontinued&state=",path = NULL){
+snotel_info = function(url="http://wcc.sc.egov.usda.gov/nwcc/yearcount?network=sntl&counttype=listwithdiscontinued&state=",path = NULL){
 
   # grab the location of the package, assuming it is installed
   # in the user space (not globally)
@@ -27,7 +27,8 @@ snotel.info = function(url="http://wcc.sc.egov.usda.gov/nwcc/yearcount?network=s
   base_url="http://wcc.sc.egov.usda.gov/reportGenerator/view_csv/customSingleStationReport/daily/1:AK:SNTL%7Cid=%22%22%7Cname/POR_BEGIN,POR_END/WTEQ::value,PREC::value,TMAX::value,TMIN::value,TAVG::value,PRCP::value"
 
   # assume phantomjs in the current working directory
-  phantomjs_path = sprintf("%s/phantomjs/",path.package("snotelr"))
+  phantomjs_path = sprintf("%s/phantomjs/",
+                           path.package("snotelr"))
 
   # subroutines for triming leading spaces
   # and converting factors to numeric
@@ -68,7 +69,8 @@ snotel.info = function(url="http://wcc.sc.egov.usda.gov/nwcc/yearcount?network=s
   sel_data = 'h5~ table+ table'
 
   # process the html file and extract stats
-  data = rvest::html_nodes(main,sel_data) %>% rvest::html_table()
+  data = rvest::html_nodes(main,sel_data) %>%
+    rvest::html_table()
   df = data.frame(data)
 
   # extract site id from site name

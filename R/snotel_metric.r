@@ -1,15 +1,16 @@
 #' Convert snotel data to metric from imperial units
 #'
-#' @param df: snotel data frame or file
-#' @param path: where to save downloaded files
+#' @param df snotel data frame or file
+#' @param path where to save downloaded files
 #' @keywords SNOTEL, USDA, sites, locations, web scraping, conversion
 #' @export
 #' @examples
 #'
 #' # would download all available snotel data
-#' # df = snotel.metric(df = "snotel_1277.csv")
+#' # df = snotel_metric(df = "snotel_1277.csv")
 
-snotel.metric = function(df, path = NULL) {
+snotel_metric = function(df,
+                         path = NULL) {
 
   # check if it's a filename or data frame
   df_check = is.data.frame(df)

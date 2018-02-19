@@ -1,22 +1,23 @@
 #' Dowloads sno-tel data based upon a subset of the
-#' sno-tel info as provided by snotel.info()
+#' sno-tel info as provided by snotel_info()
 #'
-#' @param site: subset of the sites listed by snotel.info()
-#' @param path: where to save downloaded files
+#' @param site subset of the sites listed by snotel.info()
+#' @param path where to save downloaded files
 #' @keywords SNOTEL, USDA, sites, locations, web scraping
 #' @export
 #' @examples
 #'
 #' # would download all available snotel data
-#' # df = snotel.download(site = snotel.info())
+#' # df = snotel_download(site = snotel_info())
 
-download.snotel = function(site = NULL, path = "."){
+download_snotel = function(site = NULL,
+                           path = "."){
 
   # check if there is a meta-data file in the current
   # working directory
   if (!file.exists("snotel_metadata.csv")) {
     print("no metadata cached, downloading metadata")
-    meta_data = snotel.info(path = path)
+    meta_data = snotel_info(path = path)
   } else {
     meta_data = utils::read.csv("snotel_metadata.csv", header = TRUE, sep = ",")
   }

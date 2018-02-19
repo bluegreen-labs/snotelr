@@ -3,9 +3,9 @@
 #' @keywords GUI
 #' @export
 #' @examples
-#' # snotel.explorer()
+#' # snotel_explorer()
 
-snotel.explorer <- function(){
+snotel_explorer <- function(){
   appDir = sprintf("%s/shiny/snotel_explorer",path.package("snotelr"))
   shiny::runApp(appDir, display.mode = "normal",launch.browser=TRUE)
 }
