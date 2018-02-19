@@ -25,7 +25,7 @@ Most people will prefer the GUI to explore data on the fly. To envoke the GUI us
 
 ```R
 library(snotelr)
-snotel.explorer()
+snotel_explorer()
 ```
 
 This will start a shiny application with an R backend in your default browser. The first window will display all site locations, and allows for subsetting of the data based upon state or a bounding box. The bounding box can be selected by clicking top-left and bottom-right.
@@ -46,23 +46,23 @@ For in depth analysis the above statistics can be retrieved using the **snow.phe
 
 ```R
 # with df a SNOTEL file or data frame in your R workspace
-snow.phenology(df)
+snow_phenology(df)
 ```
 
 To access the full list of SNOTEL sites and associated meta-data use the **snotel.info()** function.
 
 ```R
 # returns the site info as snotel_metadata.txt in the current working directory
-snotel.info(path = ".") 
+snotel_info(path = ".") 
 
 # export to data frame
-data = snotel.info(path = NULL) 
+data = snotel_info(path = NULL) 
 ```
 
 To query data for e.g. site 924 as shown in the image above use:
 
 ```R
-download.snotel(site = 924)
+download_snotel(site = 924)
 ```
 
 # Notes
