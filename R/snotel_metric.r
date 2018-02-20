@@ -33,7 +33,10 @@ snotel_metric = function(df,
   if ( ncol(df) != 7) {
     stop("not a standard snotel file")
   } else {
-    if ( length(grep("degC",colnames(df))) >= 1 ){
+    
+    # if the data are metric, just rename the columns
+    # otherwise convert from imperial to metric units
+    if ( length(grep("degC", colnames(df))) >= 1 ){
       colnames(df) = c("date",
                        "snow_water_equivalent",
                        "precipitation_cummulative",
