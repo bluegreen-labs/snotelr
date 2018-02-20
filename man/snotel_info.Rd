@@ -6,6 +6,9 @@
 \usage{
 snotel_info(path = NULL)
 }
+\arguments{
+\item{path}{path where to save the snotel information (site list)}
+}
 \description{
 Grabs the sno-tel site listing for further processing
 }

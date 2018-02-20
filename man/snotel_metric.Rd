@@ -2,17 +2,19 @@
 % Please edit documentation in R/snotel_metric.r
 \name{snotel_metric}
 \alias{snotel_metric}
-\title{Convert snotel data to metric from imperial units}
+\title{Convert snotel data to metric from imperial units, data is read
+from either a snotel data file (csv) or a snotel data frame already
+loaded into the R workspace.}
 \usage{
-snotel_metric(df, path = NULL)
+snotel_metric(df)
 }
 \arguments{
 \item{df}{snotel data frame or file}
-
-\item{path}{where to save downloaded files}
 }
 \description{
-Convert snotel data to metric from imperial units
+Note, if providing a path to a snotel file the original data will
+be overwritten by their metric equivalent with standardized column
+names. It is advisable to do this to create a uniform dataset.
 }
 \examples{
 

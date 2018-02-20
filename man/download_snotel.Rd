@@ -5,12 +5,14 @@
 \title{Dowloads sno-tel data based upon a subset of the
 sno-tel info as provided by snotel_info()}
 \usage{
-download_snotel(site_id = NULL, path = ".")
+download_snotel(site_id = NULL, path = ".", silent = FALSE)
 }
 \arguments{
 \item{site_id}{subset of the sites listed by snotel_info()}
 
 \item{path}{where to save downloaded files}
+
+\item{silent}{suppress verbose output on downloads (default = FALSE)}
 }
 \description{
 Dowloads sno-tel data based upon a subset of the
