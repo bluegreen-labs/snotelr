@@ -1,7 +1,12 @@
-#' Convert snotel data to metric from imperial units
+#' Convert snotel data to metric from imperial units, data is read
+#' from either a snotel data file (csv) or a snotel data frame already
+#' loaded into the R workspace.
+#' 
+#' Note, if providing a path to a snotel file the original data will
+#' be overwritten by their metric equivalent with standardized column
+#' names. It is advisable to do this to create a uniform dataset.
 #'
 #' @param df snotel data frame or file
-#' @param path where to save downloaded files
 #' @keywords SNOTEL, USDA, sites, locations, web scraping, conversion
 #' @export
 #' @examples
@@ -9,8 +14,7 @@
 #' # would download all available snotel data
 #' # df = snotel_metric(df = "snotel_1277.csv")
 
-snotel_metric = function(df,
-                         path = NULL) {
+snotel_metric = function(df) {
 
   # check if it's a filename or data frame
   df_check = is.data.frame(df)
@@ -22,7 +26,7 @@ snotel_metric = function(df,
       filename = df
 
       # read data file
-      header = try(readLines(df, n = 7), silent = TRUE)
+      header = try(readLines(df, n = 58), silent = TRUE)
       df = utils::read.table(df, header = TRUE, sep = ",")
     } else{
       stop("file does not exist, check path")
@@ -33,7 +37,10 @@ snotel_metric = function(df,
   if ( ncol(df) != 7) {
     stop("not a standard snotel file")
   } else {
-    if ( length(grep("degC",colnames(df))) >= 1 ){
+    
+    # if the data are metric, just rename the columns
+    # otherwise convert from imperial to metric units
+    if ( length(grep("degC", colnames(df))) >= 1 ){
       colnames(df) = c("date",
                        "snow_water_equivalent",
                        "precipitation_cummulative",
@@ -65,8 +72,9 @@ snotel_metric = function(df,
     # if the data is not a data frame, write
     # to the same file else return df
     if (!df_check) {
-
-      # writing the final data frame to file, retaining the original header
+      
+      # writing the final data frame to file,
+      # retaining the original header
       utils::write.table(
         header,
         filename,
@@ -87,6 +95,5 @@ snotel_metric = function(df,
     } else {
       return(df)
     }
-
   }
 }

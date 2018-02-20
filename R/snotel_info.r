@@ -1,8 +1,8 @@
 #' Grabs the sno-tel site listing for further processing
 #'
-#' @param url Location of the FLUXNET2015 site table
-#' (hopefully will not change to often, default is ok for now)
-#' @param path location of the phantomjs binary (system specific)
+#' @param path path where to save the snotel information (site list)
+#' @importFrom magrittr "%>%"
+#' @importFrom stats na.action
 #' @keywords sno-tel, USDA, sites, locations, web scraping
 #' @export
 #' @examples
@@ -14,64 +14,37 @@
 #' # http://phantomjs.org/download.html
 #  # selection string
 
-snotel_info = function(url="http://wcc.sc.egov.usda.gov/nwcc/yearcount?network=sntl&counttype=listwithdiscontinued&state=",path = NULL){
+snotel_info = function(path = NULL){
+  
+  # check if the phatomjs server is
+  # installed and running
+  server = try(wdman::phantomjs(verbose = FALSE))
 
-  # grab the location of the package, assuming it is installed
-  # in the user space (not globally)
-  # phantomjs_path = sprintf("%s/phantomjs/",path.package("fluxdatastatr"))
-
-  # grab the OS info
-  OS = Sys.info()[1]
-
-  # base url
-  base_url="http://wcc.sc.egov.usda.gov/reportGenerator/view_csv/customSingleStationReport/daily/1:AK:SNTL%7Cid=%22%22%7Cname/POR_BEGIN,POR_END/WTEQ::value,PREC::value,TMAX::value,TMIN::value,TAVG::value,PRCP::value"
-
-  # assume phantomjs in the current working directory
-  phantomjs_path = sprintf("%s/phantomjs/",
-                           path.package("snotelr"))
-
-  # subroutines for triming leading spaces
-  # and converting factors to numeric
-  trim.leading = function (x)  sub("^\\s+", "", x)
-  as.numeric.factor = function(x) {as.numeric(levels(x))[x]}
-
-  # write out a script phantomjs can process
-  # change timeout if the page bounces, seems empty !!!
-  writeLines(sprintf("var page = require('webpage').create();
-                     page.open('%s', function (status) {
-                     if (status !== 'success') {
-                     console.log('Unable to load the address!');
-                     phantom.exit();
-                     } else {
-                     window.setTimeout(function () {
-                     console.log(page.content);
-                     phantom.exit();
-                     }, 3000); // Change timeout to render the page
-                     }
-                     });", url), con="scrape.js")
-
-  # run different versions of phantomjs depending on the OS
-  if (OS == "Linux"){
-    # process the script with phantomjs / scrapes zooniverse page
-    system(sprintf("%s./phantomjs_linux scrape.js > scrape.html",phantomjs_path),wait=TRUE)
-  } else if (OS == "Windows") {
-    # process the script with phantomjs / scrapes zooniverse page
-    shell(sprintf("%sphantomjs.exe scrape.js > scrape.html",phantomjs_path))
-  }else{
-    # process the script with phantomjs / scrapes zooniverse page
-    system(sprintf("%s./phantomjs_osx scrape.js > scrape.html",phantomjs_path),wait=TRUE)
-  }
-
-  # load html data
-  main = xml2::read_html("scrape.html")
-
+  # start remote driver
+  remDr <- RSelenium::remoteDriver(browserName = "phantomjs",
+                                   port = 4567L)
+  
+  # open a connection to the phantomjs server
+  remDr$open(silent = TRUE)
+  
+  # navigate to the page and wait on load
+  remDr$navigate("http://wcc.sc.egov.usda.gov/nwcc/yearcount?network=sntl&counttype=listwithdiscontinued&state=")
+  
+  # grab the loaded main html page
+  main = xml2::read_html(remDr$getPageSource()[[1]])
+  
+  # close the connection and clean up
+  remDr$close()
+  server$stop()
+  
   # set html element selector for the table
+  # on the main page
   sel_data = 'h5~ table+ table'
-
+  
   # process the html file and extract stats
-  data = rvest::html_nodes(main,sel_data) %>%
-    rvest::html_table()
-  df = data.frame(data)
+  df = rvest::html_nodes(main,sel_data) %>%
+    rvest::html_table() %>%
+    data.frame()
 
   # extract site id from site name
   df$site_id = as.numeric(gsub("[\\(\\)]", "", regmatches(df$site_name, regexpr("\\(.*?\\)", df$site_name))))
@@ -99,10 +72,6 @@ snotel_info = function(url="http://wcc.sc.egov.usda.gov/nwcc/yearcount?network=s
 
   # convert the end date
   df$end[df$end == "2100-01-01"] = Sys.Date()
-
-  # remove temporary html file and javascript
-  file.remove("scrape.html")
-  file.remove("scrape.js")
 
   if (is.null(path)){
     # return data frame
