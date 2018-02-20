@@ -35,11 +35,7 @@ sidebar <- dashboardSidebar(
     menuItem("Explore data", tabName = "explorer", icon = icon("bar-chart-o")),
     menuItem("About SNOTEL", tabName = "about", icon = icon("info-circle")),
     menuItem("About the package", tabName = "help", icon = icon("info-circle")),
-    menuItem("code on GitHub", icon = icon("github"), href = "https://github.com/khufkens/snotelr"),
-    sidebarUserPanel(name = "Koen Hufkens",
-                     image = "https://avatars2.githubusercontent.com/u/1354258?v=3&s=460",
-                     subtitle = a("Personal Website", href = "http://www.khufkens.com")
-                     )
+    menuItem("code on GitHub", icon = icon("github"), href = "https://github.com/khufkens/snotelr")
   )
 )
 

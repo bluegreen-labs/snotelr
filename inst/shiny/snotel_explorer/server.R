@@ -9,36 +9,12 @@ library(DT) # interactive tables for shiny
 library(data.table) # loads data far faster than read.table()
 library(zoo) # call passive
 
-# When on the machine of the developer, sideload the code locally
-# for quick reviewing of changes to the GUI
+# get the location of the package
 path = sprintf("%s/shiny/snotel_explorer", path.package("snotelr"))
-
-# set the base directory to the session cache directory
-setwd(tempdir())
 
 # grab the latest site information from the Ameriflux site.
 # use the metadata file if present and not older than 1 year!
-if (!file.exists("snotel_metadata.csv")) {
-  print("no metadata cached, downloading metadata")
-  snotel_info(path=".")
-}
-
-# grab the file info from the metadata file and compare
-# to current year, if creation year and current year is
-# the same - do not update
-m_time = file.info("snotel_metadata.csv")$mtime
-diff_days = as.Date(m_time) - as.Date(Sys.Date())
-
-# check years
-if (diff_days > 30) {
-  print("metadata outdated (> 30 days), refreshing")
-  snotel_info()
-}
-
-# finally read in the metadata if all checks are go
-# convert to data frame instead of data table for subsetting
-# will change to data table later == faster
-df = as.data.frame(fread("snotel_metadata.csv", header = TRUE, sep = ","))
+df = snotel_info()
 
 myIcon = icons(
   iconUrl = sprintf("%s/snow_icon.svg", path),
@@ -129,7 +105,7 @@ server = function(input, output, session) {
                color = "blue")
     })
 
-    nr_years = round(sum((as.Date(df$end) - as.Date(df$start))/365,na.rm = TRUE))
+    nr_years =round(sum((df$end - df$start)/365, na.rm = TRUE))
     output$year_count = renderInfoBox({
       valueBox(nr_years,
                "Snow Seasons",
@@ -335,7 +311,9 @@ server = function(input, output, session) {
 
     # if the file does not exist, download it
     if (is.na(status)) {
-      status = try(download_snotel(site = site, path = "."))
+      status = try(download_snotel(site_id = site,
+                                   path = tempdir(),
+                                   silent = TRUE))
     }
 
     # if the download fails, print NULL
@@ -343,9 +321,10 @@ server = function(input, output, session) {
       progress$set(value = 0.3, detail = "download error!")
       return(NULL)
     } else{
-      file = list.files(getwd(),
-                        pattern = sprintf("^snotel_%s\\.csv$", site))[1]
-
+      file = list.files(tempdir(),
+                        pattern = sprintf("^snotel_%s\\.csv$", site),
+                        full.names = TRUE)[1]
+      
       # read the data
       data = read.table(file, header = TRUE, sep = ",")
 
