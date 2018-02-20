@@ -15,8 +15,8 @@ install.packages("devtools")
 and downloading the package from the github repository
 
 ```R
-library(devtools)
-install_github("khufkens/snotelr")
+if(!require(devtools)){install.package(devtools)}
+devtools::install_github("khufkens/snotelr")
 ```
 
 ## Use
