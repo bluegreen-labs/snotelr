@@ -4,15 +4,7 @@
 \alias{snotel_info}
 \title{Grabs the sno-tel site listing for further processing}
 \usage{
-
-  snotel_info(url = "http://wcc.sc.egov.usda.gov/nwcc/yearcount?network=sntl&counttype=listwithdiscontinued&state=",
-  path = NULL)
-}
-\arguments{
-\item{url}{Location of the FLUXNET2015 site table
-(hopefully will not change to often, default is ok for now)}
-
-\item{path}{location of the phantomjs binary (system specific)}
+snotel_info(path = NULL)
 }
 \description{
 Grabs the sno-tel site listing for further processing
