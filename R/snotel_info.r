@@ -1,5 +1,8 @@
 #' Grabs the sno-tel site listing for further processing
 #'
+#' @param path path where to save the snotel information (site list)
+#' @importFrom magrittr "%>%"
+#' @importFrom stats na.action
 #' @keywords sno-tel, USDA, sites, locations, web scraping
 #' @export
 #' @examples
@@ -32,7 +35,7 @@ snotel_info = function(path = NULL){
   
   # close the connection and clean up
   remDr$close()
-  gc()
+  server$stop()
   
   # set html element selector for the table
   # on the main page
