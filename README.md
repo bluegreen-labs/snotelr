@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/khufkens/snotelr.svg?branch=master)](https://travis-ci.org/khufkens/snotelr)
+[![codecov](https://codecov.io/gh/khufkens/snotelr/branch/master/graph/badge.svg)](https://codecov.io/gh/khufkens/snotelr)
 
 # snotelr
 

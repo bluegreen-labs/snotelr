@@ -31,6 +31,12 @@ download_snotel = function(site_id = NULL,
     }
   }
   
+  
+  # check if the provided site index is valid
+  if (nrow(meta_data)==0){
+    stop("no site found with the requested ID")
+  }    
+  
   # loop over selection, and download the data
   snotel_data = lapply(1:nrow(meta_data), function(i){
     

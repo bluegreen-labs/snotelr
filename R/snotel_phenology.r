@@ -9,7 +9,7 @@
 #' @export
 #' @examples
 #'
-#' # stats = estimate_phenology(df)
+#' # stats = snotel_phenology(df)
 
 snotel_phenology = function(df){
 
