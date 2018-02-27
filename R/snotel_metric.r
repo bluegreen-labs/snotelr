@@ -18,10 +18,10 @@ snotel_metric = function(df) {
 
   # check if it's a filename or data frame
   df_check = is.data.frame(df)
-
+  
   if (!df_check) {
     if (file.exists(df)) {
-
+      
       # assign filename
       filename = df
 

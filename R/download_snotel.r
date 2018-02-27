@@ -31,9 +31,8 @@ download_snotel = function(site_id = NULL,
     }
   }
   
-  
   # check if the provided site index is valid
-  if (nrow(meta_data)==0){
+  if (nrow(meta_data) == 0){
     stop("no site found with the requested ID")
   }    
   
@@ -64,15 +63,14 @@ download_snotel = function(site_id = NULL,
     error = try(curl::curl_download(url = base_url,
                                     destfile = filename),
                 silent = TRUE)
-
+    
     # catch error and remove resulting zero byte files
-    if (inherits(error,"try-error")) {
+    if (inherits(error, "try-error")) {
       file.remove(filename)
       if(!silent){
         warning(sprintf("Downloading site %s failed, removed empty file.",
                         meta_data$site_id[i]))
       }
-      return(NULL)
     }
     
     # how to export the data, if no export
@@ -86,6 +84,7 @@ download_snotel = function(site_id = NULL,
                              header = TRUE,
                              sep = ",",
                              stringsAsFactors = FALSE)
+      
       # convert to metric
       df = snotel_metric(df)
       
@@ -96,7 +95,16 @@ download_snotel = function(site_id = NULL,
       # return the value
       return(df)
     } else {
-      file.copy(filename, path)
+      # Copy data from temporary file to final location
+      # and delete original, with an exception for tempdir() location.
+      # The latter to facilitate package integration.
+      
+      if (identical(normalizePath(path), normalizePath(tempdir()))) {
+        message("Output path == tempdir(), file not copied or removed!")
+      } else {
+        file.copy(filename, path)
+        file.remove(filename)
+      }
     }
   })
   
