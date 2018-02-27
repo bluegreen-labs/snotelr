@@ -14,12 +14,12 @@
 #' # http://phantomjs.org/download.html
 #  # selection string
 
-snotel_info = function(path = NULL){
+snotel_info <- function(path = NULL){
   
   # check if the phatomjs server is
   # installed and running
-  server = try(wdman::phantomjs(verbose = FALSE))
-
+  server <- try(wdman::phantomjs(verbose = FALSE))
+  
   # start remote driver
   remDr <- RSelenium::remoteDriver(browserName = "phantomjs",
                                    port = 4567L)
@@ -35,7 +35,12 @@ snotel_info = function(path = NULL){
   
   # close the connection and clean up
   remDr$close()
-  server$stop()
+  
+  # stop server only if opened in this
+  # session, otherwise skip
+  if(!inherits(server, "try-error")){
+    server$stop()
+  }
   
   # set html element selector for the table
   # on the main page
