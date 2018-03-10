@@ -313,7 +313,8 @@ server = function(input, output, session) {
     if (is.na(status)) {
       status = try(download_snotel(site_id = site,
                                    path = tempdir(),
-                                   silent = TRUE))
+                                   silent = TRUE,
+                                   meta_data = df))
     }
 
     # if the download fails, print NULL
@@ -362,7 +363,7 @@ server = function(input, output, session) {
     ltm_col = "rgba(128,128,128,0.8)"
 
     # set axis labels
-    labels = c("Snow Water Equivalent (mm)" = "snow_water_equivalent",
+    labels = c("SWE (mm)" = "snow_water_equivalent",
                "temperature (C)" = "temperature_mean",
                "precipitation (mm)" = "precipitation")
     primary_label = names(labels)[which(labels == input$primary)]
@@ -542,9 +543,12 @@ server = function(input, output, session) {
       } else if (input$plot_type == "yearly") {
 
         # long term mean flux data
-        ltm = plot_data %>% group_by(doy) %>%
-          summarise(mn = mean(primary), sd = sd(primary), doymn = mean(doy))
-
+        ltm = plot_data %>% 
+          group_by(doy) %>%
+          summarise(mn = mean(primary),
+                    sd = sd(primary),
+                    doymn = mean(doy))
+        
         p = ltm %>% plot_ly(
           x = ~ doymn,
           y = ~ mn,
@@ -556,7 +560,7 @@ server = function(input, output, session) {
         ) %>%
           add_trace(
             x = ~ doymn,
-            y = ~ mn - sd,
+            y = ~ ifelse((mn - sd) < 0, 0, mn - sd),
             mode = "lines",
             type = 'scatter',
             fill = "none",
@@ -581,7 +585,6 @@ server = function(input, output, session) {
                     type = "scatter",
                     mode = "lines",
                     name = primary_label,
-                    line = list(color = "Set1"),
                     showlegend = TRUE
           ) %>%
           layout(
