@@ -13,7 +13,7 @@ Imports:
     DT,
     xml2,
     shinydashboard,
-    curl,
+    httr,
     stats,
     rvest,
     magrittr,

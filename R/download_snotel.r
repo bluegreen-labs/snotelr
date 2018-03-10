@@ -2,21 +2,25 @@
 #' sno-tel info as provided by snotel_info()
 #'
 #' @param site_id subset of the sites listed by snotel_info()
-#' @param path where to save downloaded files
-#' @param silent suppress verbose output on downloads (default = FALSE)
+#' @param path where to save downloaded files (default = tempdir())
+#' @param internal return data to workspace, \code{TRUE} or \code{FALSE}
+#' (default = \code{FALSE})
+#' @param silent suppress verbose output on downloads (default = \code{FALSE})
+#' @param meta_data snotel meta data, either downloaded with each query
+#' or for multiple queries provided as an external data frame generated
+#' once using snotel_info()
 #' @keywords SNOTEL, USDA, sites, locations, web scraping
 #' @export
 #' @examples
 #'
 #' # would download all available snotel data
-#' # df = snotel_download(site = snotel_info())
+#' # df = snotel_download(site = )
 
 download_snotel = function(site_id = NULL,
-                           path = ".",
-                           silent = FALSE){
-
-  # download meta-data
-  meta_data = snotel_info()
+                           path = tempdir(),
+                           internal = FALSE,
+                           silent = FALSE,
+                           meta_data = snotel_info()){
 
   # trap empty site parameter, if all, downloadd all data
   # if string of IDs subset the dataset.
@@ -59,10 +63,14 @@ download_snotel = function(site_id = NULL,
                        "snotel",
                        meta_data$site_id[i])
 
-    # download the data
-    error = try(curl::curl_download(url = base_url,
-                                    destfile = filename),
+    # try to download the data
+    error = try(httr::content(httr::GET(url = base_url,
+                                        httr::write_disk(path = filename, 
+                                                         overwrite = TRUE)),
+                              "text",
+                              encoding = "UTF-8"),
                 silent = TRUE)
+    
     
     # catch error and remove resulting zero byte files
     if (inherits(error, "try-error")) {
@@ -77,7 +85,7 @@ download_snotel = function(site_id = NULL,
     # path is provided return as a nested list
     # if a path is provided copy the data from
     # the temporary directory to the destination path
-    if (is.null(path)){
+    if (is.null(path) | internal){
       
       # read in the snotel data
       df = utils::read.table(filename,
@@ -94,6 +102,7 @@ download_snotel = function(site_id = NULL,
       
       # return the value
       return(df)
+      
     } else {
       # Copy data from temporary file to final location
       # and delete original, with an exception for tempdir() location.
@@ -102,12 +111,14 @@ download_snotel = function(site_id = NULL,
       if (identical(normalizePath(path), normalizePath(tempdir()))) {
         message("Output path == tempdir(), file not copied or removed!")
       } else {
-        file.copy(filename, path)
+        file.copy(filename, path, overwrite = TRUE, copy.mode = FALSE)
         file.remove(filename)
       }
     }
   })
   
   # return the nested list of data
-  return(snotel_data)
+  if (is.null(path) | internal){
+    return(snotel_data)
+  }
 }
