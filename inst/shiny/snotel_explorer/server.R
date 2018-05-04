@@ -547,10 +547,11 @@ server = function(input, output, session) {
           group_by(doy) %>%
           summarise(mn = mean(primary),
                     sd = sd(primary),
-                    doymn = mean(doy))
+                    doymn = mean(doy),
+                    snowdoy = ifelse(mean(doy) < 182, mean(doy), mean(doy) - 366))
         
         p = ltm %>% plot_ly(
-          x = ~ doymn,
+          x = ~ snowdoy,
           y = ~ mn,
           mode = "lines",
           type = 'scatter',
@@ -559,7 +560,7 @@ server = function(input, output, session) {
           inherit = FALSE
         ) %>%
           add_trace(
-            x = ~ doymn,
+            x = ~ snowdoy,
             y = ~ ifelse((mn - sd) < 0, 0, mn - sd),
             mode = "lines",
             type = 'scatter',
@@ -569,7 +570,7 @@ server = function(input, output, session) {
             name = "SD"
           ) %>%
           add_trace(
-            x = ~ doymn,
+            x = ~ snowdoy,
             y = ~ mn + sd,
             type = 'scatter',
             mode = "lines",
@@ -579,12 +580,13 @@ server = function(input, output, session) {
             name = "SD"
           ) %>%
           add_trace(data = plot_data,
-                    x = ~ doy,
+                    x = ~ ifelse(doy < 182, doy, doy - 366),
                     y = ~ primary,
                     split = ~ year,
                     type = "scatter",
                     mode = "lines",
                     name = primary_label,
+                    line = list(color = "Set1"),
                     showlegend = TRUE
           ) %>%
           layout(
