@@ -8,6 +8,8 @@ Description: Programmatic interface to the 'SNOTEL' snowpack data
   (<https://www.wcc.nrcs.usda.gov/snow/>). Provides easy downloads of snowpack 
   data into your R workspace or a local directory. Additional post-processing 
   routines to extract snow season indices are provided.
+URL: https://github.com/khufkens/snotelr
+BugReports: https://github.com/khufkens/snotelr/issues
 Depends:
     R (>= 3.4.0)
 Imports:
