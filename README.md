@@ -47,7 +47,7 @@ For in depth analysis the above statistics can be retrieved using the **snow.phe
 
 ```R
 # with df a SNOTEL file or data frame in your R workspace
-snow_phenology(df)
+snotel_phenology(df)
 ```
 
 To access the full list of SNOTEL sites and associated meta-data use the **snotel.info()** function.
