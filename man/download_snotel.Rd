@@ -5,14 +5,22 @@
 \title{Dowloads sno-tel data based upon a subset of the
 sno-tel info as provided by snotel_info()}
 \usage{
-download_snotel(site_id = NULL, path = ".", silent = FALSE)
+download_snotel(site_id = NULL, path = tempdir(), internal = FALSE,
+  silent = FALSE, meta_data = snotel_info())
 }
 \arguments{
 \item{site_id}{subset of the sites listed by snotel_info()}
 
-\item{path}{where to save downloaded files}
+\item{path}{where to save downloaded files (default = tempdir())}
 
-\item{silent}{suppress verbose output on downloads (default = FALSE)}
+\item{internal}{return data to workspace, \code{TRUE} or \code{FALSE}
+(default = \code{FALSE})}
+
+\item{silent}{suppress verbose output on downloads (default = \code{FALSE})}
+
+\item{meta_data}{snotel meta data, either downloaded with each query
+or for multiple queries provided as an external data frame generated
+once using snotel_info()}
 }
 \description{
 Dowloads sno-tel data based upon a subset of the
@@ -21,7 +29,7 @@ sno-tel info as provided by snotel_info()
 \examples{
 
 # would download all available snotel data
-# df = snotel_download(site = snotel_info())
+# df = snotel_download(site = )
 }
 \keyword{SNOTEL,}
 \keyword{USDA,}

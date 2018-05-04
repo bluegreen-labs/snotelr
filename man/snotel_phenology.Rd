@@ -22,7 +22,7 @@ are reported.
 }
 \examples{
 
-# stats = estimate_phenology(df)
+# stats = snotel_phenology(df)
 }
 \keyword{SNOTEL,}
 \keyword{USDA,}
