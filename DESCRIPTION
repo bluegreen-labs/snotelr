@@ -1,12 +1,16 @@
 Package: snotelr
-Title: R toolbox to facilitate easy access / visualize SNOTEL data
-Version: 0.2
-Authors@R: person("Koen", "Hufkens", email = "koen.hufkens@gmail.com", role = c("aut", "cre"))
-Description: Provides easy access to SNOTEL data and summarizing snow statistics.
+Title: Calculate and Visualize 'SNOTEL' Snowpack Data and Seasonality
+Version: 0.3
+Authors@R: person("Koen", "Hufkens",
+                  email = "koen.hufkens@gmail.com",
+                  role = c("aut", "cre"))
+Description: Programmatic interface to the 'SNOTEL' snowpack data
+  (<https://www.wcc.nrcs.usda.gov/snow/>). Provides easy downloads of snowpack 
+  data into your R workspace or a local directory. Additional post-processing 
+  routines to extract snow season indices are provided.
 Depends:
-    R (>= 3.3.1)
+    R (>= 3.4.0)
 Imports:
-    devtools,
     shiny,
     leaflet,
     plotly,
@@ -20,6 +24,9 @@ Imports:
     zoo,
     wdman,
     RSelenium
+Remotes:
+    johndharrison/wdman
+    ropensci/RSelenium
 Suggests:
     covr,
     testthat
