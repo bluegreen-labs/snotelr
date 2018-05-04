@@ -5,11 +5,11 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Visualize 'SNOTEL' Snowpack Data and Seasonality • snotelr</title>
+<title>Calculate and Visualize 'SNOTEL' Snowpack Data and Seasonality • snotelr</title>
 <!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="jquery.sticky-kit.min.js"></script><script src="pkgdown.js"></script><meta property="og:title" content="Visualize 'SNOTEL' Snowpack Data and Seasonality">
+<script src="jquery.sticky-kit.min.js"></script><script src="pkgdown.js"></script><meta property="og:title" content="Calculate and Visualize 'SNOTEL' Snowpack Data and Seasonality">
 <meta property="og:description" content="Programmatic interface to the 'SNOTEL' snowpack data
   (&lt;https://www.wcc.nrcs.usda.gov/snow/&gt;). Provides easy downloads of snowpack 
   data into your R workspace or a local directory. Additional post-processing 
@@ -48,7 +48,14 @@
   <a href="reference/index.html">Reference</a>
 </li>
       </ul>
-<ul class="nav navbar-nav navbar-right"></ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+  <a href="https://github.com/khufkens/snotelr">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
 <!--/.nav-collapse -->
   </div>
@@ -93,7 +100,7 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 <p><img src="https://farm1.staticflickr.com/429/31959389961_90723239f3_b_d.jpg"></p>
 <p>For in depth analysis the above statistics can be retrieved using the <strong>snow.phenology()</strong> function</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># with df a SNOTEL file or data frame in your R workspace</span>
-<span class="kw">snow_phenology</span>(df)</code></pre></div>
+<span class="kw"><a href="reference/snotel_phenology.html">snotel_phenology</a></span>(df)</code></pre></div>
 <p>To access the full list of SNOTEL sites and associated meta-data use the <strong>snotel.info()</strong> function.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># returns the site info as snotel_metadata.txt in the current working directory</span>
 <span class="kw"><a href="reference/snotel_info.html">snotel_info</a></span>(<span class="dt">path =</span> <span class="st">"."</span>) 
@@ -121,7 +128,9 @@ data =<span class="st"> </span><span class="kw"><a href="reference/snotel_info.h
     <div class="links">
 <h2>Links</h2>
 <ul class="list-unstyled">
-<li>Report a bug at <br><a href="NA">NA</a>
+<li>Browse source code at <br><a href="https://github.com/khufkens/snotelr">https://​github.com/​khufkens/​snotelr</a>
+</li>
+<li>Report a bug at <br><a href="https://github.com/khufkens/snotelr/issues">https://​github.com/​khufkens/​snotelr/​issues</a>
 </li>
 </ul>
 </div>
