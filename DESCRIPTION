@@ -27,7 +27,7 @@ Imports:
     wdman,
     RSelenium
 Remotes:
-    johndharrison/wdman
+    johndharrison/wdman,
     ropensci/RSelenium
 Suggests:
     covr,
