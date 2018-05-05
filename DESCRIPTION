@@ -24,9 +24,11 @@ Imports:
     rvest,
     magrittr,
     zoo,
+    binman,
     wdman,
     RSelenium
 Remotes:
+    johndharrison/binman,
     johndharrison/wdman,
     ropensci/RSelenium
 Suggests:

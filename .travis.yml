@@ -12,8 +12,9 @@ r_packages:
   - covr
 
 r_github_packages:
+  - johndharrison/binman
   - johndharrison/wdman
-  - ropensci/RSelenium  
-
+  - ropensci/RSelenium
+  
 after_success:
 - Rscript -e 'covr::codecov()'
