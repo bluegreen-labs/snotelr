@@ -1,107 +1,71 @@
 # snotelr unit tests
 
+# info
 test_that("check snotel info routines",{
+  expect_output(str(snotel_info()), "11 variables")
+})
   
-  # list sites
-  info = try(snotel_info())
-  
-  # list sites, write to file
-  info_file = try(snotel_info(path = tempdir()))
-  
-  print(!inherits(info,"try-error"))
-  print(!inherits(info_file,"try-error"))
-  
-  # see if any of the runs failed
-  check = !inherits(info,"try-error") &
-          !inherits(info_file,"try-error")
-          
-  # check if no error occured
-  expect_true(check)
+test_that("check snotel info routines - write to disk",{
+  expect_silent(snotel_info(path = tempdir()))
 })
 
-
-test_that("check snotel download routines",{
-  
-  # download data
-  df = try(download_snotel(site = 1161,
-                           path = tempdir()))
-  
-  print(list.files(tempdir()))
-  
-  # download data
-  df_home = try(download_snotel(site = 1161,
-                                path = "~"))
-  
-  # download fail
-  df_fail = try(download_snotel(site = 10000,
-                                path = tempdir()))
-  
-  print(!inherits(df,"try-error"))
-  print(!inherits(df_home,"try-error"))
-  print(inherits(df_fail,"try-error"))
-  
-  # see if any of the runs failed
-  check = !inherits(df,"try-error") &
-          !inherits(df_home,"try-error") &
-          inherits(df_fail,"try-error")
-  
-  # check if no error occured
-  expect_true(check)
+# downloads
+test_that("check download 1 site",{
+  expect_message(snotel_download(site_id = 429))
 })
 
-
-test_that("check metric conversion routines",{
-  
-  # download data
-  df = try(download_snotel(site = 1161,
-                           path = tempdir()))
-  # convert to metric
-  metric = try(snotel_metric(paste0(tempdir(),
-                                    "/snotel_1161.csv")))
-  
-  # convert to metric completed
-  metric_complete = try(snotel_metric(paste0(tempdir(),
-                                             "/snotel_1161.csv")))
-  
-  # conversion fail
-  metric_fail = try(snotel_metric(paste0(tempdir(),
-                                         "/snotel_1160.csv")))
-  
-  print(!inherits(metric,"try-error"))
-  print(!inherits(metric_complete,"try-error"))
-  print(inherits(metric_fail,"try-error"))
-  
-  # see if any of the runs failed
-  check = !inherits(metric,"try-error") &
-          !inherits(metric_complete,"try-error") &
-          inherits(metric_fail,"try-error")
-    
-  # check if no error occured
-  expect_true(check)
+test_that("check download 2 sites",{
+  expect_message(snotel_download(site_id = c(429,670)))
 })
 
-test_that("check stats routines",{
-  
-  # download data
-  df = try(download_snotel(site = 1161,
-                           path = tempdir()))
-  
-  # estimate snotel phenology
-  stats = try(snotel_phenology(paste0(tempdir(),
-                                      "/snotel_1161.csv")))
-  
-  # estimate snotel phenology
-  stats_fail = try(snotel_phenology(paste0(tempdir(),
-                                           "/snotel_1160.csv")))
-  
-  print(!inherits(stats,"try-error"))
-  print(!inherits(stats_fail,"try-error"))
-  
-  # see if any of the runs failed
-  check = !inherits(stats,"try-error") &
-          inherits(stats_fail,"try-error")
-  
-  # check if no error occured
-  expect_true(check)
+test_that("check download internal",{
+  expect_output(str(snotel_download(site_id = 429,
+                                    internal = TRUE)))
+})
+
+test_that("check download invalid site",{
+  expect_error(download_snotel(site_id = 10000))
+})
+
+test_that("check download no site",{
+  expect_error(download_snotel())
+})
+
+# metric conversion
+test_that("metric conversion - not a proper size data frame",{
+  df <- snotel_download(site_id = 670, internal = TRUE)
+  df <- df[,-6]
+  expect_error(snotel_metric(df))
+})
+
+test_that("metric conversion - not a data frame",{
+  df <- rep(NA, 10)
+  expect_error(snotel_metric(df))
+})
+
+# phenology
+test_that("check phenology routines",{
+  df <- snotel_download(site_id = 670, internal = TRUE)
+  expect_output(str(snotel_phenology(df)))
+})
+
+test_that("check phenology routines - swe empty",{
+  df <- snotel_download(site_id = 670, internal = TRUE)
+  df$snow_water_equivalent <- NA
+  expect_output(str(snotel_phenology(df)))
+})
+
+test_that("check phenology routines - missing file",{
+  expect_error(str(snotel_phenology()))
+})
+
+test_that("check phenology routines - no data returned",{
+  df <- snotel_download(site_id = 429, internal = TRUE)
+  expect_warning(snotel_phenology(df))
+})
+
+test_that("check phenology routines - not a data frame",{
+  df <- rep(NA, 10)
+  expect_error(snotel_phenology(df))
 })
 
