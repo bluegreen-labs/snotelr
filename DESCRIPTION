@@ -1,6 +1,6 @@
 Package: snotelr
 Title: Calculate and Visualize 'SNOTEL' Snowpack Data and Seasonality
-Version: 0.3.1
+Version: 0.4
 Authors@R: person("Koen", "Hufkens",
                   email = "koen.hufkens@gmail.com",
                   role = c("aut", "cre"))
