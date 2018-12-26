@@ -7,11 +7,13 @@
 snotel_metric(df)
 }
 \arguments{
-\item{df}{snotel data frame (or file)}
+\item{df}{snotel data frame}
+}
+\value{
+a data frame with imperial values converted to metric ones
 }
 \description{
-Data is read from either a snotel data file (csv) or 
-a snotel data frame already loaded into the R workspace.
+Data is read from either a snotel data frame and returned  as such.
 }
 \details{
 By default the conversion is done upon download. This function

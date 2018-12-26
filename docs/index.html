@@ -8,8 +8,8 @@
 <title>Calculate and Visualize 'SNOTEL' Snowpack Data and Seasonality • snotelr</title>
 <!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="jquery.sticky-kit.min.js"></script><script src="pkgdown.js"></script><meta property="og:title" content="Calculate and Visualize 'SNOTEL' Snowpack Data and Seasonality">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
+<script src="pkgdown.js"></script><meta property="og:title" content="Calculate and Visualize 'SNOTEL' Snowpack Data and Seasonality">
 <meta property="og:description" content="Programmatic interface to the 'SNOTEL' snowpack data
   (&lt;https://www.wcc.nrcs.usda.gov/snow/&gt;). Provides easy downloads of snowpack 
   data into your R workspace or a local directory. Additional post-processing 
@@ -32,7 +32,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">snotelr</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.3</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.4</span>
       </span>
     </div>
 
@@ -46,6 +46,18 @@
 </li>
 <li>
   <a href="reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="articles/snotelr-vignette.html">snotelr</a>
+    </li>
+  </ul>
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
@@ -75,18 +87,32 @@
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<p>You can quick install the package by installing the following dependencies</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">"devtools"</span>)</code></pre></div>
-<p>and downloading the package from the github repository</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span>(<span class="op">!</span><span class="kw">require</span>(devtools)){<span class="kw">install.package</span>(devtools)}
-devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"khufkens/snotelr"</span>)</code></pre></div>
+<div id="stable-release" class="section level3">
+<h3 class="hasAnchor">
+<a href="#stable-release" class="anchor"></a>stable release</h3>
+<p>To install the current stable release use a CRAN repository:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">"snotelr"</span>)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">library</span>(<span class="st">"snotelr"</span>)</a></code></pre></div>
+</div>
+<div id="development-release" class="section level3">
+<h3 class="hasAnchor">
+<a href="#development-release" class="anchor"></a>development release</h3>
+<p>To install the development releases of the package run the following commands:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="cf">if</span>(<span class="op">!</span><span class="kw">require</span>(devtools)){<span class="kw">install.packages</span>(<span class="st">"devtools"</span>)}</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"khufkens/snotelr"</span>)</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="kw">library</span>(<span class="st">"snotelr"</span>)</a></code></pre></div>
+<p>Vignettes are not rendered by default, if you want to include additional documentation please use:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="cf">if</span>(<span class="op">!</span><span class="kw">require</span>(devtools)){<span class="kw">install.packages</span>(<span class="st">"devtools"</span>)}</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"khufkens/snotelr"</span>, <span class="dt">build_vignettes =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="kw">library</span>(<span class="st">"snotelr"</span>)</a></code></pre></div>
+</div>
 </div>
 <div id="use" class="section level2">
 <h2 class="hasAnchor">
 <a href="#use" class="anchor"></a>Use</h2>
 <p>Most people will prefer the GUI to explore data on the fly. To envoke the GUI use the following command:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(snotelr)
-<span class="kw"><a href="reference/snotel_explorer.html">snotel_explorer</a></span>()</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">library</span>(snotelr)</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="kw"><a href="reference/snotel_explorer.html">snotel_explorer</a></span>()</a></code></pre></div>
 <p>This will start a shiny application with an R backend in your default browser. The first window will display all site locations, and allows for subsetting of the data based upon state or a bounding box. The bounding box can be selected by clicking top-left and bottom-right.</p>
 <p><img src="https://farm1.staticflickr.com/325/31266804673_131c3e8898_b_d.jpg"></p>
 <p>The <em>plot data</em> tab allows for interactive viewing of the soil water equivalent (SWE) data together with a covariate (temperature, precipitation). The SWE time series will also mark snow phenology statistics, mainly the day of:</p>
@@ -99,16 +125,16 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 </ul>
 <p><img src="https://farm1.staticflickr.com/429/31959389961_90723239f3_b_d.jpg"></p>
 <p>For in depth analysis the above statistics can be retrieved using the <strong>snow.phenology()</strong> function</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># with df a SNOTEL file or data frame in your R workspace</span>
-<span class="kw"><a href="reference/snotel_phenology.html">snotel_phenology</a></span>(df)</code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="co"># with df a SNOTEL file or data frame in your R workspace</span></a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="kw"><a href="reference/snotel_phenology.html">snotel_phenology</a></span>(df)</a></code></pre></div>
 <p>To access the full list of SNOTEL sites and associated meta-data use the <strong>snotel.info()</strong> function.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># returns the site info as snotel_metadata.txt in the current working directory</span>
-<span class="kw"><a href="reference/snotel_info.html">snotel_info</a></span>(<span class="dt">path =</span> <span class="st">"."</span>) 
-
-<span class="co"># export to data frame</span>
-data =<span class="st"> </span><span class="kw"><a href="reference/snotel_info.html">snotel_info</a></span>(<span class="dt">path =</span> <span class="ot">NULL</span>) </code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="co"># returns the site info as snotel_metadata.txt in the current working directory</span></a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="kw"><a href="reference/snotel_info.html">snotel_info</a></span>(<span class="dt">path =</span> <span class="st">"."</span>) </a>
+<a class="sourceLine" id="cb6-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb6-4" data-line-number="4"><span class="co"># export to data frame</span></a>
+<a class="sourceLine" id="cb6-5" data-line-number="5">data =<span class="st"> </span><span class="kw"><a href="reference/snotel_info.html">snotel_info</a></span>(<span class="dt">path =</span> <span class="ot">NULL</span>) </a></code></pre></div>
 <p>To query data for e.g. site 924 as shown in the image above use:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/download_snotel.html">download_snotel</a></span>(<span class="dt">site =</span> <span class="dv">924</span>)</code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">download_snotel</span>(<span class="dt">site =</span> <span class="dv">924</span>)</a></code></pre></div>
 </div>
 </div>
 <div id="notes" class="section level1">

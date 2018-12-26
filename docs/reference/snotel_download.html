@@ -6,7 +6,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • snotelr</title>
+<title>Dowloads snotel data based upon a subset of the
+sno-tel info as provided by snotel_info() — snotel_download • snotelr</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,7 +31,12 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Dowloads snotel data based upon a subset of the
+sno-tel info as provided by snotel_info() — snotel_download" />
+
+<meta property="og:description" content="Dowloads snotel data based upon a subset of the
+sno-tel info as provided by snotel_info()" />
+<meta name="twitter:card" content="summary" />
 
 
 
@@ -46,7 +52,7 @@
   </head>
 
   <body>
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -104,67 +110,61 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Dowloads snotel data based upon a subset of the
+sno-tel info as provided by snotel_info()</h1>
+    <small class="dont-index">Source: <a href='https://github.com/khufkens/snotelr/blob/master/R/snotel_download.r'><code>R/snotel_download.r</code></a></small>
+    <div class="hidden name"><code>snotel_download.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    
+    <p>Dowloads snotel data based upon a subset of the
+sno-tel info as provided by snotel_info()</p>
+    
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
-
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      <tr>
-        
-        <td>
-          <p><code><a href="snotel_download.html">snotel_download()</a></code> </p>
-        </td>
-        <td><p>Dowloads snotel data based upon a subset of the
-sno-tel info as provided by snotel_info()</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="snotel_explorer.html">snotel_explorer()</a></code> </p>
-        </td>
-        <td><p>Start the SNOTEL shiny interface</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="snotel_info.html">snotel_info()</a></code> </p>
-        </td>
-        <td><p>Downloads a SNOTEL site listing for further processing</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="snotel_metric.html">snotel_metric()</a></code> </p>
-        </td>
-        <td><p>Convert snotel data to metric from imperial units</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="snotel_phenology.html">snotel_phenology()</a></code> </p>
-        </td>
-        <td><p>Calculates snow phenology from the snow water equivalent data</p></td>
-      </tr>
-    </tbody>
+    <pre class="usage"><span class='fu'>snotel_download</span>(<span class='no'>site_id</span>, <span class='kw'>path</span> <span class='kw'>=</span> <span class='fu'>tempdir</span>(), <span class='kw'>internal</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>site_id</th>
+      <td><p>subset of the sites listed by snotel_info()</p></td>
+    </tr>
+    <tr>
+      <th>path</th>
+      <td><p>where to save downloaded files (default = tempdir())</p></td>
+    </tr>
+    <tr>
+      <th>internal</th>
+      <td><p>return data to workspace, <code>TRUE</code> or <code>FALSE</code>
+(default = <code>FALSE</code>)</p></td>
+    </tr>
     </table>
-  </div>
+    
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'>
+</div><span class='co'># NOT RUN {</span>
+<span class='co'># download data for SNOTEL site 429 and 1287, returning data to </span>
+<span class='co'># the R workspace</span>
+<span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='fu'>snotel_download</span>(<span class='kw'>site_id</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>429</span>,<span class='fl'>1287</span>), <span class='kw'>internal</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+
+<span class='co'># list a few first rows</span>
+<span class='fu'>head</span>(<span class='no'>df</span>)
+<span class='co'># }</span></pre>
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-all-functions">All functions</a></li>
+      <li><a href="#arguments">Arguments</a></li>
+            
+      <li><a href="#examples">Examples</a></li>
     </ul>
+
   </div>
 </div>
 
