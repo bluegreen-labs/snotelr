@@ -78,7 +78,7 @@ To query data for e.g. site 924 as shown in the image above use:
 snotel_download(site_id = 924)
 ```
 
-For in depth analysis the statistics in the GUI can be retrieved using the **snow.phenology()** function
+For in depth analysis the statistics in the GUI can be retrieved using the **snotel_phenology()** function
 
 ```R
 # with df a SNOTEL file or data frame in your R workspace
