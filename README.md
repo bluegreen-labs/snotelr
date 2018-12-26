@@ -59,13 +59,6 @@ The *plot data* tab allows for interactive viewing of the soil water equivalent 
 
 ![](https://farm1.staticflickr.com/429/31959389961_90723239f3_b_d.jpg)
 
-For in depth analysis the above statistics can be retrieved using the **snow.phenology()** function
-
-```R
-# with df a SNOTEL file or data frame in your R workspace
-snotel_phenology(df)
-```
-
 To access the full list of SNOTEL sites and associated meta-data use the **snotel.info()** function.
 
 ```R
@@ -73,13 +66,23 @@ To access the full list of SNOTEL sites and associated meta-data use the **snote
 snotel_info(path = ".") 
 
 # export to data frame
-data = snotel_info(path = NULL) 
+meta-data <- snotel_info(path = NULL) 
+
+# show some lines of the data frame
+head(meta-data)
 ```
 
 To query data for e.g. site 924 as shown in the image above use:
 
 ```R
-download_snotel(site = 924)
+snotel_download(site_id = 924)
+```
+
+For in depth analysis the statistics in the GUI can be retrieved using the **snow.phenology()** function
+
+```R
+# with df a SNOTEL file or data frame in your R workspace
+snotel_phenology(df)
 ```
 
 # Notes

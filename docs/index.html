@@ -124,17 +124,20 @@
 <li>maximum SWE (and its amount)</li>
 </ul>
 <p><img src="https://farm1.staticflickr.com/429/31959389961_90723239f3_b_d.jpg"></p>
-<p>For in depth analysis the above statistics can be retrieved using the <strong>snow.phenology()</strong> function</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="co"># with df a SNOTEL file or data frame in your R workspace</span></a>
-<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="kw"><a href="reference/snotel_phenology.html">snotel_phenology</a></span>(df)</a></code></pre></div>
 <p>To access the full list of SNOTEL sites and associated meta-data use the <strong>snotel.info()</strong> function.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="co"># returns the site info as snotel_metadata.txt in the current working directory</span></a>
-<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="kw"><a href="reference/snotel_info.html">snotel_info</a></span>(<span class="dt">path =</span> <span class="st">"."</span>) </a>
-<a class="sourceLine" id="cb6-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb6-4" data-line-number="4"><span class="co"># export to data frame</span></a>
-<a class="sourceLine" id="cb6-5" data-line-number="5">data =<span class="st"> </span><span class="kw"><a href="reference/snotel_info.html">snotel_info</a></span>(<span class="dt">path =</span> <span class="ot">NULL</span>) </a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="co"># returns the site info as snotel_metadata.txt in the current working directory</span></a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="kw"><a href="reference/snotel_info.html">snotel_info</a></span>(<span class="dt">path =</span> <span class="st">"."</span>) </a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="co"># export to data frame</span></a>
+<a class="sourceLine" id="cb5-5" data-line-number="5">meta<span class="op">-</span>data &lt;-<span class="st"> </span><span class="kw"><a href="reference/snotel_info.html">snotel_info</a></span>(<span class="dt">path =</span> <span class="ot">NULL</span>) </a>
+<a class="sourceLine" id="cb5-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb5-7" data-line-number="7"><span class="co"># show some lines of the data frame</span></a>
+<a class="sourceLine" id="cb5-8" data-line-number="8"><span class="kw">head</span>(meta<span class="op">-</span>data)</a></code></pre></div>
 <p>To query data for e.g. site 924 as shown in the image above use:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">download_snotel</span>(<span class="dt">site =</span> <span class="dv">924</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw"><a href="reference/snotel_download.html">snotel_download</a></span>(<span class="dt">site_id =</span> <span class="dv">924</span>)</a></code></pre></div>
+<p>For in depth analysis the statistics in the GUI can be retrieved using the <strong>snow.phenology()</strong> function</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="co"># with df a SNOTEL file or data frame in your R workspace</span></a>
+<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="kw"><a href="reference/snotel_phenology.html">snotel_phenology</a></span>(df)</a></code></pre></div>
 </div>
 </div>
 <div id="notes" class="section level1">
