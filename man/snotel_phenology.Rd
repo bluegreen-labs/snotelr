@@ -2,11 +2,7 @@
 % Please edit documentation in R/snotel_phenology.r
 \name{snotel_phenology}
 \alias{snotel_phenology}
-\title{Calculates snow phenology from the snow water
-equivalent data as measured by the SNOTEL network.
-first snow melt, first continuous snow melt, first
-snow accumulation and continous snow accumulation
-are reported.}
+\title{Calculates snow phenology from the snow water equivalent data}
 \usage{
 snotel_phenology(df)
 }
@@ -14,18 +10,31 @@ snotel_phenology(df)
 \item{df}{a snotel data file or data frame}
 }
 \description{
-Calculates snow phenology from the snow water
-equivalent data as measured by the SNOTEL network.
-first snow melt, first continuous snow melt, first
+First snow melt, first continuous snow melt, first
 snow accumulation and continous snow accumulation
 are reported.
 }
+\details{
+Be sure to execute this code on individual sites when loading
+a combined tidy data frame containing data for multiple sites.
+}
 \examples{
 
-# stats = snotel_phenology(df)
+\dontrun{
+# download one of the longer time series
+df <- snotel_download(site_id = 670, internal = TRUE)
+
+# calculate the snow phenology
+phenology <- snotel_phenology(df)
+
+# show a couple of lines
+head(phenology)
+
+}
 }
 \keyword{SNOTEL,}
 \keyword{USDA,}
+\keyword{cover}
 \keyword{phenology,}
 \keyword{series,}
 \keyword{snow}

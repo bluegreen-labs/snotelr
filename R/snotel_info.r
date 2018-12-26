@@ -1,4 +1,4 @@
-#' Grabs the sno-tel site listing for further processing
+#' Downloads a SNOTEL site listing for further processing
 #'
 #' @param path path where to save the snotel information (site list)
 #' @importFrom magrittr "%>%"
@@ -7,14 +7,15 @@
 #' @export
 #' @examples
 #'
-#' # with defaults, outputting a data frame
-#' # df = snotel_info()
-#'
-#' # [requires the rvest package for post-processing]
-#' # http://phantomjs.org/download.html
-#  # selection string
+#' \dontrun{
+#' # download the meta-data from the SNOTEL server
+#' meta_data <- snotel_info()
+#' 
+#' # show a couple of lines
+#' head(meta_data)
+#'}
 
-snotel_info <- function(path = NULL){
+snotel_info <- memoise::memoise(function(path){
   
   # check if the phatomjs server is
   # installed and running
@@ -28,10 +29,10 @@ snotel_info <- function(path = NULL){
   remDr$open(silent = TRUE)
   
   # navigate to the page and wait on load
-  remDr$navigate("http://wcc.sc.egov.usda.gov/nwcc/yearcount?network=sntl&counttype=listwithdiscontinued&state=")
+  remDr$navigate('http://wcc.sc.egov.usda.gov/nwcc/yearcount?network=sntl&counttype=listwithdiscontinued&state=')
   
   # grab the loaded main html page
-  main = xml2::read_html(remDr$getPageSource()[[1]])
+  main <- xml2::read_html(remDr$getPageSource()[[1]])
   
   # close the connection and clean up
   remDr$close()
@@ -44,41 +45,47 @@ snotel_info <- function(path = NULL){
   
   # set html element selector for the table
   # on the main page
-  sel_data = 'h5~ table+ table'
+  sel_data <- 'h5~ table+ table'
   
   # process the html file and extract stats
-  df = rvest::html_nodes(main,sel_data) %>%
+  df <- rvest::html_nodes(main,sel_data) %>%
     rvest::html_table() %>%
     data.frame()
 
   # extract site id from site name
-  df$site_id = as.numeric(gsub("[\\(\\)]", "", regmatches(df$site_name, regexpr("\\(.*?\\)", df$site_name))))
+  df$site_id <- as.numeric(gsub("[\\(\\)]",
+                               "",
+                               regmatches(df$site_name,
+                                          regexpr("\\(.*?\\)",
+                                                  df$site_name))
+                               )
+                          )
 
   # reformat the sitename (drop the site ID)
-  df$site_name = tolower(lapply(strsplit(df$site_name,"\\("),"[[",1))
+  df$site_name <- tolower(lapply(strsplit(df$site_name,"\\("),"[[",1))
 
   # clean up date format
-  df$start = as.Date(paste(df$start,"1"),"%Y-%B %d")
-  df$end = as.Date(paste(df$enddate,"1"),"%Y-%B %d")
+  df$start <- as.Date(paste(df$start,"1"),"%Y-%B %d")
+  df$end <- as.Date(paste(df$enddate,"1"),"%Y-%B %d")
 
   # drop old enddate column for consistency
-  df = df[,-grep("enddate",colnames(df))]
+  df <- df[,-grep("enddate",colnames(df))]
 
   # rename columns
-  colnames(df)[which(colnames(df) == 'ntwk')] = 'network'
-  colnames(df)[which(colnames(df) == 'huc')] = 'description'
+  colnames(df)[which(colnames(df) == 'ntwk')] <- 'network'
+  colnames(df)[which(colnames(df) == 'huc')] <- 'description'
 
   # drop some columns
-  df = df[-which(colnames(df) == 'ts' | colnames(df) == 'wyear')]
-  df = df[,c(1,2,3,9,4,11,5,6,7,8,10)]
+  df <- df[-which(colnames(df) == 'ts' | colnames(df) == 'wyear')]
+  df <- df[,c(1,2,3,9,4,11,5,6,7,8,10)]
 
   # convert elevation to m asl
-  df$elev = round(df$elev * 0.3048)
+  df$elev <- round(df$elev * 0.3048)
 
   # convert the end date
-  df$end[df$end == "2100-01-01"] = Sys.Date()
+  df$end[df$end == "2100-01-01"] <- Sys.Date()
 
-  if (is.null(path)){
+  if (base::missing(path)){
     # return data frame
     return(df)
   }else{
@@ -90,4 +97,4 @@ snotel_info <- function(path = NULL){
                 quote=FALSE,
                 sep=",")
   }
-}
+})

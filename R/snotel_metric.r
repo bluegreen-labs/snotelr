@@ -1,99 +1,87 @@
-#' Convert snotel data to metric from imperial units, data is read
-#' from either a snotel data file (csv) or a snotel data frame already
-#' loaded into the R workspace.
+#' Convert snotel data to metric from imperial units
 #' 
-#' Note, if providing a path to a snotel file the original data will
-#' be overwritten by their metric equivalent with standardized column
-#' names. It is advisable to do this to create a uniform dataset.
-#'
-#' @param df snotel data frame or file
-#' @keywords SNOTEL, USDA, sites, locations, web scraping, conversion
+#' Data is read from either a snotel data file (csv) or 
+#' a snotel data frame already loaded into the R workspace.
+#' 
+#' By default the conversion is done upon download. This function
+#' might serve some a purpose in processing of data grabbed straight
+#' from the server rather than through the package.
+#' 
+#' This is an internal function only. Hence, no examples are given.
+#' 
+#' @param df snotel data frame
+#' @keywords SNOTEL, conversion, metric
 #' @export
-#' @examples
-#'
-#' # would download all available snotel data
-#' # df = snotel_metric(df = "snotel_1277.csv")
 
-snotel_metric = function(df) {
+snotel_metric <- function(df) {
 
-  # check if it's a filename or data frame
-  df_check = is.data.frame(df)
+  # check if it's a dataframe
+  df_check <- is.data.frame(df)
   
   if (!df_check) {
-    if (file.exists(df)) {
-      
-      # assign filename
-      filename = df
-
-      # read data file
-      header = try(readLines(df, n = 58), silent = TRUE)
-      df = utils::read.table(df, header = TRUE, sep = ",")
-    } else{
-      stop("file does not exist, check path")
-    }
+      stop("Not a valid (SNOTEL) data frame...")
   }
 
-  # check the file
-  if ( ncol(df) != 7) {
+  # check the file, if less than 7 columns
+  # are present this is not a standard file,
+  # stop processing
+  if (ncol(df) != 7) {
     stop("not a standard snotel file")
+  }
+  
+  # define new column names
+  snotel_columns <- c(
+    "date",
+    "snow_water_equivalent",
+    "precipitation_cummulative",
+    "temperature_max",
+    "temperature_min",
+    "temperature_mean",
+    "precipitation"
+    )
+  
+  # if the columns match those in the current data frame
+  # return it as is (previously processed)
+  if(length(which(colnames(df) == snotel_columns)) == 7){
+    message("File is already metric, returning original!")
+    return(df)
+  }
+  
+  # if the data are metric, just rename the columns
+  # otherwise convert from imperial to metric units
+  if ( length(grep("degC", colnames(df))) >= 1 ){
+    
+    # rename columns
+    colnames(df) <- snotel_columns
+
   } else {
     
-    # if the data are metric, just rename the columns
-    # otherwise convert from imperial to metric units
-    if ( length(grep("degC", colnames(df))) >= 1 ){
-      colnames(df) = c("date",
-                       "snow_water_equivalent",
-                       "precipitation_cummulative",
-                       "temperature_max",
-                       "temperature_min",
-                       "temperature_mean",
-                       "precipitation")
+    # rename the columns
+    colnames(df) <- snotel_columns
 
-    } else {
-      colnames(df) = c("date",
-                       "snow_water_equivalent",
-                       "precipitation_cummulative",
-                       "temperature_max",
-                       "temperature_min",
-                       "temperature_mean",
-                       "precipitation")
+    # convert the imperial to metric units
+    # precipitation (inches)
+    df$precipitation_cummulative <- df$precipitation_cummulative * 25.4
+    df$precipitation <- df$precipitation * 25.4
 
-      # convert the imperial to metric units
-      # precipitation (inches)
-      df$precipitation_cummulative = df$precipitation_cummulative * 25.4
-      df$precipitation = df$precipitation * 25.4
+    # temperature (fahrenheit to celcius)
+    df$temperature_max <- (df$temperature_max - 32) * 5/9
+    df$temperature_min <- (df$temperature_min - 32) * 5/9
+    df$temperature_mean <- (df$temperature_mean - 32) * 5/9
+  }
 
-      # temperature (fahrenheit)
-      df$temperature_max = (df$temperature_max - 32) * 5/9
-      df$temperature_min = (df$temperature_min - 32) * 5/9
-      df$temperature_mean = (df$temperature_mean - 32) * 5/9
-    }
-
-    # if the data is not a data frame, write
-    # to the same file else return df
-    if (!df_check) {
-      
-      # writing the final data frame to file,
-      # retaining the original header
-      utils::write.table(
-        header,
-        filename,
-        quote = FALSE,
-        row.names = FALSE,
-        col.names = FALSE,
-        sep = ""
-      )
-      utils::write.table(
-        df,
-        filename,
-        quote = FALSE,
-        row.names = FALSE,
-        col.names = TRUE,
-        sep = ",",
-        append = TRUE
-      )
-    } else {
-      return(df)
-    }
+  # if the data is not a data frame, write
+  # to the same file else return df
+  if (!df_check) {
+    utils::write.table(
+      df,
+      filename,
+      quote = FALSE,
+      row.names = FALSE,
+      col.names = TRUE,
+      sep = ","
+    )
+  } else {
+    return(df)
   }
 }

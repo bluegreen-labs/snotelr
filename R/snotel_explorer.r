@@ -6,6 +6,6 @@
 #' # snotel_explorer()
 
 snotel_explorer <- function(){
-  appDir = sprintf("%s/shiny/snotel_explorer",path.package("snotelr"))
+  appDir <- sprintf("%s/shiny/snotel_explorer",path.package("snotelr"))
   shiny::runApp(appDir, display.mode = "normal",launch.browser=TRUE)
 }
