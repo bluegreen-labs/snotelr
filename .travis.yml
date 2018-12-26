@@ -1,7 +1,7 @@
 language: R
 sudo: required
 cache: packages
-warnings_are_errors: false
+warnings_are_errors: true
 
 r:
   - release
@@ -10,11 +10,6 @@ r:
 r_packages:
   - devtools
   - covr
-
-r_github_packages:
-  - johndharrison/binman
-  - johndharrison/wdman
-  - ropensci/RSelenium
   
 after_success:
 - Rscript -e 'covr::codecov()'

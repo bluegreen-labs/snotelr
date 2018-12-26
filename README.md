@@ -24,7 +24,7 @@ commands:
 ``` r
 if(!require(devtools)){install.packages("devtools")}
 devtools::install_github("khufkens/snotelr")
-library("daymetr")
+library("snotelr")
 ```
 
 Vignettes are not rendered by default, if you want to include additional
@@ -33,7 +33,7 @@ documentation please use:
 ``` r
 if(!require(devtools)){install.packages("devtools")}
 devtools::install_github("khufkens/snotelr", build_vignettes = TRUE)
-library("daymetr")
+library("snotelr")
 ```
 
 ## Use

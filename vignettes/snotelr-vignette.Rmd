@@ -45,7 +45,7 @@ snow_data <- snotel_download(site_id = 670, internal = TRUE)
 head(snow_data)
 ```
 
-```{r eval = TRUE}
+```{r fig.width = 7, fig.height=3}
 # A plot of snow accummulation through the years
 plot(as.Date(snow_data$date),
      snow_data$snow_water_equivalent,
@@ -63,7 +63,7 @@ Although the main function of the package is to provide easy access to the SNOTE
 phenology <- snotel_phenology(snow_data)
 ```
 
-```{r eval = TRUE}
+```{r fig.width = 7, fig.height=3}
 # subset data to the first decade of the century
 snow_data_subset <- subset(snow_data, as.Date(date) > as.Date("2000-01-01") &
                              as.Date(date) < as.Date("2010-01-01"))

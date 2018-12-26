@@ -59,9 +59,11 @@ snotel_phenology <- function(df){
   # day where snow cover is 0, as well as the
   # days defining the longest snow free period
   minmax <- function(x, ...){
+    
     if (nrow(x) < 365){
       return(rep(NA,4))
     }
+    
     if ( all(is.na(x$snow_na)) ) {
       return(rep(NA,4))
     }

@@ -1,7 +1,6 @@
 #' Convert snotel data to metric from imperial units
 #' 
-#' Data is read from either a snotel data file (csv) or 
-#' a snotel data frame already loaded into the R workspace.
+#' Data is read from either a snotel data frame and returned  as such.
 #' 
 #' By default the conversion is done upon download. This function
 #' might serve some a purpose in processing of data grabbed straight
@@ -11,6 +10,7 @@
 #' 
 #' @param df snotel data frame
 #' @keywords SNOTEL, conversion, metric
+#' @return a data frame with imperial values converted to metric ones
 #' @export
 
 snotel_metric <- function(df) {
@@ -70,18 +70,6 @@ snotel_metric <- function(df) {
     df$temperature_mean <- (df$temperature_mean - 32) * 5/9
   }
 
-  # if the data is not a data frame, write
-  # to the same file else return df
-  if (!df_check) {
-    utils::write.table(
-      df,
-      filename,
-      quote = FALSE,
-      row.names = FALSE,
-      col.names = TRUE,
-      sep = ","
-    )
-  } else {
-    return(df)
-  }
+  # return data frame
+  return(df)
 }

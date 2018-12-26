@@ -28,16 +28,18 @@ snotel_download <- function(
   # if string of IDs subset the dataset.
   if (base::missing(site_id)){
     stop("no site specified")
-  } else {
-    meta_data <- snotelr::snotel_info()
-    meta_data <- meta_data[which(meta_data$site_id %in% site_id),]
   }
+  
+  # download meta-data
+  meta_data <- snotelr::snotel_info()
+  meta_data <- meta_data[which(meta_data$site_id %in% site_id),]
   
   # check if the provided site index is valid
   if (nrow(meta_data) == 0){
     stop("no site found with the requested ID")
   }    
   
+  # for more than one site create a common output file
   if (length(site_id) > 1){
     filename <- "snotel_data.csv"
   }else{
@@ -56,7 +58,7 @@ snotel_download <- function(
                     meta_data$site_name[i],
                     meta_data$site_id[i]))
   
-      # download url
+      # download url (metric by default!)
       base_url <- paste0(
         "https://wcc.sc.egov.usda.gov/reportGenerator/view_csv/customSingleStationReport,metric/daily/",
         meta_data$site_id[i], ":",
@@ -82,10 +84,10 @@ snotel_download <- function(
                              header = TRUE,
                              sep = ",",
                              stringsAsFactors = FALSE)
-        
-      # convert to metric
+      
+      # subsitute column names
       df <- snotelr::snotel_metric(df)
-        
+      
       # combine with the corresponding meta-data
       # (remove warning on non matching size)
       return(suppressWarnings(data.frame(meta_data[i,],df)))
