@@ -7,17 +7,33 @@ SnotelR is a R toolbox to facilitate easy SNOTEL data exploration and downloads 
 
 ## Installation
 
-You can quick install the package by installing the following dependencies
+### stable release
 
-```R
-install.packages("devtools")
+To install the current stable release use a CRAN repository:
+
+``` r
+install.packages("snotelr")
+library("snotelr")
 ```
 
-and downloading the package from the github repository
+### development release
 
-```R
-if(!require(devtools)){install.package(devtools)}
+To install the development releases of the package run the following
+commands:
+
+``` r
+if(!require(devtools)){install.packages("devtools")}
 devtools::install_github("khufkens/snotelr")
+library("daymetr")
+```
+
+Vignettes are not rendered by default, if you want to include additional
+documentation please use:
+
+``` r
+if(!require(devtools)){install.packages("devtools")}
+devtools::install_github("khufkens/snotelr", build_vignettes = TRUE)
+library("daymetr")
 ```
 
 ## Use
