@@ -22,9 +22,9 @@ meta_data <- snotel_info()
 head(meta_data)
 }
 }
+\keyword{SNOTEL,}
 \keyword{USDA,}
 \keyword{locations,}
 \keyword{scraping}
 \keyword{sites,}
-\keyword{sno-tel,}
 \keyword{web}
