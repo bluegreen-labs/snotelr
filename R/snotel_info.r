@@ -1,9 +1,16 @@
 #' Downloads a SNOTEL site listing for further processing
 #'
 #' @param path path where to save the snotel information (site list)
+#' 
 #' @importFrom magrittr "%>%"
 #' @importFrom stats na.action
-#' @keywords sno-tel, USDA, sites, locations, web scraping
+#' @importFrom memoise memoise
+#' @importFrom RSelenium remoteDriver
+#' @importFrom wdman phantomjs
+#' @importFrom xml2 read_html
+#' @importFrom rvest html_table html_nodes
+#' 
+#' @keywords SNOTEL, USDA, sites, locations, web scraping
 #' @export
 #' @examples
 #'
