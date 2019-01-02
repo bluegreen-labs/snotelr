@@ -96,9 +96,10 @@
 <h2 class="hasAnchor">
 <a href="#introduction" class="anchor"></a>Introduction</h2>
 <p>The SNOTEL network is composed of over 800 automated data collection sites located in remote, high-elevation mountain watersheds in the western U.S. They are used to monitor snowpack, precipitation, temperature, and other climatic conditions. The data collected at SNOTEL sites are transmitted to a central database. This package queries this centralized database to provide easy access to these data and additional seasonal metrics of snow accumulation (snow phenology).</p>
-<div id="downloading-site-meta-data" class="section level3">
-<h3 class="hasAnchor">
-<a href="#downloading-site-meta-data" class="anchor"></a>Downloading site meta-data</h3>
+</div>
+<div id="downloading-site-meta-data" class="section level2">
+<h2 class="hasAnchor">
+<a href="#downloading-site-meta-data" class="anchor"></a>Downloading site meta-data</h2>
 <p>The SNOTEL network consists of a vast number of observation sites, all of them listed together with their meta-data on the SNOTEL website. The <code><a href="../reference/snotel_info.html">snotel_info()</a></code> function allows you to query this table and import it as a neat table into <code>R</code>. Some of the meta-data, in particular the site id (<code>site_id</code>), you will need of you want to download the data for a site. You can save this table to disk using the <code>path</code> variable to specify a location on your computer where to store the data as a csv. If this parameter is missing the data is returned as an <code>R</code> variable.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co"># download and list site information</span></a>
 <a class="sourceLine" id="cb1-2" data-line-number="2">site_meta_data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/snotel_info.html">snotel_info</a></span>()</a>
@@ -125,9 +126,9 @@
 <a class="sourceLine" id="cb1-23" data-line-number="23"><span class="co">#&gt; 5    40.69   -120.61 2197        Lassen    1277</span></a>
 <a class="sourceLine" id="cb1-24" data-line-number="24"><span class="co">#&gt; 6    38.95   -112.15 2840       Millard    1278</span></a></code></pre></div>
 </div>
-<div id="downloading-site-data" class="section level3">
-<h3 class="hasAnchor">
-<a href="#downloading-site-data" class="anchor"></a>Downloading site data</h3>
+<div id="downloading-site-data" class="section level2">
+<h2 class="hasAnchor">
+<a href="#downloading-site-data" class="anchor"></a>Downloading site data</h2>
 <p>If you downloaded the meta-data for all sites you can make a selection using either geographic coordinates, or <code>state</code> columns. For the sake of brevity I’ll only query data for one site using its <code>site_id</code> below. By default the data, reported in imperial values, are converted to metric measurements.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co"># downloading data for a random site</span></a>
 <a class="sourceLine" id="cb2-2" data-line-number="2">snow_data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/snotel_download.html">snotel_download</a></span>(<span class="dt">site_id =</span> <span class="dv">670</span>, <span class="dt">internal =</span> <span class="ot">TRUE</span>)</a>
@@ -171,9 +172,9 @@
 <a class="sourceLine" id="cb3-6" data-line-number="6">     <span class="dt">ylab =</span> <span class="st">"SWE (mm)"</span>)</a></code></pre></div>
 <p><img src="snotelr-vignette_files/figure-html/unnamed-chunk-3-1.png" width="672"></p>
 </div>
-<div id="calculating-snow-phenology-from-downloaded-data-or-data-frames" class="section level3">
-<h3 class="hasAnchor">
-<a href="#calculating-snow-phenology-from-downloaded-data-or-data-frames" class="anchor"></a>Calculating snow phenology from downloaded data or data frames</h3>
+<div id="calculating-snow-phenology-from-downloaded-data-or-data-frames" class="section level2">
+<h2 class="hasAnchor">
+<a href="#calculating-snow-phenology-from-downloaded-data-or-data-frames" class="anchor"></a>Calculating snow phenology from downloaded data or data frames</h2>
 <p>Although the main function of the package is to provide easy access to the SNOTEL data a function <code><a href="../reference/snotel_phenology.html">snotel_phenology()</a></code> is provided to calculate seasonal metrics of snow deposition.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="co"># calculate snow phenology</span></a>
 <a class="sourceLine" id="cb4-2" data-line-number="2">phenology &lt;-<span class="st"> </span><span class="kw"><a href="../reference/snotel_phenology.html">snotel_phenology</a></span>(snow_data)</a></code></pre></div>
@@ -237,7 +238,6 @@
 </tbody>
 </table>
 </div>
-</div>
 <div id="reference" class="section level2">
 <h2 class="hasAnchor">
 <a href="#reference" class="anchor"></a>Reference</h2>
@@ -251,6 +251,9 @@
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
 <li><a href="#introduction">Introduction</a></li>
+      <li><a href="#downloading-site-meta-data">Downloading site meta-data</a></li>
+      <li><a href="#downloading-site-data">Downloading site data</a></li>
+      <li><a href="#calculating-snow-phenology-from-downloaded-data-or-data-frames">Calculating snow phenology from downloaded data or data frames</a></li>
       <li><a href="#reference">Reference</a></li>
       </ul>
 </div>

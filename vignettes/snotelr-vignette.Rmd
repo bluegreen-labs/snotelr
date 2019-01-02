@@ -23,7 +23,7 @@ library(snotelr)
 
 The SNOTEL network is composed of over 800 automated data collection sites located in remote, high-elevation mountain watersheds in the western U.S. They are used to monitor snowpack, precipitation, temperature, and other climatic conditions. The data collected at SNOTEL sites are transmitted to a central database. This package queries this centralized database to provide easy access to these data and additional seasonal metrics of snow accumulation (snow phenology).
 
-### Downloading site meta-data
+## Downloading site meta-data
 
 The SNOTEL network consists of a vast number of observation sites, all of them listed together with their meta-data on the SNOTEL website. The `snotel_info()` function allows you to query this table and import it as a neat table into `R`. Some of the meta-data, in particular the site id (`site_id`), you will need of you want to download the data for a site. You can save this table to disk using the `path` variable to specify a location on your computer where to store the data as a csv. If this parameter is missing the data is returned as an `R` variable.
 
@@ -33,7 +33,7 @@ site_meta_data <- snotel_info()
 head(site_meta_data)
 ```
 
-### Downloading site data
+## Downloading site data
 
 If you downloaded the meta-data for all sites you can make a selection using either geographic coordinates, or `state` columns. For the sake of brevity I'll only query data for one site using its `site_id` below. By default the data, reported in imperial values, are converted to metric measurements.
 
@@ -54,7 +54,7 @@ plot(as.Date(snow_data$date),
      ylab = "SWE (mm)")
 ```
 
-### Calculating snow phenology from downloaded data or data frames
+## Calculating snow phenology from downloaded data or data frames
 
 Although the main function of the package is to provide easy access to the SNOTEL data a function `snotel_phenology()` is provided to calculate seasonal metrics of snow deposition.
 
