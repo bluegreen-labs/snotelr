@@ -14,16 +14,12 @@ Depends:
     R (>= 3.4)
 Imports:
     shiny,
-    leaflet,
-    plotly,
-    DT,
     xml2,
-    shinydashboard,
     httr,
+    utils,
     stats,
     rvest,
     magrittr,
-    zoo,
     wdman,
     RSelenium,
     memoise
@@ -31,9 +27,13 @@ Suggests:
     knitr,
     rmarkdown,
     covr,
-    testthat
+    testthat,
+    shinydashboard,
+    leaflet,
+    plotly,
+    DT
 VignetteBuilder: knitr
 License: AGPL-3
 LazyData: true
 ByteCompile: true
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1
