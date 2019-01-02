@@ -399,11 +399,13 @@ server <- function(input, output, session) {
     } else{
       # subset data according to input / for some reason I can't call the
       # data frame columns using their input$... name
-      plot_data$primary <- plot_data[,which(colnames(plot_data) == input$primary)]
+      plot_data$primary <- 
+        plot_data[, which(colnames(plot_data) == input$primary)]
 
       # include cummulative values in plotting, should be easier to interpret
       # the yearly summary plots
-      plot_data$covariate <- plot_data[, which(colnames(plot_data) == input$covariate)]
+      plot_data$covariate <- 
+        plot_data[, which(colnames(plot_data) == input$covariate)]
 
       # gap fill the data under consideration
       plot_data$primary <- zoo::na.approx(plot_data$primary, na.rm = FALSE)
@@ -538,7 +540,8 @@ server <- function(input, output, session) {
           summarise(mn = mean(primary),
                     sd = sd(primary),
                     doymn = mean(doy),
-                    snowdoy = ifelse(mean(doy) < 182, mean(doy), mean(doy) - 366))
+                    snowdoy = ifelse(mean(doy) < 182, mean(doy),
+                                     mean(doy) - 366))
         
         p <- ltm %>% plot_ly(
           x = ~ snowdoy,
@@ -667,7 +670,8 @@ server <- function(input, output, session) {
               name = "EOS"
             ) %>%
             add_trace(
-              x = transition_data$year[as.numeric(names(reg_sos$fitted.values))],
+              x = transition_data$year[as.numeric(
+                names(reg_sos$fitted.values))],
               y = reg_sos$fitted.values,
               mode = "lines",
               type = "scatter",
@@ -675,7 +679,8 @@ server <- function(input, output, session) {
               line = list(width = 2)
             ) %>%
             add_trace(
-              x = transition_data$year[as.numeric(names(reg_eos$fitted.values))],
+              x = transition_data$year[as.numeric(
+                names(reg_eos$fitted.values))],
               y = reg_eos$fitted.values,
               type = "scatter",
               mode = "lines",
