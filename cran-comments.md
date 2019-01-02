@@ -6,7 +6,6 @@ http://cran.r-project.org/web/packages/policies.html
 - local OSX / Ubuntu 16.04 install on R 3.5
 - Ubuntu on Travis-CI (devel / release)
 - codecove.io code coverage at ~97%
-- r-hub check on windows
 
 ## local / Travis CI / r-hub R CMD check results
 
