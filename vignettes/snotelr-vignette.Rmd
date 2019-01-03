@@ -17,6 +17,23 @@ knitr::opts_chunk$set(
 
 # load the library
 library(snotelr)
+
+# check cran, same routine as skip_on_cran()
+# but not dependent on testthat which might
+# not be available on user systems (not required
+# only suggested)
+check_cran <- function() {
+  if (identical(tolower(Sys.getenv("NOT_CRAN")), "true")) {
+    return(TRUE)
+  } else {
+    return(FALSE)
+  }
+}
+
+# do cran check + local check
+# for images render sites locally
+cran <- any(check_cran(),
+            identical(tolower(Sys.getenv("LOCAL")), "true"))
 ```
 
 ## Introduction
@@ -27,7 +44,7 @@ The SNOTEL network is composed of over 800 automated data collection sites locat
 
 The SNOTEL network consists of a vast number of observation sites, all of them listed together with their meta-data on the SNOTEL website. The `snotel_info()` function allows you to query this table and import it as a neat table into `R`. Some of the meta-data, in particular the site id (`site_id`), you will need of you want to download the data for a site. You can save this table to disk using the `path` variable to specify a location on your computer where to store the data as a csv. If this parameter is missing the data is returned as an `R` variable.
 
-```{r eval = TRUE}
+```{r eval = cran}
 # download and list site information
 site_meta_data <- snotel_info()
 head(site_meta_data)
@@ -37,7 +54,7 @@ head(site_meta_data)
 
 If you downloaded the meta-data for all sites you can make a selection using either geographic coordinates, or `state` columns. For the sake of brevity I'll only query data for one site using its `site_id` below. By default the data, reported in imperial values, are converted to metric measurements.
 
-```{r eval = TRUE}
+```{r eval = cran}
 # downloading data for a random site
 snow_data <- snotel_download(site_id = 670, internal = TRUE)
 
@@ -45,7 +62,7 @@ snow_data <- snotel_download(site_id = 670, internal = TRUE)
 head(snow_data)
 ```
 
-```{r fig.width = 7, fig.height=3}
+```{r fig.width = 7, fig.height=3, eval = cran}
 # A plot of snow accummulation through the years
 plot(as.Date(snow_data$date),
      snow_data$snow_water_equivalent,
@@ -58,12 +75,12 @@ plot(as.Date(snow_data$date),
 
 Although the main function of the package is to provide easy access to the SNOTEL data a function `snotel_phenology()` is provided to calculate seasonal metrics of snow deposition.
 
-```{r eval = TRUE}
+```{r eval = cran}
 # calculate snow phenology
 phenology <- snotel_phenology(snow_data)
 ```
 
-```{r fig.width = 7, fig.height=3}
+```{r fig.width = 7, fig.height=3, eval = cran}
 # subset data to the first decade of the century
 snow_data_subset <- subset(snow_data, as.Date(date) > as.Date("2000-01-01") &
                              as.Date(date) < as.Date("2010-01-01"))
