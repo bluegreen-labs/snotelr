@@ -30,10 +30,13 @@ check_cran <- function() {
   }
 }
 
-# do cran check + local check
-# for images render sites locally
-cran <- any(check_cran(),
-            identical(tolower(Sys.getenv("LOCAL")), "true"))
+# do cran check
+cran <- check_cran()
+
+# for local render set to true
+# mainly important for rendering
+# a website using pkgdown
+#cran <- TRUE
 ```
 
 ## Introduction

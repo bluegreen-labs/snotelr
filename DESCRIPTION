@@ -1,13 +1,15 @@
 Package: snotelr
 Title: Calculate and Visualize 'SNOTEL' Snow Data and Seasonality
 Version: 1.0.1
-Authors@R: person("Koen", "Hufkens",
-                  email = "koen.hufkens@gmail.com",
-                  role = c("aut", "cre"))
+Authors@R: person(
+      family = "Hufkens",
+      given = "Koen",
+		  email = "koen.hufkens@gmail.com",
+		  role = c("aut", "cre"))
 Description: Programmatic interface to the 'SNOTEL' snow data
   (<https://www.wcc.nrcs.usda.gov/snow/>). Provides easy downloads of snow 
   data into your R work space or a local directory. Additional post-processing 
-  routines to extract snow season indices are provided.
+  routines to extract snow season indexes are provided.
 URL: https://github.com/khufkens/snotelr
 BugReports: https://github.com/khufkens/snotelr/issues
 Depends:
