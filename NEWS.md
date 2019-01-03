@@ -1,3 +1,7 @@
+# snotelr 1.0.1
+
+* CRAN compliance fixes
+
 # snotelr 1.0.0
 
 * first CRAN release
