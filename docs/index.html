@@ -13,7 +13,7 @@
 <meta property="og:description" content="Programmatic interface to the 'SNOTEL' snow data
   (&lt;https://www.wcc.nrcs.usda.gov/snow/&gt;). Provides easy downloads of snow 
   data into your R work space or a local directory. Additional post-processing 
-  routines to extract snow season indices are provided.">
+  routines to extract snow season indexes are provided.">
 <meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -118,7 +118,7 @@
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(snotelr)</a>
 <a class="sourceLine" id="cb4-2" data-line-number="2"><span class="kw"><a href="reference/snotel_explorer.html">snotel_explorer</a></span>()</a></code></pre></div>
 <p>This will start a shiny application with an R backend in your default browser. The first window will display all site locations, and allows for subsetting of the data based upon state or a bounding box. The bounding box can be selected by clicking top-left and bottom-right.</p>
-<p><img src="https://farm1.staticflickr.com/325/31266804673_131c3e8898_b_d.jpg"></p>
+<p><img src="docs/map.png"></p>
 <p>The <em>plot data</em> tab allows for interactive viewing of the soil water equivalent (SWE) data together with a covariate (temperature, precipitation). The SWE time series will also mark snow phenology statistics, mainly the day of:</p>
 <ul>
 <li>first snow melt</li>
@@ -127,7 +127,7 @@
 <li>continuous snow accumulation (permanent snow cover)</li>
 <li>maximum SWE (and its amount)</li>
 </ul>
-<p><img src="https://farm1.staticflickr.com/429/31959389961_90723239f3_b_d.jpg"></p>
+<p><img src="docs/time_series.png"></p>
 <p>To access the full list of SNOTEL sites and associated meta-data use the <strong>snotel.info()</strong> function.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="co"># returns the site info as snotel_metadata.txt in the current working directory</span></a>
 <a class="sourceLine" id="cb5-2" data-line-number="2"><span class="kw"><a href="reference/snotel_info.html">snotel_info</a></span>(<span class="dt">path =</span> <span class="st">"."</span>) </a>
@@ -161,6 +161,8 @@
     <div class="links">
 <h2>Links</h2>
 <ul class="list-unstyled">
+<li>Download from CRAN at <br><a href="https://cloud.r-project.org/package=snotelr">https://​cloud.r-project.org/​package=snotelr</a>
+</li>
 <li>Browse source code at <br><a href="https://github.com/khufkens/snotelr">https://​github.com/​khufkens/​snotelr</a>
 </li>
 <li>Report a bug at <br><a href="https://github.com/khufkens/snotelr/issues">https://​github.com/​khufkens/​snotelr/​issues</a>
@@ -185,6 +187,8 @@
 <ul class="list-unstyled">
 <li><a href="https://travis-ci.org/khufkens/snotelr"><img src="https://travis-ci.org/khufkens/snotelr.svg?branch=master" alt="Build Status"></a></li>
 <li><a href="https://codecov.io/gh/khufkens/snotelr"><img src="https://codecov.io/gh/khufkens/snotelr/branch/master/graph/badge.svg" alt="codecov"></a></li>
+<li><a href="https://cran.r-project.org/package=snotelr"><img src="https://www.r-pkg.org/badges/version/snoteltr" alt="CRAN_Status_Badge"></a></li>
+<li><a href="https://cran.r-project.org/package=snotelr"><img src="https://cranlogs.r-pkg.org/badges/snotelr"></a></li>
 <li><a href="https://www.buymeacoffee.com/H2wlgqCLO" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" height="21px"></a></li>
 </ul>
 </div>

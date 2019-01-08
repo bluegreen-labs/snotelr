@@ -83,7 +83,7 @@
       <h1>snotelr</h1>
                         <h4 class="author">Koen Hufkens</h4>
             
-            <h4 class="date">2019-01-03</h4>
+            <h4 class="date">2019-01-08</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/khufkens/snotelr/blob/master/vignettes/snotelr-vignette.Rmd"><code>vignettes/snotelr-vignette.Rmd</code></a></small>
       <div class="hidden name"><code>snotelr-vignette.Rmd</code></div>
@@ -103,28 +103,7 @@
 <p>The SNOTEL network consists of a vast number of observation sites, all of them listed together with their meta-data on the SNOTEL website. The <code><a href="../reference/snotel_info.html">snotel_info()</a></code> function allows you to query this table and import it as a neat table into <code>R</code>. Some of the meta-data, in particular the site id (<code>site_id</code>), you will need of you want to download the data for a site. You can save this table to disk using the <code>path</code> variable to specify a location on your computer where to store the data as a csv. If this parameter is missing the data is returned as an <code>R</code> variable.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co"># download and list site information</span></a>
 <a class="sourceLine" id="cb1-2" data-line-number="2">site_meta_data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/snotel_info.html">snotel_info</a></span>()</a>
-<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(site_meta_data)</a>
-<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="co">#&gt;   network state        site_name</span></a>
-<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="co">#&gt; 1    SNTL    AK       galena ak </span></a>
-<a class="sourceLine" id="cb1-6" data-line-number="6"><span class="co">#&gt; 2    SNTL    MT       jl meadow </span></a>
-<a class="sourceLine" id="cb1-7" data-line-number="7"><span class="co">#&gt; 3    SNTL    NV     oneil creek </span></a>
-<a class="sourceLine" id="cb1-8" data-line-number="8"><span class="co">#&gt; 4    SNTL    AK flower mountain </span></a>
-<a class="sourceLine" id="cb1-9" data-line-number="9"><span class="co">#&gt; 5    SNTL    CA  fredonyer peak </span></a>
-<a class="sourceLine" id="cb1-10" data-line-number="10"><span class="co">#&gt; 6    SNTL    UT     bobs hollow </span></a>
-<a class="sourceLine" id="cb1-11" data-line-number="11"><span class="co">#&gt;                                        description      start        end</span></a>
-<a class="sourceLine" id="cb1-12" data-line-number="12"><span class="co">#&gt; 1         Louden Slough-Yukon River (190902051104) 2018-08-01 2019-01-03</span></a>
-<a class="sourceLine" id="cb1-13" data-line-number="13"><span class="co">#&gt; 2    Dad Creek-Medicine Lodge Creek (100200011202) 2017-10-01 2019-01-03</span></a>
-<a class="sourceLine" id="cb1-14" data-line-number="14"><span class="co">#&gt; 3                        Pole Creek (170402130106) 2018-06-01 2019-01-03</span></a>
-<a class="sourceLine" id="cb1-15" data-line-number="15"><span class="co">#&gt; 4                   Porcupine Creek (190103031206) 2017-08-01 2019-01-03</span></a>
-<a class="sourceLine" id="cb1-16" data-line-number="16"><span class="co">#&gt; 5 Lower Dry Lake-Frontal Eagle Lake (180800030304) 2016-10-01 2019-01-03</span></a>
-<a class="sourceLine" id="cb1-17" data-line-number="17"><span class="co">#&gt; 6            North Fork Chalk Creek (160300051401) 2016-10-01 2019-01-03</span></a>
-<a class="sourceLine" id="cb1-18" data-line-number="18"><span class="co">#&gt;   latitude longitude elev        county site_id</span></a>
-<a class="sourceLine" id="cb1-19" data-line-number="19"><span class="co">#&gt; 1    64.70   -156.71  125 Yukon-koyukuk     429</span></a>
-<a class="sourceLine" id="cb1-20" data-line-number="20"><span class="co">#&gt; 2    44.78   -113.12 2682    Beaverhead    1287</span></a>
-<a class="sourceLine" id="cb1-21" data-line-number="21"><span class="co">#&gt; 3    41.86   -115.08 1987          Elko    1272</span></a>
-<a class="sourceLine" id="cb1-22" data-line-number="22"><span class="co">#&gt; 4    59.40   -136.28  765        Haines    1285</span></a>
-<a class="sourceLine" id="cb1-23" data-line-number="23"><span class="co">#&gt; 5    40.69   -120.61 2197        Lassen    1277</span></a>
-<a class="sourceLine" id="cb1-24" data-line-number="24"><span class="co">#&gt; 6    38.95   -112.15 2840       Millard    1278</span></a></code></pre></div>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(site_meta_data)</a></code></pre></div>
 </div>
 <div id="downloading-site-data" class="section level2">
 <h2 class="hasAnchor">
@@ -132,45 +111,15 @@
 <p>If you downloaded the meta-data for all sites you can make a selection using either geographic coordinates, or <code>state</code> columns. For the sake of brevity I’ll only query data for one site using its <code>site_id</code> below. By default the data, reported in imperial values, are converted to metric measurements.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co"># downloading data for a random site</span></a>
 <a class="sourceLine" id="cb2-2" data-line-number="2">snow_data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/snotel_download.html">snotel_download</a></span>(<span class="dt">site_id =</span> <span class="dv">670</span>, <span class="dt">internal =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="co">#&gt; Downloading site: northeast entrance , with id: 670</span></a>
-<a class="sourceLine" id="cb2-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="co"># show the data</span></a>
-<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(snow_data)</a>
-<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="co">#&gt;   network state           site_name               description      start</span></a>
-<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="co">#&gt; 1    SNTL    MT northeast entrance  Cold Creek (100700010602) 1937-10-01</span></a>
-<a class="sourceLine" id="cb2-9" data-line-number="9"><span class="co">#&gt; 2    SNTL    MT northeast entrance  Cold Creek (100700010602) 1937-10-01</span></a>
-<a class="sourceLine" id="cb2-10" data-line-number="10"><span class="co">#&gt; 3    SNTL    MT northeast entrance  Cold Creek (100700010602) 1937-10-01</span></a>
-<a class="sourceLine" id="cb2-11" data-line-number="11"><span class="co">#&gt; 4    SNTL    MT northeast entrance  Cold Creek (100700010602) 1937-10-01</span></a>
-<a class="sourceLine" id="cb2-12" data-line-number="12"><span class="co">#&gt; 5    SNTL    MT northeast entrance  Cold Creek (100700010602) 1937-10-01</span></a>
-<a class="sourceLine" id="cb2-13" data-line-number="13"><span class="co">#&gt; 6    SNTL    MT northeast entrance  Cold Creek (100700010602) 1937-10-01</span></a>
-<a class="sourceLine" id="cb2-14" data-line-number="14"><span class="co">#&gt;          end latitude longitude elev                    county site_id</span></a>
-<a class="sourceLine" id="cb2-15" data-line-number="15"><span class="co">#&gt; 1 2019-01-03    45.01   -110.01 2240 Yellowstone National Park     670</span></a>
-<a class="sourceLine" id="cb2-16" data-line-number="16"><span class="co">#&gt; 2 2019-01-03    45.01   -110.01 2240 Yellowstone National Park     670</span></a>
-<a class="sourceLine" id="cb2-17" data-line-number="17"><span class="co">#&gt; 3 2019-01-03    45.01   -110.01 2240 Yellowstone National Park     670</span></a>
-<a class="sourceLine" id="cb2-18" data-line-number="18"><span class="co">#&gt; 4 2019-01-03    45.01   -110.01 2240 Yellowstone National Park     670</span></a>
-<a class="sourceLine" id="cb2-19" data-line-number="19"><span class="co">#&gt; 5 2019-01-03    45.01   -110.01 2240 Yellowstone National Park     670</span></a>
-<a class="sourceLine" id="cb2-20" data-line-number="20"><span class="co">#&gt; 6 2019-01-03    45.01   -110.01 2240 Yellowstone National Park     670</span></a>
-<a class="sourceLine" id="cb2-21" data-line-number="21"><span class="co">#&gt;         date snow_water_equivalent precipitation_cummulative</span></a>
-<a class="sourceLine" id="cb2-22" data-line-number="22"><span class="co">#&gt; 1 1966-10-01                     0                        NA</span></a>
-<a class="sourceLine" id="cb2-23" data-line-number="23"><span class="co">#&gt; 2 1966-10-02                     8                        NA</span></a>
-<a class="sourceLine" id="cb2-24" data-line-number="24"><span class="co">#&gt; 3 1966-10-03                     0                        NA</span></a>
-<a class="sourceLine" id="cb2-25" data-line-number="25"><span class="co">#&gt; 4 1966-10-04                     0                        NA</span></a>
-<a class="sourceLine" id="cb2-26" data-line-number="26"><span class="co">#&gt; 5 1966-10-05                     0                        NA</span></a>
-<a class="sourceLine" id="cb2-27" data-line-number="27"><span class="co">#&gt; 6 1966-10-06                     0                        NA</span></a>
-<a class="sourceLine" id="cb2-28" data-line-number="28"><span class="co">#&gt;   temperature_max temperature_min temperature_mean precipitation</span></a>
-<a class="sourceLine" id="cb2-29" data-line-number="29"><span class="co">#&gt; 1              NA              NA               NA            NA</span></a>
-<a class="sourceLine" id="cb2-30" data-line-number="30"><span class="co">#&gt; 2              NA              NA               NA            NA</span></a>
-<a class="sourceLine" id="cb2-31" data-line-number="31"><span class="co">#&gt; 3              NA              NA               NA            NA</span></a>
-<a class="sourceLine" id="cb2-32" data-line-number="32"><span class="co">#&gt; 4              NA              NA               NA            NA</span></a>
-<a class="sourceLine" id="cb2-33" data-line-number="33"><span class="co">#&gt; 5              NA              NA               NA            NA</span></a>
-<a class="sourceLine" id="cb2-34" data-line-number="34"><span class="co">#&gt; 6              NA              NA               NA            NA</span></a></code></pre></div>
+<a class="sourceLine" id="cb2-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="co"># show the data</span></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(snow_data)</a></code></pre></div>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="co"># A plot of snow accummulation through the years</span></a>
 <a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/as.Date">as.Date</a></span>(snow_data<span class="op">$</span>date),</a>
 <a class="sourceLine" id="cb3-3" data-line-number="3">     snow_data<span class="op">$</span>snow_water_equivalent,</a>
 <a class="sourceLine" id="cb3-4" data-line-number="4">     <span class="dt">type =</span> <span class="st">"l"</span>,</a>
 <a class="sourceLine" id="cb3-5" data-line-number="5">     <span class="dt">xlab =</span> <span class="st">"Date"</span>,</a>
 <a class="sourceLine" id="cb3-6" data-line-number="6">     <span class="dt">ylab =</span> <span class="st">"SWE (mm)"</span>)</a></code></pre></div>
-<p><img src="snotelr-vignette_files/figure-html/unnamed-chunk-3-1.png" width="672"></p>
 </div>
 <div id="calculating-snow-phenology-from-downloaded-data-or-data-frames" class="section level2">
 <h2 class="hasAnchor">
@@ -195,7 +144,6 @@
 <a class="sourceLine" id="cb5-15" data-line-number="15">       <span class="dt">col =</span> <span class="st">"red"</span>,</a>
 <a class="sourceLine" id="cb5-16" data-line-number="16">       <span class="dt">pch =</span> <span class="dv">19</span>,</a>
 <a class="sourceLine" id="cb5-17" data-line-number="17">       <span class="dt">cex =</span> <span class="fl">0.5</span>)</a></code></pre></div>
-<p><img src="snotelr-vignette_files/figure-html/unnamed-chunk-5-1.png" width="672"></p>
 <p>A list of all provided snow phenology statistics is provided below.</p>
 <table class="table">
 <colgroup>

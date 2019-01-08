@@ -13,7 +13,7 @@ SnotelR is a R toolbox to facilitate easy SNOTEL data exploration and downloads 
 
 To install the current stable release use a CRAN repository:
 
-``` r
+```r
 install.packages("snotelr")
 library("snotelr")
 ```
@@ -23,7 +23,7 @@ library("snotelr")
 To install the development releases of the package run the following
 commands:
 
-``` r
+```r
 if(!require(devtools)){install.packages("devtools")}
 devtools::install_github("khufkens/snotelr")
 library("snotelr")
@@ -32,7 +32,7 @@ library("snotelr")
 Vignettes are not rendered by default, if you want to include additional
 documentation please use:
 
-``` r
+```r
 if(!require(devtools)){install.packages("devtools")}
 devtools::install_github("khufkens/snotelr", build_vignettes = TRUE)
 library("snotelr")
@@ -42,14 +42,14 @@ library("snotelr")
 
 Most people will prefer the GUI to explore data on the fly. To envoke the GUI use the following command:
 
-```R
+```r
 library(snotelr)
 snotel_explorer()
 ```
 
 This will start a shiny application with an R backend in your default browser. The first window will display all site locations, and allows for subsetting of the data based upon state or a bounding box. The bounding box can be selected by clicking top-left and bottom-right.
 
-![](https://farm1.staticflickr.com/325/31266804673_131c3e8898_b_d.jpg)
+![](docs/map.png)
 
 The *plot data* tab allows for interactive viewing of the soil water equivalent (SWE) data together with a covariate (temperature, precipitation). The SWE time series will also mark snow phenology statistics, mainly the day of:
 
@@ -59,11 +59,11 @@ The *plot data* tab allows for interactive viewing of the soil water equivalent 
 - continuous snow accumulation (permanent snow cover)
 - maximum SWE (and its amount)
 
-![](https://farm1.staticflickr.com/429/31959389961_90723239f3_b_d.jpg)
+![](docs/time_series.png)
 
 To access the full list of SNOTEL sites and associated meta-data use the **snotel.info()** function.
 
-```R
+```r
 # returns the site info as snotel_metadata.txt in the current working directory
 snotel_info(path = ".") 
 
@@ -76,13 +76,13 @@ head(meta-data)
 
 To query data for e.g. site 924 as shown in the image above use:
 
-```R
+```r
 snotel_download(site_id = 924)
 ```
 
 For in depth analysis the statistics in the GUI can be retrieved using the **snotel_phenology()** function
 
-```R
+```r
 # with df a SNOTEL file or data frame in your R workspace
 snotel_phenology(df)
 ```
