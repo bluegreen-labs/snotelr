@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/khufkens/snotelr.svg?branch=master)](https://travis-ci.org/khufkens/snotelr)
 [![codecov](https://codecov.io/gh/khufkens/snotelr/branch/master/graph/badge.svg)](https://codecov.io/gh/khufkens/snotelr)
-[![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/snoteltr)](https://cran.r-project.org/package=snotelr)
+[![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/snotelr)](https://cran.r-project.org/package=snotelr)
 [![](https://cranlogs.r-pkg.org/badges/snotelr)](https://cran.r-project.org/package=snotelr)
 <a href="https://www.buymeacoffee.com/H2wlgqCLO" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" height="21px" ></a>
 # snotelr
