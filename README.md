@@ -61,7 +61,7 @@ The *plot data* tab allows for interactive viewing of the soil water equivalent 
 
 ![](docs/time_series.png)
 
-To access the full list of SNOTEL sites and associated meta-data use the **snotel.info()** function.
+To access the full list of SNOTEL sites and associated meta-data use the **snotel_info()** function.
 
 ```r
 # returns the site info as snotel_metadata.txt in the current working directory
