@@ -118,7 +118,7 @@
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(snotelr)</a>
 <a class="sourceLine" id="cb4-2" data-line-number="2"><span class="kw"><a href="reference/snotel_explorer.html">snotel_explorer</a></span>()</a></code></pre></div>
 <p>This will start a shiny application with an R backend in your default browser. The first window will display all site locations, and allows for subsetting of the data based upon state or a bounding box. The bounding box can be selected by clicking top-left and bottom-right.</p>
-<p><img src="docs/map.png"></p>
+<p><img src="https://github.com/khufkens/snotelr/raw/master/docs/map.png"></p>
 <p>The <em>plot data</em> tab allows for interactive viewing of the soil water equivalent (SWE) data together with a covariate (temperature, precipitation). The SWE time series will also mark snow phenology statistics, mainly the day of:</p>
 <ul>
 <li>first snow melt</li>
@@ -127,7 +127,7 @@
 <li>continuous snow accumulation (permanent snow cover)</li>
 <li>maximum SWE (and its amount)</li>
 </ul>
-<p><img src="docs/time_series.png"></p>
+<p><img src="https://github.com/khufkens/snotelr/raw/master/docs/time_series.png"></p>
 <p>To access the full list of SNOTEL sites and associated meta-data use the <strong>snotel_info()</strong> function.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="co"># returns the site info as snotel_metadata.txt in the current working directory</span></a>
 <a class="sourceLine" id="cb5-2" data-line-number="2"><span class="kw"><a href="reference/snotel_info.html">snotel_info</a></span>(<span class="dt">path =</span> <span class="st">"."</span>) </a>
