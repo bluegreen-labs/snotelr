@@ -33,7 +33,7 @@ snotel_metric <- function(df) {
   snotel_columns <- c(
     "date",
     "snow_water_equivalent",
-    "precipitation_cummulative",
+    "precipitation_cumulative",
     "temperature_max",
     "temperature_min",
     "temperature_mean",
@@ -61,7 +61,7 @@ snotel_metric <- function(df) {
 
     # convert the imperial to metric units
     # precipitation (inches)
-    df$precipitation_cummulative <- df$precipitation_cummulative * 25.4
+    df$precipitation_cumulative <- df$precipitation_cumulative * 25.4
     df$precipitation <- df$precipitation * 25.4
 
     # temperature (fahrenheit to celcius)

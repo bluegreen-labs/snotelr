@@ -1,3 +1,7 @@
+# snotelr 1.0.2
+
+* fixed small typo
+
 # snotelr 1.0.1
 
 * CRAN compliance fixes
