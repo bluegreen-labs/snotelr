@@ -1,9 +1,10 @@
+# snotelr <a href='https://khufkens.github.io/snotelr/'><img src='snotelr-logo.png' align="right" height="139" /></a>
+
 [![Build Status](https://travis-ci.org/khufkens/snotelr.svg?branch=master)](https://travis-ci.org/khufkens/snotelr)
 [![codecov](https://codecov.io/gh/khufkens/snotelr/branch/master/graph/badge.svg)](https://codecov.io/gh/khufkens/snotelr)
 [![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/snotelr)](https://cran.r-project.org/package=snotelr)
 [![](https://cranlogs.r-pkg.org/badges/grand-total/snotelr)](https://cran.r-project.org/package=snotelr)
 <a href="https://www.buymeacoffee.com/H2wlgqCLO" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" height="21px" ></a>
-# snotelr
 
 SnotelR is a R toolbox to facilitate easy SNOTEL data exploration and downloads through a convenient R [shiny](http://shiny.rstudio.com/) based GUI. In addition it provides a routine to extract basic snow phenology metrics.
 
@@ -92,4 +93,5 @@ Use the proper acknowledgements when using the downloaded data.
 
 # Acknowledgements
 
-This project was in part supported by the National Science Foundation’s Macro-system Biology Program (award EF-1065029).
+This project was in part supported by the National Science Foundation’s Macro-system Biology Program (award EF-1065029). Logo design elements are taken from the FontAwesome library according to [these terms](https://fontawesome.com/license), where the globe element was inverted and intersected.
+
