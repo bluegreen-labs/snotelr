@@ -548,17 +548,8 @@ server <- function(input, output, session) {
                     snowdoy = ifelse(mean(doy) < 182, mean(doy),
                                      mean(doy) - 366))
         
-        p <- plot_ly(
-          data = ltm,
-          x = ~ snowdoy,
-          y = ~ mn,
-          mode = "lines",
-          type = 'scatter',
-          name = "LTM",
-          line = list(color = "black"),
-          inherit = FALSE
-        ) %>%
-          add_trace(
+        p <-  plot_ly(
+            data = ltm,
             x = ~ snowdoy,
             y = ~ ifelse((mn - sd) < 0, 0, mn - sd),
             mode = "lines",
@@ -579,6 +570,14 @@ server <- function(input, output, session) {
             showlegend = TRUE,
             name = "SD"
           ) %>%
+          add_trace(
+            x = ~ snowdoy,
+            y = ~ mn,
+            mode = "lines",
+            type = 'scatter',
+            name = "LTM",
+            line = list(color = "black")
+          ) %>%
           add_trace(data = plot_data,
                     x = ~ ifelse(doy < 182, doy, doy - 366),
                     y = ~ primary,
@@ -587,7 +586,8 @@ server <- function(input, output, session) {
                     mode = "lines",
                     name = year,
                     line = list(color = "Set1"),
-                    showlegend = TRUE
+                    showlegend = TRUE,
+                    inherit = FALSE
           ) %>%
           layout(
             xaxis = list(title = "DOY"),
