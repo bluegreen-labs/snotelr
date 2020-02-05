@@ -10,7 +10,6 @@
 #' @importFrom xml2 read_html
 #' @importFrom rvest html_table html_nodes
 #' 
-#' @keywords SNOTEL, USDA, sites, locations, web scraping
 #' @export
 #' @examples
 #'

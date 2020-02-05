@@ -8,7 +8,6 @@
 #' a combined tidy data frame containing data for multiple sites.
 #'
 #' @param df a snotel data file or data frame
-#' @keywords SNOTEL, USDA, time series, phenology, snow cover
 #' @export
 #' @examples
 #'

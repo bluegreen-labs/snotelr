@@ -9,7 +9,6 @@
 #' This is an internal function only. Hence, no examples are given.
 #' 
 #' @param df snotel data frame
-#' @keywords SNOTEL, conversion, metric
 #' @return a data frame with imperial values converted to metric ones
 #' @export
 

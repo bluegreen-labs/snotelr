@@ -22,6 +22,3 @@ from the server rather than through the package.
 
 This is an internal function only. Hence, no examples are given.
 }
-\keyword{SNOTEL,}
-\keyword{conversion,}
-\keyword{metric}

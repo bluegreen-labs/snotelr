@@ -30,9 +30,3 @@ df <- snotel_download(site_id = c(429,1287), internal = TRUE)
 head(df)
 }
 }
-\keyword{SNOTEL,}
-\keyword{USDA,}
-\keyword{locations,}
-\keyword{scraping}
-\keyword{sites,}
-\keyword{web}

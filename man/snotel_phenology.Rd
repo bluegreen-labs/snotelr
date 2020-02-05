@@ -32,10 +32,3 @@ head(phenology)
 
 }
 }
-\keyword{SNOTEL,}
-\keyword{USDA,}
-\keyword{cover}
-\keyword{phenology,}
-\keyword{series,}
-\keyword{snow}
-\keyword{time}

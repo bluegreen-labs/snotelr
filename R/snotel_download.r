@@ -5,7 +5,6 @@
 #' @param path where to save downloaded files (default = tempdir())
 #' @param internal return data to workspace, \code{TRUE} or \code{FALSE}
 #' (default = \code{FALSE})
-#' @keywords SNOTEL, USDA, sites, locations, web scraping
 #' @export
 #' @examples
 #'
