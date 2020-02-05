@@ -1,4 +1,4 @@
-# snotelr <a href='https://khufkens.github.io/snotelr/'><img src='snotelr-logo.png' align="right" height="139" /></a>
+# snotelr <a href='https://khufkens.github.io/snotelr/'><img src='https://github.com/khufkens/snotelr/raw/master/snotelr-logo.png' align="right" height="139" /></a>
 
 [![Build Status](https://travis-ci.org/khufkens/snotelr.svg?branch=master)](https://travis-ci.org/khufkens/snotelr)
 [![codecov](https://codecov.io/gh/khufkens/snotelr/branch/master/graph/badge.svg)](https://codecov.io/gh/khufkens/snotelr)
