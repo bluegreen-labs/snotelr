@@ -98,11 +98,12 @@ test_that("check phenology routines - missing file",{
   expect_error(str(snotel_phenology()))
 })
 
-test_that("check phenology routines - no data returned",{
-  skip_on_cran()
-  df <- snotel_download(site_id = 429, internal = TRUE)
-  expect_warning(snotel_phenology(df))
-})
+# find site with no snow (only rainfall) data to implement this
+#test_that("check phenology routines - no data returned",{
+#  skip_on_cran()
+#  df <- snotel_download(site_id = 429, internal = TRUE)
+#  expect_warning(snotel_phenology(df))
+#})
 
 test_that("check phenology routines - not a data frame",{
   skip_on_cran()
