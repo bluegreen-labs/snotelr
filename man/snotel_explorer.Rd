@@ -12,4 +12,3 @@ Start the SNOTEL shiny interface
 \examples{
 # snotel_explorer()
 }
-\keyword{GUI}

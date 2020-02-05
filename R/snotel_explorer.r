@@ -1,6 +1,5 @@
 #' Start the SNOTEL shiny interface
 #'
-#' @keywords GUI
 #' @export
 #' @examples
 #' # snotel_explorer()
