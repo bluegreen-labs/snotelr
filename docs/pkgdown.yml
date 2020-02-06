@@ -1,6 +1,5 @@
 pandoc: '2.5'
 pkgdown: 1.4.1
 pkgdown_sha: ~
-articles:
-  snotelr-vignette: snotelr-vignette.html
+articles: []
 

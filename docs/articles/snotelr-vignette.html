@@ -85,7 +85,7 @@
       <h1>snotelr</h1>
                         <h4 class="author">Koen Hufkens</h4>
             
-            <h4 class="date">2020-02-05</h4>
+            <h4 class="date">2020-02-06</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/khufkens/snotelr/blob/master/vignettes/snotelr-vignette.Rmd"><code>vignettes/snotelr-vignette.Rmd</code></a></small>
       <div class="hidden name"><code>snotelr-vignette.Rmd</code></div>
@@ -102,9 +102,9 @@
 <div id="downloading-site-meta-data" class="section level2">
 <h2 class="hasAnchor">
 <a href="#downloading-site-meta-data" class="anchor"></a>Downloading site meta-data</h2>
-<p>The SNOTEL network consists of a vast number of observation sites, all of them listed together with their meta-data on the SNOTEL website. The <code><a href="../reference/snotel_info.html">snotel_info()</a></code> function allows you to query this table and import it as a neat table into <code>R</code>. Some of the meta-data, in particular the site id (<code>site_id</code>), you will need of you want to download the data for a site. You can save this table to disk using the <code>path</code> variable to specify a location on your computer where to store the data as a csv. If this parameter is missing the data is returned as an <code>R</code> variable.</p>
+<p>The SNOTEL network consists of a vast number of observation sites, all of them listed together with their meta-data on the SNOTEL website. The <code>snotel_info()</code> function allows you to query this table and import it as a neat table into <code>R</code>. Some of the meta-data, in particular the site id (<code>site_id</code>), you will need of you want to download the data for a site. You can save this table to disk using the <code>path</code> variable to specify a location on your computer where to store the data as a csv. If this parameter is missing the data is returned as an <code>R</code> variable.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="co"># download and list site information</span></a>
-<a class="sourceLine" id="cb1-2" title="2">site_meta_data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/snotel_info.html">snotel_info</a></span>()</a>
+<a class="sourceLine" id="cb1-2" title="2">site_meta_data &lt;-<span class="st"> </span><span class="kw">snotel_info</span>()</a>
 <a class="sourceLine" id="cb1-3" title="3"><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(site_meta_data)</a></code></pre></div>
 </div>
 <div id="downloading-site-data" class="section level2">
@@ -112,7 +112,7 @@
 <a href="#downloading-site-data" class="anchor"></a>Downloading site data</h2>
 <p>If you downloaded the meta-data for all sites you can make a selection using either geographic coordinates, or <code>state</code> columns. For the sake of brevity I’ll only query data for one site using its <code>site_id</code> below. By default the data, reported in imperial values, are converted to metric measurements.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="co"># downloading data for a random site</span></a>
-<a class="sourceLine" id="cb2-2" title="2">snow_data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/snotel_download.html">snotel_download</a></span>(<span class="dt">site_id =</span> <span class="dv">670</span>, <span class="dt">internal =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb2-2" title="2">snow_data &lt;-<span class="st"> </span><span class="kw">snotel_download</span>(<span class="dt">site_id =</span> <span class="dv">670</span>, <span class="dt">internal =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb2-3" title="3"></a>
 <a class="sourceLine" id="cb2-4" title="4"><span class="co"># show the data</span></a>
 <a class="sourceLine" id="cb2-5" title="5"><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(snow_data)</a></code></pre></div>
@@ -126,9 +126,9 @@
 <div id="calculating-snow-phenology-from-downloaded-data-or-data-frames" class="section level2">
 <h2 class="hasAnchor">
 <a href="#calculating-snow-phenology-from-downloaded-data-or-data-frames" class="anchor"></a>Calculating snow phenology from downloaded data or data frames</h2>
-<p>Although the main function of the package is to provide easy access to the SNOTEL data a function <code><a href="../reference/snotel_phenology.html">snotel_phenology()</a></code> is provided to calculate seasonal metrics of snow deposition.</p>
+<p>Although the main function of the package is to provide easy access to the SNOTEL data a function <code>snotel_phenology()</code> is provided to calculate seasonal metrics of snow deposition.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="co"># calculate snow phenology</span></a>
-<a class="sourceLine" id="cb4-2" title="2">phenology &lt;-<span class="st"> </span><span class="kw"><a href="../reference/snotel_phenology.html">snotel_phenology</a></span>(snow_data)</a></code></pre></div>
+<a class="sourceLine" id="cb4-2" title="2">phenology &lt;-<span class="st"> </span><span class="kw">snotel_phenology</span>(snow_data)</a></code></pre></div>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="co"># subset data to the first decade of the century</span></a>
 <a class="sourceLine" id="cb5-2" title="2">snow_data_subset &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/subset.html">subset</a></span>(snow_data, <span class="kw"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span>(date) <span class="op">&gt;</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span>(<span class="st">"2000-01-01"</span>) <span class="op">&amp;</span></a>
 <a class="sourceLine" id="cb5-3" title="3"><span class="st">                             </span><span class="kw"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span>(date) <span class="op">&lt;</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span>(<span class="st">"2010-01-01"</span>))</a>
