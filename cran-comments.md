@@ -3,7 +3,7 @@ http://cran.r-project.org/web/packages/policies.html
 
 ## Test environments, local, CI and r-hub
 
-- local OSX / Ubuntu 16.04 install on R 3.5
+- local OSX / Ubuntu 16.04 install on R 3.6
 - Ubuntu on Travis-CI (devel / release)
 - codecove.io code coverage at ~93%
 
