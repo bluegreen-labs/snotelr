@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">snotelr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.4</span>
       </span>
     </div>
 
@@ -85,7 +85,7 @@
       <h1>snotelr</h1>
                         <h4 class="author">Koen Hufkens</h4>
             
-            <h4 class="date">2020-02-06</h4>
+            <h4 class="date">2020-05-08</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/khufkens/snotelr/blob/master/vignettes/snotelr-vignette.Rmd"><code>vignettes/snotelr-vignette.Rmd</code></a></small>
       <div class="hidden name"><code>snotelr-vignette.Rmd</code></div>
@@ -102,50 +102,50 @@
 <div id="downloading-site-meta-data" class="section level2">
 <h2 class="hasAnchor">
 <a href="#downloading-site-meta-data" class="anchor"></a>Downloading site meta-data</h2>
-<p>The SNOTEL network consists of a vast number of observation sites, all of them listed together with their meta-data on the SNOTEL website. The <code>snotel_info()</code> function allows you to query this table and import it as a neat table into <code>R</code>. Some of the meta-data, in particular the site id (<code>site_id</code>), you will need of you want to download the data for a site. You can save this table to disk using the <code>path</code> variable to specify a location on your computer where to store the data as a csv. If this parameter is missing the data is returned as an <code>R</code> variable.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="co"># download and list site information</span></a>
-<a class="sourceLine" id="cb1-2" title="2">site_meta_data &lt;-<span class="st"> </span><span class="kw">snotel_info</span>()</a>
-<a class="sourceLine" id="cb1-3" title="3"><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(site_meta_data)</a></code></pre></div>
+<p>The SNOTEL network consists of a vast number of observation sites, all of them listed together with their meta-data on the SNOTEL website. The <code><a href="../reference/snotel_info.html">snotel_info()</a></code> function allows you to query this table and import it as a neat table into <code>R</code>. Some of the meta-data, in particular the site id (<code>site_id</code>), you will need of you want to download the data for a site. You can save this table to disk using the <code>path</code> variable to specify a location on your computer where to store the data as a csv. If this parameter is missing the data is returned as an <code>R</code> variable.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co"># download and list site information</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">site_meta_data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/snotel_info.html">snotel_info</a></span>()</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(site_meta_data)</a></code></pre></div>
 </div>
 <div id="downloading-site-data" class="section level2">
 <h2 class="hasAnchor">
 <a href="#downloading-site-data" class="anchor"></a>Downloading site data</h2>
 <p>If you downloaded the meta-data for all sites you can make a selection using either geographic coordinates, or <code>state</code> columns. For the sake of brevity I’ll only query data for one site using its <code>site_id</code> below. By default the data, reported in imperial values, are converted to metric measurements.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="co"># downloading data for a random site</span></a>
-<a class="sourceLine" id="cb2-2" title="2">snow_data &lt;-<span class="st"> </span><span class="kw">snotel_download</span>(<span class="dt">site_id =</span> <span class="dv">670</span>, <span class="dt">internal =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb2-3" title="3"></a>
-<a class="sourceLine" id="cb2-4" title="4"><span class="co"># show the data</span></a>
-<a class="sourceLine" id="cb2-5" title="5"><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(snow_data)</a></code></pre></div>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="co"># A plot of snow accummulation through the years</span></a>
-<a class="sourceLine" id="cb3-2" title="2"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span>(snow_data<span class="op">$</span>date),</a>
-<a class="sourceLine" id="cb3-3" title="3">     snow_data<span class="op">$</span>snow_water_equivalent,</a>
-<a class="sourceLine" id="cb3-4" title="4">     <span class="dt">type =</span> <span class="st">"l"</span>,</a>
-<a class="sourceLine" id="cb3-5" title="5">     <span class="dt">xlab =</span> <span class="st">"Date"</span>,</a>
-<a class="sourceLine" id="cb3-6" title="6">     <span class="dt">ylab =</span> <span class="st">"SWE (mm)"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co"># downloading data for a random site</span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">snow_data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/snotel_download.html">snotel_download</a></span>(<span class="dt">site_id =</span> <span class="dv">670</span>, <span class="dt">internal =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="co"># show the data</span></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(snow_data)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="co"># A plot of snow accummulation through the years</span></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span>(snow_data<span class="op">$</span>date),</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3">     snow_data<span class="op">$</span>snow_water_equivalent,</a>
+<a class="sourceLine" id="cb3-4" data-line-number="4">     <span class="dt">type =</span> <span class="st">"l"</span>,</a>
+<a class="sourceLine" id="cb3-5" data-line-number="5">     <span class="dt">xlab =</span> <span class="st">"Date"</span>,</a>
+<a class="sourceLine" id="cb3-6" data-line-number="6">     <span class="dt">ylab =</span> <span class="st">"SWE (mm)"</span>)</a></code></pre></div>
 </div>
 <div id="calculating-snow-phenology-from-downloaded-data-or-data-frames" class="section level2">
 <h2 class="hasAnchor">
 <a href="#calculating-snow-phenology-from-downloaded-data-or-data-frames" class="anchor"></a>Calculating snow phenology from downloaded data or data frames</h2>
-<p>Although the main function of the package is to provide easy access to the SNOTEL data a function <code>snotel_phenology()</code> is provided to calculate seasonal metrics of snow deposition.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="co"># calculate snow phenology</span></a>
-<a class="sourceLine" id="cb4-2" title="2">phenology &lt;-<span class="st"> </span><span class="kw">snotel_phenology</span>(snow_data)</a></code></pre></div>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="co"># subset data to the first decade of the century</span></a>
-<a class="sourceLine" id="cb5-2" title="2">snow_data_subset &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/subset.html">subset</a></span>(snow_data, <span class="kw"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span>(date) <span class="op">&gt;</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span>(<span class="st">"2000-01-01"</span>) <span class="op">&amp;</span></a>
-<a class="sourceLine" id="cb5-3" title="3"><span class="st">                             </span><span class="kw"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span>(date) <span class="op">&lt;</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span>(<span class="st">"2010-01-01"</span>))</a>
-<a class="sourceLine" id="cb5-4" title="4"></a>
-<a class="sourceLine" id="cb5-5" title="5"><span class="co"># plot the snow water equivalent time series</span></a>
-<a class="sourceLine" id="cb5-6" title="6"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span>(snow_data_subset<span class="op">$</span>date),</a>
-<a class="sourceLine" id="cb5-7" title="7">     snow_data_subset<span class="op">$</span>snow_water_equivalent,</a>
-<a class="sourceLine" id="cb5-8" title="8">     <span class="dt">type =</span> <span class="st">"l"</span>,</a>
-<a class="sourceLine" id="cb5-9" title="9">     <span class="dt">xlab =</span> <span class="st">"Date"</span>,</a>
-<a class="sourceLine" id="cb5-10" title="10">     <span class="dt">ylab =</span> <span class="st">"SWE (mm)"</span>)</a>
-<a class="sourceLine" id="cb5-11" title="11"></a>
-<a class="sourceLine" id="cb5-12" title="12"><span class="co"># plot the dates of first snow accumulation as a red dot</span></a>
-<a class="sourceLine" id="cb5-13" title="13"><span class="kw"><a href="https://rdrr.io/r/graphics/points.html">points</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(phenology<span class="op">$</span>year, phenology<span class="op">$</span>first_snow_acc),<span class="st">"%Y %j"</span>),</a>
-<a class="sourceLine" id="cb5-14" title="14">       <span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="dv">1</span>,<span class="kw"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(phenology)),</a>
-<a class="sourceLine" id="cb5-15" title="15">       <span class="dt">col =</span> <span class="st">"red"</span>,</a>
-<a class="sourceLine" id="cb5-16" title="16">       <span class="dt">pch =</span> <span class="dv">19</span>,</a>
-<a class="sourceLine" id="cb5-17" title="17">       <span class="dt">cex =</span> <span class="fl">0.5</span>)</a></code></pre></div>
+<p>Although the main function of the package is to provide easy access to the SNOTEL data a function <code><a href="../reference/snotel_phenology.html">snotel_phenology()</a></code> is provided to calculate seasonal metrics of snow deposition.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="co"># calculate snow phenology</span></a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">phenology &lt;-<span class="st"> </span><span class="kw"><a href="../reference/snotel_phenology.html">snotel_phenology</a></span>(snow_data)</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="co"># subset data to the first decade of the century</span></a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">snow_data_subset &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/subset.html">subset</a></span>(snow_data, <span class="kw"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span>(date) <span class="op">&gt;</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span>(<span class="st">"2000-01-01"</span>) <span class="op">&amp;</span></a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="st">                             </span><span class="kw"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span>(date) <span class="op">&lt;</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span>(<span class="st">"2010-01-01"</span>))</a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="co"># plot the snow water equivalent time series</span></a>
+<a class="sourceLine" id="cb5-6" data-line-number="6"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span>(snow_data_subset<span class="op">$</span>date),</a>
+<a class="sourceLine" id="cb5-7" data-line-number="7">     snow_data_subset<span class="op">$</span>snow_water_equivalent,</a>
+<a class="sourceLine" id="cb5-8" data-line-number="8">     <span class="dt">type =</span> <span class="st">"l"</span>,</a>
+<a class="sourceLine" id="cb5-9" data-line-number="9">     <span class="dt">xlab =</span> <span class="st">"Date"</span>,</a>
+<a class="sourceLine" id="cb5-10" data-line-number="10">     <span class="dt">ylab =</span> <span class="st">"SWE (mm)"</span>)</a>
+<a class="sourceLine" id="cb5-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb5-12" data-line-number="12"><span class="co"># plot the dates of first snow accumulation as a red dot</span></a>
+<a class="sourceLine" id="cb5-13" data-line-number="13"><span class="kw"><a href="https://rdrr.io/r/graphics/points.html">points</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(phenology<span class="op">$</span>year, phenology<span class="op">$</span>first_snow_acc),<span class="st">"%Y %j"</span>),</a>
+<a class="sourceLine" id="cb5-14" data-line-number="14">       <span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="dv">1</span>,<span class="kw"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(phenology)),</a>
+<a class="sourceLine" id="cb5-15" data-line-number="15">       <span class="dt">col =</span> <span class="st">"red"</span>,</a>
+<a class="sourceLine" id="cb5-16" data-line-number="16">       <span class="dt">pch =</span> <span class="dv">19</span>,</a>
+<a class="sourceLine" id="cb5-17" data-line-number="17">       <span class="dt">cex =</span> <span class="fl">0.5</span>)</a></code></pre></div>
 <p>A list of all provided snow phenology statistics is provided below.</p>
 <table class="table">
 <colgroup>
