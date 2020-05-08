@@ -593,7 +593,7 @@ server <- function(input, output, session) {
             xaxis = list(title = "DOY"),
             yaxis = list(title = primary_label),
             title = sprintf("Site ID: %s",
-                            filteredData()[as.numeric(input$table_row_last_clicked),11])
+            filteredData()[as.numeric(input$table_row_last_clicked),11])
           )
 
       } else if (input$plot_type == "snow_phen") {
