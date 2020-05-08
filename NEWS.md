@@ -1,3 +1,11 @@
+# snotelr 1.0.4
+
+* resubmission after unnecessary removal from CRAN by BDP
+
+# snotelr 1.0.3
+
+* shiny updates
+
 # snotelr 1.0.2
 
 * fixed small typo
