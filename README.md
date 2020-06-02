@@ -1,12 +1,11 @@
-# snotelr <a href='https://khufkens.github.io/snotelr/'><img src='https://github.com/khufkens/snotelr/raw/master/snotelr-logo.png' align="right" height="139" /></a>
+# snotelr <a href='https://bluegreen-labs.github.io/snotelr/'><img src='https://github.com/bluegreen-labs/snotelr/raw/master/snotelr-logo.png' align="right" height="139" /></a>
 
-[![Build Status](https://travis-ci.org/khufkens/snotelr.svg?branch=master)](https://travis-ci.org/khufkens/snotelr)
-[![codecov](https://codecov.io/gh/khufkens/snotelr/branch/master/graph/badge.svg)](https://codecov.io/gh/khufkens/snotelr)
+[![Build Status](https://travis-ci.org/bluegreen-labs/snotelr.svg?branch=master)](https://travis-ci.org/bluegreen-labs/snotelr)
+[![codecov](https://codecov.io/gh/bluegreen-labs/snotelr/branch/master/graph/badge.svg)](https://codecov.io/gh/bluegreen-labs/snotelr)
 [![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/snotelr)](https://cran.r-project.org/package=snotelr)
 [![](https://cranlogs.r-pkg.org/badges/grand-total/snotelr)](https://cran.r-project.org/package=snotelr)
-<a href="https://www.buymeacoffee.com/H2wlgqCLO" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" height="21px" ></a>
 
-SnotelR is a R toolbox to facilitate easy SNOTEL data exploration and downloads through a convenient R [shiny](http://shiny.rstudio.com/) based GUI. In addition it provides a routine to extract basic snow phenology metrics.
+Snotelr is a R toolbox to facilitate easy SNOTEL data exploration and downloads through a convenient R [shiny](http://shiny.rstudio.com/) based GUI. In addition it provides a routine to extract basic snow phenology metrics.
 
 ## Installation
 
@@ -26,7 +25,7 @@ commands:
 
 ```r
 if(!require(devtools)){install.packages("devtools")}
-devtools::install_github("khufkens/snotelr")
+devtools::install_github("bluegreen-labs/snotelr")
 library("snotelr")
 ```
 
@@ -35,7 +34,7 @@ documentation please use:
 
 ```r
 if(!require(devtools)){install.packages("devtools")}
-devtools::install_github("khufkens/snotelr", build_vignettes = TRUE)
+devtools::install_github("bluegreen-labs/snotelr", build_vignettes = TRUE)
 library("snotelr")
 ```
 
@@ -50,7 +49,7 @@ snotel_explorer()
 
 This will start a shiny application with an R backend in your default browser. The first window will display all site locations, and allows for subsetting of the data based upon state or a bounding box. The bounding box can be selected by clicking top-left and bottom-right.
 
-![](https://github.com/khufkens/snotelr/raw/master/docs/map.png)
+![](https://github.com/bluegreen-labs/snotelr/raw/master/docs/map.png)
 
 The *plot data* tab allows for interactive viewing of the soil water equivalent (SWE) data together with a covariate (temperature, precipitation). The SWE time series will also mark snow phenology statistics, mainly the day of:
 
@@ -60,7 +59,7 @@ The *plot data* tab allows for interactive viewing of the soil water equivalent 
 - continuous snow accumulation (permanent snow cover)
 - maximum SWE (and its amount)
 
-![](https://github.com/khufkens/snotelr/raw/master/docs/time_series.png)
+![](https://github.com/bluegreen-labs/snotelr/raw/master/docs/time_series.png)
 
 To access the full list of SNOTEL sites and associated meta-data use the **snotel_info()** function.
 
@@ -93,5 +92,5 @@ Use the proper acknowledgements when using the downloaded data.
 
 # Acknowledgements
 
-This project was in part supported by the National Science Foundation’s Macro-system Biology Program (award EF-1065029). Logo design elements are taken from the FontAwesome library according to [these terms](https://fontawesome.com/license), where the globe element was inverted and intersected.
+This project was in part supported by the National Science Foundation’s Macro-system Biology Program (award EF-1065029) and the Marie Skłodowska-Curie Action (H2020 grant 797668). Logo design elements are taken from the FontAwesome library according to [these terms](https://fontawesome.com/license), where the globe element was inverted and intersected.
 

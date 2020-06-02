@@ -1,11 +1,12 @@
 Package: snotelr
 Title: Calculate and Visualize 'SNOTEL' Snow Data and Seasonality
-Version: 1.0.4
-Authors@R: person(
-      family = "Hufkens",
-      given = "Koen",
-		  email = "koen.hufkens@gmail.com",
-		  role = c("aut", "cre"))
+Version: 1.0.5
+Authors@R: c(person(
+               family = "Hufkens",
+               given = "Koen",
+               email = "koen.hufkens@gmail.com",
+               role = c("aut", "cre"),
+               comment = c(ORCID = "0000-0002-5070-8109")))
 Description: Programmatic interface to the 'SNOTEL' snow data
   (<https://www.wcc.nrcs.usda.gov/snow/>). Provides easy downloads of snow 
   data into your R work space or a local directory. Additional post-processing 
@@ -38,4 +39,4 @@ VignetteBuilder: knitr
 License: AGPL-3
 LazyData: true
 ByteCompile: true
-RoxygenNote: 7.0.2
+RoxygenNote: 7.1.0

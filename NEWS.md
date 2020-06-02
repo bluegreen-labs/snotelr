@@ -1,3 +1,7 @@
+# snotelr 1.0.5
+
+* bluegreen-labs migration
+
 # snotelr 1.0.4
 
 * resubmission after unnecessary removal from CRAN by BDP
