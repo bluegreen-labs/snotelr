@@ -17,11 +17,9 @@ tags$html(
       tags$li('Use the download.snotel() function to download data.'),
       tags$li('The snow phenology plot type displays start and end of the snow
             season as well as maximum snow depth (in snow water equivalent).'),
-      tags$li('For continued development consider buying me coffee by tipping my
-              tip jar on my',
-              tags$a(href="http://www.khufkens.com/code/",
-                     "software page",target="_blank"),'.'),
-      tags$li('... or cite / acknowledging the package.')
+      tags$li('For additional development and data science solutions consult the',
+              tags$a(href="http://bluegreenlabs.org/",
+                     "BlueGreen Labs webpage",target="_blank"),'.')
     )
   )
 )
