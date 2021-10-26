@@ -1,3 +1,8 @@
+# snotelr 1.0.6
+
+* fix shiny package check
+* migrate CI to actions
+
 # snotelr 1.0.5
 
 * bluegreen-labs migration
