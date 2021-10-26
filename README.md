@@ -1,6 +1,6 @@
 # snotelr <a href='https://bluegreen-labs.github.io/snotelr/'><img src='https://github.com/bluegreen-labs/snotelr/raw/master/snotelr-logo.png' align="right" height="139" /></a>
 
-[![Build Status](https://travis-ci.com/bluegreen-labs/snotelr.svg?branch=master)](https://travis-ci.org/bluegreen-labs/snotelr)
+[![R-CMD-check](https://github.com/bluegreen-labs/snotelr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/bluegreen-labs/snotelr/actions/workflows/R-CMD-check.yaml)
 [![codecov](https://codecov.io/gh/bluegreen-labs/snotelr/branch/master/graph/badge.svg)](https://codecov.io/gh/bluegreen-labs/snotelr)
 [![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/snotelr)](https://cran.r-project.org/package=snotelr)
 [![](https://cranlogs.r-pkg.org/badges/grand-total/snotelr)](https://cran.r-project.org/package=snotelr)
