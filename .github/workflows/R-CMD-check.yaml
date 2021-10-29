@@ -40,6 +40,14 @@ jobs:
           r-version: ${{ matrix.config.r }}
 
       - uses: r-lib/actions/setup-pandoc@v1
+            
+      - name: Setup pandoc from r-lib
+        if: runner.os == 'Windows'
+        uses: r-lib/actions/setup-pandoc@master
+
+      - name: Install tinytex from r-lib
+        if: runner.os == 'Windows'
+        uses: r-lib/actions/setup-tinytex@master
 
       - name: Query dependencies
         run: |
@@ -68,7 +76,6 @@ jobs:
         run: |
           remotes::install_deps(dependencies = TRUE)
           remotes::install_cran("rcmdcheck")
-          install.packages("tinytex")
         shell: Rscript {0}
 
       - name: Check
