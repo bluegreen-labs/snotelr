@@ -1,14 +1,9 @@
 #' Downloads a SNOTEL site listing for further processing
 #'
+#' @param network network list to query (default = sntl, for SNOTEL)
 #' @param path path where to save the snotel information (site list)
 #' 
 #' @importFrom magrittr "%>%"
-#' @importFrom stats na.action
-#' @importFrom memoise memoise
-#' @importFrom RSelenium remoteDriver
-#' @importFrom wdman phantomjs
-#' @importFrom xml2 read_html
-#' @importFrom rvest html_table html_nodes
 #' 
 #' @export
 #' @examples
@@ -21,43 +16,28 @@
 #' head(meta_data)
 #'}
 
-snotel_info <- memoise::memoise(function(path){
+snotel_info <- memoise::memoise(
+  function(
+    network = "sntl",
+    path
+    ){
   
-  # check if the phatomjs server is
-  # installed and running
-  server <- try(wdman::phantomjs(verbose = FALSE))
-  
-  # start remote driver
-  remDr <- RSelenium::remoteDriver(browserName = "phantomjs",
-                                   port = 4567L)
-  
-  # open a connection to the phantomjs server
-  remDr$open(silent = TRUE)
-  
-  # navigate to the page and wait on load
-  remDr$navigate('http://wcc.sc.egov.usda.gov/nwcc/yearcount?network=sntl&counttype=listwithdiscontinued&state=')
-  
-  # grab the loaded main html page
-  main <- xml2::read_html(remDr$getPageSource()[[1]])
-  
-  # close the connection and clean up
-  remDr$close()
-  
-  # stop server only if opened in this
-  # session, otherwise skip
-  if(!inherits(server, "try-error")){
-    server$stop()
-  }
-  
-  # set html element selector for the table
-  # on the main page
-  sel_data <- 'h5~ table+ table'
-  
-  # process the html file and extract stats
-  df <- rvest::html_nodes(main,sel_data) %>%
+  # set base url
+  url <- "https://wcc.sc.egov.usda.gov/nwcc/yearcount?"
+    
+  # construct the query to be served to the server
+  query <- list("network" = network,
+                "counttype" = "listwithdiscontinued")
+    
+  # query the data table
+  df <- httr::GET(
+    url = url,
+    query = query) %>%
+    rvest::read_html() %>%
+    rvest::html_nodes('h5~ table+ table') %>%
     rvest::html_table() %>%
     data.frame()
-
+  
   # extract site id from site name
   df$site_id <- as.numeric(gsub("[\\(\\)]",
                                "",
