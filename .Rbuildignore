@@ -15,6 +15,7 @@
 ^review-notes\.md$
 
 # Stuff
+^.github$
 ^.*\.Rproj$
 ^.*\.Renviron$
 ^\.Rproj\.user$
