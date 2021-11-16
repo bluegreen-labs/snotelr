@@ -2,6 +2,7 @@
 
 * fix shiny package check
 * migrate CI to actions
+* migrate to httr for data queries
 
 # snotelr 1.0.5
 

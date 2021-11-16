@@ -18,10 +18,10 @@ install.packages("snotelr")
 library("snotelr")
 ```
 
-The use of the GUI requires the installation of aditional packages, which are side loaded.
+The use of the GUI requires the installation of additional packages, which are side loaded.
 
 ```r
-install.packages(c("shinydashboard", "plotly", "leaflet"))
+install.packages(c("DT","shinydashboard", "plotly", "leaflet"))
 ```
 
 ### development release
