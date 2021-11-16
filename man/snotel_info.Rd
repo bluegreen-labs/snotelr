@@ -4,9 +4,11 @@
 \alias{snotel_info}
 \title{Downloads a SNOTEL site listing for further processing}
 \usage{
-snotel_info(path)
+snotel_info(network = "sntl", path)
 }
 \arguments{
+\item{network}{network list to query (default = sntl, for SNOTEL)}
+
 \item{path}{path where to save the snotel information (site list)}
 }
 \description{
