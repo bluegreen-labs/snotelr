@@ -19,14 +19,11 @@ Depends:
     R (>= 3.6)
 Imports:
     shiny,
-    xml2,
     httr,
     utils,
     stats,
     rvest,
     magrittr,
-    wdman,
-    RSelenium,
     memoise
 Suggests:
     knitr,
@@ -41,4 +38,4 @@ VignetteBuilder: knitr
 License: AGPL-3
 LazyData: true
 ByteCompile: true
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.2
