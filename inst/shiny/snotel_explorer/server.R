@@ -4,7 +4,6 @@ library(shinydashboard)
 library(leaflet)
 library(plotly)
 library(DT)
-library(data.table)
 library(zoo)
 
 # get the location of the package

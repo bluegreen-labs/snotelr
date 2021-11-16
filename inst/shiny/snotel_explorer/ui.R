@@ -28,8 +28,18 @@ state <- c(
   "TC" = "TC")
 
 # interface elements
-header <- dashboardHeader(title = "SNOTEL Explorer")
+header <- dashboardHeader(
+  title = "SNOTEL Explorer",
+  tags$li(a(href = 'https://bluegreenlabs.org',
+            img(src = 'https://bluegreenlabs.org/img/logo_text_small.png',
+                title = "BlueGreen Labs",
+                height = "30px"),
+                style = "padding-top:10px; padding-bottom:10px;"),
+          class = "dropdown")
+  )
+
 sidebar <- dashboardSidebar(
+  collapsed = TRUE,
   includeCSS("custom.css"),
   sidebarMenu(
     menuItem("Explore data",
@@ -42,12 +52,29 @@ sidebar <- dashboardSidebar(
              tabName = "help",
              icon = icon("info-circle")),
     menuItem("code on GitHub", icon = icon("github"),
-             href = "https://github.com/khufkens/snotelr")
+             href = "https://github.com/bluegreen-labs/snotelr")
   )
 )
 
 body <- dashboardBody(
   tags$head(
+    tags$style(HTML('
+        /* logo */
+        .skin-blue .main-header .logo {
+                              background-color: #0b2735;
+                              }
+
+        /* logo when hovered */
+        .skin-blue .main-header .logo:hover {
+                              background-color: #0b2735;
+                              }
+
+        /* navbar (rest of the header) */
+        .skin-blue .main-header .navbar {
+                              background-color: #0b2735;
+                              }
+                              '
+        )),
     tags$script(
       HTML("
           window.onload = function() {
