@@ -69,7 +69,7 @@ snotel_phenology <- function(df){
 
     # calculate timing of snow melt and accumulation
     minmax_loc <- which(x$snow_water_equivalent == 0)
-    na_loc <- as.numeric(na.action(stats::na.contiguous(x$snow_na)))
+    na_loc <- as.numeric(stats::na.action(stats::na.contiguous(x$snow_na)))
     doy <- 1:365
     doy[na_loc] <- NA
 
