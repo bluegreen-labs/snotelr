@@ -1,4 +1,4 @@
-# snotelr <a href='https://bluegreen-labs.github.io/snotelr/'><img src='https://github.com/bluegreen-labs/snotelr/raw/master/snotelr-logo.png' align="right" height="139" /></a>
+# snotelr <a href='https://bluegreen-labs.github.io/snotelr/'><img src='https://github.com/bluegreen-labs/snotelr/raw/master/logo.png' align="right" height="139" /></a>
 
 [![R-CMD-check](https://github.com/bluegreen-labs/snotelr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/bluegreen-labs/snotelr/actions/workflows/R-CMD-check.yaml)
 [![codecov](https://codecov.io/gh/bluegreen-labs/snotelr/branch/master/graph/badge.svg)](https://codecov.io/gh/bluegreen-labs/snotelr)
