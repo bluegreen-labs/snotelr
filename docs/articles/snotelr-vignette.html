@@ -24,6 +24,8 @@
 <meta name="twitter:card" content="summary">
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -38,12 +40,12 @@
       </button>
 
       <div class="navbar-brand-container">
-        <a class="hidden-sm hidden-xs" href="https://bluegreenlabs.org">
+        <a class="external-link hidden-sm hidden-xs" href="https://bluegreenlabs.org">
           <img src="https://bluegreenlabs.org/img/logo_text_small.png" id="hexlogo" alt="bluegreen labs"></a>
-        <a class="hidden-md hidden-lg" href="https://bluegreenlabs.org">
+        <a class="external-link hidden-md hidden-lg" href="https://bluegreenlabs.org">
           <img src="https://bluegreenlabs.org/img/logo.png" id="hexlogo" alt="bluegreen labs"></a>
         <a class="navbar-brand" href="../index.html">
-           <i>snotelr <small>v1.0.6</small></i>
+           <i>snotelr <small>v1.1</small></i>
         </a>
       </div>
     </div>
@@ -51,16 +53,10 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -74,14 +70,8 @@
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
-<li>
-  <a href="https://twitter.com/bluegreen_labs">
-    <span class="fab fa-twitter fa-lg"></span>
-     
-  </a>
-</li>
         <li>
-  <a href="https://github.com/khufkens/snotelr/">
+  <a href="https://github.com/khufkens/snotelr/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -96,79 +86,101 @@
 
       
 
-      </header><script src="snotelr-vignette_files/header-attrs-2.11/header-attrs.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>snotelr functionality</h1>
-                        <h4 class="author">Koen Hufkens</h4>
+                        <h4 data-toc-skip class="author">Koen
+Hufkens</h4>
             
-            <h4 class="date">2021-11-21</h4>
+            <h4 data-toc-skip class="date">2022-08-20</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/khufkens/snotelr/blob/master/vignettes/snotelr-vignette.Rmd"><code>vignettes/snotelr-vignette.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/khufkens/snotelr/blob/HEAD/vignettes/snotelr-vignette.Rmd" class="external-link"><code>vignettes/snotelr-vignette.Rmd</code></a></small>
       <div class="hidden name"><code>snotelr-vignette.Rmd</code></div>
 
     </div>
 
     
     
-<div id="introduction" class="section level2">
-<h2 class="hasAnchor">
-<a href="#introduction" class="anchor"></a>Introduction</h2>
-<p>The SNOTEL network is composed of over 800 automated data collection sites located in remote, high-elevation mountain watersheds in the western U.S. They are used to monitor snowpack, precipitation, temperature, and other climatic conditions. The data collected at SNOTEL sites are transmitted to a central database. This package queries this centralized database to provide easy access to these data and additional seasonal metrics of snow accumulation (snow phenology).</p>
+<div class="section level2">
+<h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
+</h2>
+<p>The SNOTEL network is composed of over 800 automated data collection
+sites located in remote, high-elevation mountain watersheds in the
+western U.S. They are used to monitor snowpack, precipitation,
+temperature, and other climatic conditions. The data collected at SNOTEL
+sites are transmitted to a central database. This package queries this
+centralized database to provide easy access to these data and additional
+seasonal metrics of snow accumulation (snow phenology).</p>
 </div>
-<div id="downloading-site-meta-data" class="section level2">
-<h2 class="hasAnchor">
-<a href="#downloading-site-meta-data" class="anchor"></a>Downloading site meta-data</h2>
-<p>The SNOTEL network consists of a vast number of observation sites, all of them listed together with their meta-data on the SNOTEL website. The <code><a href="../reference/snotel_info.html">snotel_info()</a></code> function allows you to query this table and import it as a neat table into <code>R</code>. Some of the meta-data, in particular the site id (<code>site_id</code>), you will need of you want to download the data for a site. You can save this table to disk using the <code>path</code> variable to specify a location on your computer where to store the data as a csv. If this parameter is missing the data is returned as an <code>R</code> variable.</p>
+<div class="section level2">
+<h2 id="downloading-site-meta-data">Downloading site meta-data<a class="anchor" aria-label="anchor" href="#downloading-site-meta-data"></a>
+</h2>
+<p>The SNOTEL network consists of a vast number of observation sites,
+all of them listed together with their meta-data on the SNOTEL website.
+The <code><a href="../reference/snotel_info.html">snotel_info()</a></code> function allows you to query this table
+and import it as a neat table into <code>R</code>. Some of the
+meta-data, in particular the site id (<code>site_id</code>), you will
+need of you want to download the data for a site. You can save this
+table to disk using the <code>path</code> variable to specify a location
+on your computer where to store the data as a csv. If this parameter is
+missing the data is returned as an <code>R</code> variable.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># download and list site information</span>
-<span class="va">site_meta_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/snotel_info.html">snotel_info</a></span><span class="op">(</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">site_meta_data</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># download and list site information</span></span>
+<span><span class="va">site_meta_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/snotel_info.html">snotel_info</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">site_meta_data</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="downloading-site-data" class="section level2">
-<h2 class="hasAnchor">
-<a href="#downloading-site-data" class="anchor"></a>Downloading site data</h2>
-<p>If you downloaded the meta-data for all sites you can make a selection using either geographic coordinates, or <code>state</code> columns. For the sake of brevity I’ll only query data for one site using its <code>site_id</code> below. By default the data, reported in imperial values, are converted to metric measurements.</p>
+<div class="section level2">
+<h2 id="downloading-site-data">Downloading site data<a class="anchor" aria-label="anchor" href="#downloading-site-data"></a>
+</h2>
+<p>If you downloaded the meta-data for all sites you can make a
+selection using either geographic coordinates, or <code>state</code>
+columns. For the sake of brevity I’ll only query data for one site using
+its <code>site_id</code> below. By default the data, reported in
+imperial values, are converted to metric measurements.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># downloading data for a random site</span>
-<span class="va">snow_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/snotel_download.html">snotel_download</a></span><span class="op">(</span>site_id <span class="op">=</span> <span class="fl">670</span>, internal <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-
-<span class="co"># show the data</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">snow_data</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># downloading data for a random site</span></span>
+<span><span class="va">snow_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/snotel_download.html">snotel_download</a></span><span class="op">(</span>site_id <span class="op">=</span> <span class="fl">670</span>, internal <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># show the data</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">snow_data</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># A plot of snow accummulation through the years</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="va">snow_data</span><span class="op">$</span><span class="va">date</span><span class="op">)</span>,
-     <span class="va">snow_data</span><span class="op">$</span><span class="va">snow_water_equivalent</span>,
-     type <span class="op">=</span> <span class="st">"l"</span>,
-     xlab <span class="op">=</span> <span class="st">"Date"</span>,
-     ylab <span class="op">=</span> <span class="st">"SWE (mm)"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># A plot of snow accummulation through the years</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="va">snow_data</span><span class="op">$</span><span class="va">date</span><span class="op">)</span>,</span>
+<span>     <span class="va">snow_data</span><span class="op">$</span><span class="va">snow_water_equivalent</span>,</span>
+<span>     type <span class="op">=</span> <span class="st">"l"</span>,</span>
+<span>     xlab <span class="op">=</span> <span class="st">"Date"</span>,</span>
+<span>     ylab <span class="op">=</span> <span class="st">"SWE (mm)"</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="calculating-snow-phenology-from-downloaded-data-or-data-frames" class="section level2">
-<h2 class="hasAnchor">
-<a href="#calculating-snow-phenology-from-downloaded-data-or-data-frames" class="anchor"></a>Calculating snow phenology from downloaded data or data frames</h2>
-<p>Although the main function of the package is to provide easy access to the SNOTEL data a function <code><a href="../reference/snotel_phenology.html">snotel_phenology()</a></code> is provided to calculate seasonal metrics of snow deposition.</p>
+<div class="section level2">
+<h2 id="calculating-snow-phenology-from-downloaded-data-or-data-frames">Calculating snow phenology from downloaded data or data frames<a class="anchor" aria-label="anchor" href="#calculating-snow-phenology-from-downloaded-data-or-data-frames"></a>
+</h2>
+<p>Although the main function of the package is to provide easy access
+to the SNOTEL data a function <code><a href="../reference/snotel_phenology.html">snotel_phenology()</a></code> is
+provided to calculate seasonal metrics of snow deposition.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># calculate snow phenology</span>
-<span class="va">phenology</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/snotel_phenology.html">snotel_phenology</a></span><span class="op">(</span><span class="va">snow_data</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># calculate snow phenology</span></span>
+<span><span class="va">phenology</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/snotel_phenology.html">snotel_phenology</a></span><span class="op">(</span><span class="va">snow_data</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># subset data to the first decade of the century</span>
-<span class="va">snow_data_subset</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">snow_data</span>, <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="va">date</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="st">"2000-01-01"</span><span class="op">)</span> <span class="op">&amp;</span>
-                             <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="va">date</span><span class="op">)</span> <span class="op">&lt;</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="st">"2010-01-01"</span><span class="op">)</span><span class="op">)</span>
-
-<span class="co"># plot the snow water equivalent time series</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="va">snow_data_subset</span><span class="op">$</span><span class="va">date</span><span class="op">)</span>,
-     <span class="va">snow_data_subset</span><span class="op">$</span><span class="va">snow_water_equivalent</span>,
-     type <span class="op">=</span> <span class="st">"l"</span>,
-     xlab <span class="op">=</span> <span class="st">"Date"</span>,
-     ylab <span class="op">=</span> <span class="st">"SWE (mm)"</span><span class="op">)</span>
-
-<span class="co"># plot the dates of first snow accumulation as a red dot</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/points.html">points</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">phenology</span><span class="op">$</span><span class="va">year</span>, <span class="va">phenology</span><span class="op">$</span><span class="va">first_snow_acc</span><span class="op">)</span>,<span class="st">"%Y %j"</span><span class="op">)</span>,
-       <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">phenology</span><span class="op">)</span><span class="op">)</span>,
-       col <span class="op">=</span> <span class="st">"red"</span>,
-       pch <span class="op">=</span> <span class="fl">19</span>,
-       cex <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></code></pre></div>
-<p>A list of all provided snow phenology statistics is provided below.</p>
+<code class="sourceCode R"><span><span class="co"># subset data to the first decade of the century</span></span>
+<span><span class="va">snow_data_subset</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">snow_data</span>, <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="va">date</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2000-01-01"</span><span class="op">)</span> <span class="op">&amp;</span></span>
+<span>                             <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="va">date</span><span class="op">)</span> <span class="op">&lt;</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2010-01-01"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># plot the snow water equivalent time series</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="va">snow_data_subset</span><span class="op">$</span><span class="va">date</span><span class="op">)</span>,</span>
+<span>     <span class="va">snow_data_subset</span><span class="op">$</span><span class="va">snow_water_equivalent</span>,</span>
+<span>     type <span class="op">=</span> <span class="st">"l"</span>,</span>
+<span>     xlab <span class="op">=</span> <span class="st">"Date"</span>,</span>
+<span>     ylab <span class="op">=</span> <span class="st">"SWE (mm)"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># plot the dates of first snow accumulation as a red dot</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/points.html" class="external-link">points</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">phenology</span><span class="op">$</span><span class="va">year</span>, <span class="va">phenology</span><span class="op">$</span><span class="va">first_snow_acc</span><span class="op">)</span>,<span class="st">"%Y %j"</span><span class="op">)</span>,</span>
+<span>       <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">phenology</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>       col <span class="op">=</span> <span class="st">"red"</span>,</span>
+<span>       pch <span class="op">=</span> <span class="fl">19</span>,</span>
+<span>       cex <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span></code></pre></div>
+<p>A list of all provided snow phenology statistics is provided
+below.</p>
 <table class="table">
 <colgroup>
 <col width="33%">
@@ -205,15 +217,17 @@
 </tr>
 <tr class="odd">
 <td>max_swe_doy</td>
-<td>day on which the maximum snow water equivalent value is reached (in DOY)</td>
+<td>day on which the maximum snow water equivalent value is reached (in
+DOY)</td>
 </tr>
 </tbody>
 </table>
 </div>
-<div id="reference" class="section level2">
-<h2 class="hasAnchor">
-<a href="#reference" class="anchor"></a>Reference</h2>
-<p>Please use the proper Zenodo DOI when using this software for research purposes.</p>
+<div class="section level2">
+<h2 id="reference">Reference<a class="anchor" aria-label="anchor" href="#reference"></a>
+</h2>
+<p>Please use the proper Zenodo DOI when using this software for
+research purposes.</p>
 </div>
   </div>
 
@@ -233,11 +247,11 @@
             <div class="col-xs-10">
                 <div class="row">
                     <div class="col-md-4 col-xs-6">
-                        <a href="http://github.com/bluegreen-labs" target="_blank">
+                        <a href="http://github.com/bluegreen-labs" target="_blank" class="external-link">
                           <div class="icon fab fa-github"></div></a>
-                        <a href="https://bluegreenlabs.org/labs/" target="_blank">
+                        <a href="https://bluegreenlabs.org/labs/" target="_blank" class="external-link">
                           <div class="icon fa fa-flask"></div></a>
-                        <a href="http://twitter.com/bluegreen_labs" target="_blank">
+                        <a href="http://twitter.com/bluegreen_labs" target="_blank" class="external-link">
                           <div class="icon fab fa-twitter"></div></a>
                     </div>
                 </div>
@@ -245,17 +259,17 @@
                     <div class="col-md-2 col-sm-4">
                         <ul>
 <h5 class="bottom-2">About</h5>
-                            <li><a href="https://bluegreenlabs.org/#intro">BlueGreen Labs</a></li>
-                            <li><a href="https://bluegreenlabs.org/#people">Our Team</a></li>
-                            <li><a href="https://bluegreenlabs.org/#contact">Contact Us</a></li>
+                            <li><a href="https://bluegreenlabs.org/#intro" class="external-link">BlueGreen Labs</a></li>
+                            <li><a href="https://bluegreenlabs.org/#people" class="external-link">Our Team</a></li>
+                            <li><a href="https://bluegreenlabs.org/#contact" class="external-link">Contact Us</a></li>
                         </ul>
 </div>
                     <div class="col-md-2 col-sm-4">
                         <ul>
 <h5 class="bottom-2">Resources</h5>
-                            <li><a href="https://github.com/bluegreen-labs">Packages</a></li>
-                            <li><a href="https://bluegreenlabs.org/publication/">Publications</a></li>
-                            <li><a href="https://bluegreenlabs.org/post/">Blog</a></li>
+                            <li><a href="https://github.com/bluegreen-labs" class="external-link">Packages</a></li>
+                            <li><a href="https://bluegreenlabs.org/publication/" class="external-link">Publications</a></li>
+                            <li><a href="https://bluegreenlabs.org/post/" class="external-link">Blog</a></li>
                         </ul>
 </div>
 
@@ -271,6 +285,8 @@
 
   
 
+
+  
 
   </body>
 </html>
