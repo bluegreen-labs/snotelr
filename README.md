@@ -4,8 +4,15 @@
 [![codecov](https://codecov.io/gh/bluegreen-labs/snotelr/branch/master/graph/badge.svg)](https://codecov.io/gh/bluegreen-labs/snotelr)
 [![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/snotelr)](https://cran.r-project.org/package=snotelr)
 [![](https://cranlogs.r-pkg.org/badges/grand-total/snotelr)](https://cran.r-project.org/package=snotelr)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7012728.svg)](https://doi.org/10.5281/zenodo.7012728)
 
-Snotelr is a R toolbox to facilitate easy SNOTEL data exploration and downloads through a convenient R [shiny](http://shiny.rstudio.com/) based GUI. In addition it provides a routine to extract basic snow phenology metrics.
+`snotelr` is an R toolbox to facilitate easy SNOTEL data exploration and downloads through a convenient R [shiny](http://shiny.rstudio.com/) based GUI. In addition it provides a routine to extract basic snow phenology metrics.
+
+## How to cite this package in your article
+
+You can cite this package like this "we obtained data from SNOTEL using the `snotelr` R package (Hufkens 2022)". Here is the full bibliographic reference to include in your reference list:
+
+> Hufkens, K. (2022). snotelr: a toolbox to facilitate easy SNOTEL data exploration and downloads in R. Zenodo. https://doi.org/10.5281/zenodo.7012728.
 
 ## Installation
 
@@ -93,8 +100,9 @@ For in depth analysis the statistics in the GUI can be retrieved using the **sno
 snotel_phenology(df)
 ```
 
-# Notes
-Use the proper acknowledgements when using the downloaded data.
+# References
+
+Hufkens, K. (2022). snotelr: a toolbox to facilitate easy SNOTEL data exploration and downloads in R. Zenodo. https://doi.org/10.5281/zenodo.7012728.
 
 # Acknowledgements
 
