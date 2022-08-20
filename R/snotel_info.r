@@ -4,6 +4,8 @@
 #' @param path path where to save the snotel information (site list)
 #' 
 #' @importFrom magrittr "%>%"
+#' @importFrom memoise memoise
+#' @importFrom rvest read_html
 #' 
 #' @export
 #' @examples
@@ -39,14 +41,15 @@ snotel_info <- memoise::memoise(
     data.frame()
   
   # extract site id from site name
-  df$site_id <- as.numeric(gsub("[\\(\\)]",
-                               "",
-                               regmatches(df$site_name,
-                                          regexpr("\\(.*?\\)",
-                                                  df$site_name))
-                               )
-                          )
-
+  df$site_id <- as.numeric(
+    gsub("[\\(\\)]",
+         "",
+         regmatches(df$site_name,
+                    regexpr("\\(.*?\\)",
+                            df$site_name))
+    )
+  )
+  
   # reformat the sitename (drop the site ID)
   df$site_name <- tolower(lapply(strsplit(df$site_name,"\\("),"[[",1))
 
