@@ -20,7 +20,7 @@
 <script src="pkgdown.js"></script><!-- ropensci --><link href="bglabs.css" rel="stylesheet">
 <meta property="og:title" content="Calculate and Visualize SNOTEL Snow Data and Seasonality">
 <meta property="og:description" content="Programmatic interface to the SNOTEL snow data
-  (&lt;https://www.wcc.nrcs.usda.gov/snow/&gt;). Provides easy downloads of snow 
+  (&lt;https://www.nrcs.usda.gov/wps/portal/wcc/home&gt;). Provides easy downloads of snow 
   data into your R work space or a local directory. Additional post-processing 
   routines to extract snow season indexes are provided.">
 <meta property="og:image" content="/logo.png">
@@ -74,7 +74,7 @@
   <a href="news/index.html">Changelog</a>
 </li>
         <li>
-  <a href="https://github.com/khufkens/snotelr/" class="external-link">
+  <a href="https://github.com/bluegreen-labs/snotelr/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -115,7 +115,7 @@
 <p>To install the current stable release use a CRAN repository:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"snotelr"</span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/khufkens/snotelr" class="external-link">"snotelr"</a></span><span class="op">)</span></span></code></pre></div>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/bluegreen-labs/snotelr" class="external-link">"snotelr"</a></span><span class="op">)</span></span></code></pre></div>
 <p>The use of the GUI requires the installation of additional packages, which are side loaded.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"DT"</span>,<span class="st">"shinydashboard"</span>, <span class="st">"plotly"</span>, <span class="st">"leaflet"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -127,12 +127,12 @@
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://devtools.r-lib.org/" class="external-link">devtools</a></span><span class="op">)</span><span class="op">)</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"devtools"</span><span class="op">)</span><span class="op">}</span></span>
 <span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"bluegreen-labs/snotelr"</span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/khufkens/snotelr" class="external-link">"snotelr"</a></span><span class="op">)</span></span></code></pre></div>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/bluegreen-labs/snotelr" class="external-link">"snotelr"</a></span><span class="op">)</span></span></code></pre></div>
 <p>Vignettes are not rendered by default, if you want to include additional documentation please use:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://devtools.r-lib.org/" class="external-link">devtools</a></span><span class="op">)</span><span class="op">)</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"devtools"</span><span class="op">)</span><span class="op">}</span></span>
 <span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"bluegreen-labs/snotelr"</span>, build_vignettes <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/khufkens/snotelr" class="external-link">"snotelr"</a></span><span class="op">)</span></span></code></pre></div>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/bluegreen-labs/snotelr" class="external-link">"snotelr"</a></span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
@@ -140,7 +140,7 @@
 </h2>
 <p>Most people will prefer the GUI to explore data on the fly. To envoke the GUI use the following command:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/khufkens/snotelr" class="external-link">snotelr</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/bluegreen-labs/snotelr" class="external-link">snotelr</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="reference/snotel_explorer.html">snotel_explorer</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>This will start a shiny application with an R backend in your default browser. The first window will display all site locations, and allows for subsetting of the data based upon state or a bounding box. The bounding box can be selected by clicking top-left and bottom-right.</p>
 <p><img src="https://github.com/bluegreen-labs/snotelr/raw/master/docs/map.png"></p>
@@ -190,8 +190,8 @@
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
 <li><a href="https://cloud.r-project.org/package=snotelr" class="external-link">View on CRAN</a></li>
-<li><a href="https://github.com/khufkens/snotelr/" class="external-link">Browse source code</a></li>
-<li><a href="https://github.com/khufkens/snotelr/issues" class="external-link">Report a bug</a></li>
+<li><a href="https://github.com/bluegreen-labs/snotelr/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/bluegreen-labs/snotelr/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
 
