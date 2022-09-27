@@ -2,6 +2,7 @@
 #' sno-tel info as provided by snotel_info()
 #'
 #' @param site_id subset of the sites listed by snotel_info()
+#' @param network network list to query (default = sntl, for SNOTEL)
 #' @param path where to save downloaded files (default = tempdir())
 #' @param internal return data to workspace, \code{TRUE} or \code{FALSE}
 #' (default = \code{FALSE})
@@ -19,6 +20,7 @@
 
 snotel_download <- function(
   site_id,
+  network = "sntl",
   path = tempdir(),
   internal = FALSE
   ){
@@ -30,7 +32,9 @@ snotel_download <- function(
   }
   
   # download meta-data
-  meta_data <- snotelr::snotel_info()
+  meta_data <- snotelr::snotel_info(
+    network = tolower(network)
+  )
   meta_data <- meta_data[which(meta_data$site_id %in% site_id),]
   
   # check if the provided site index is valid

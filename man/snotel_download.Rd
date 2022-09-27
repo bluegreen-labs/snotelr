@@ -5,10 +5,12 @@
 \title{Dowloads snotel data based upon a subset of the
 sno-tel info as provided by snotel_info()}
 \usage{
-snotel_download(site_id, path = tempdir(), internal = FALSE)
+snotel_download(site_id, network = "sntl", path = tempdir(), internal = FALSE)
 }
 \arguments{
 \item{site_id}{subset of the sites listed by snotel_info()}
+
+\item{network}{network list to query (default = sntl, for SNOTEL)}
 
 \item{path}{where to save downloaded files (default = tempdir())}
 

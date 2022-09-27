@@ -28,7 +28,7 @@ snotel_info <- memoise::memoise(
   url <- "https://wcc.sc.egov.usda.gov/nwcc/yearcount?"
     
   # construct the query to be served to the server
-  query <- list("network" = network,
+  query <- list("network" = tolower(network),
                 "counttype" = "listwithdiscontinued")
     
   # query the data table

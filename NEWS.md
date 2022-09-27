@@ -1,3 +1,7 @@
+# snotelr 1.2
+
+* adding support for the SNOTEL lite network
+
 # snotelr 1.1
 
 * fix shiny package check
