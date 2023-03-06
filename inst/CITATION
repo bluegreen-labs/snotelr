@@ -2,7 +2,7 @@ citHeader("To cite snotelr in publications use:")
 
 citEntry(entry = "Misc",
          title = "snotelr: a toolbox to facilitate easy SNOTEL data exploration and downloads in R",
-         author = personList(as.person("Koen Hufkens")),
+         author = c(as.person("Koen Hufkens")),
          year = "2022",
          doi = "10.5281/zenodo.7012728",
          url = "https://bluegreen-labs.github.io/snotelr/",
