@@ -59,7 +59,10 @@ If you downloaded the meta-data for all sites you can make a selection using eit
 
 ```{r eval = cran}
 # downloading data for a random site
-snow_data <- snotel_download(site_id = 670, internal = TRUE)
+snow_data <- snotel_download(
+  site_id = 670,
+  internal = TRUE
+  )
 
 # show the data
 head(snow_data)
@@ -71,7 +74,8 @@ plot(as.Date(snow_data$date),
      snow_data$snow_water_equivalent,
      type = "l",
      xlab = "Date",
-     ylab = "SWE (mm)")
+     ylab = "SWE (mm)"
+    )
 ```
 
 ## Calculating snow phenology from downloaded data or data frames
@@ -93,15 +97,16 @@ plot(as.Date(snow_data_subset$date),
      snow_data_subset$snow_water_equivalent,
      type = "l",
      xlab = "Date",
-     ylab = "SWE (mm)")
+     ylab = "SWE (mm)"
+  )
 
 # plot the dates of first snow accumulation as a red dot
-points(as.Date(paste(phenology$year, phenology$first_snow_acc),"%Y %j"),
+points(phenology$first_snow_acc,
        rep(1,nrow(phenology)),
        col = "red",
        pch = 19,
-       cex = 0.5)
-
+       cex = 0.5
+      )
 ```
 
 A list of all provided snow phenology statistics is provided below.
