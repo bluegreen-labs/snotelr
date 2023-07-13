@@ -48,7 +48,7 @@ snotel_phenology <- function(
   }
 
   df <- df |>
-    mutate(
+    dplyr::mutate(
       date = as.Date(date)
     )
   
@@ -66,7 +66,7 @@ snotel_phenology <- function(
     )
   
   # pad and offset
-  df <- left_join(df, full_range) |>
+  df <- dplyr::left_join(df, full_range) |>
     mutate(
       date_offset = date - 180
     )
@@ -97,9 +97,6 @@ snotel_phenology <- function(
     na_loc <- which(!c(1:length(x$snow_na) %in%
                       na.action(na.contiguous(x$snow_na))))
     
-    print(na_loc)
-    print("--")
-    
     # grab winter year
     year <- format(min(x$date),"%Y")
     
@@ -110,15 +107,15 @@ snotel_phenology <- function(
     last_snow_melt <- x$date[max(minmax_loc, na.rm = TRUE)]
     
     # first day of the longest continuous snow free period
-    cont_snow_acc <- x$date[first(na_loc)]
+    cont_snow_acc <- x$date[dplyr::first(na_loc)]
     
     # last day of the longest continuous snow free period
-    first_snow_melt <- x$date[last(na_loc)]
+    first_snow_melt <- x$date[dplyr::last(na_loc)]
 
     # highest value before snow melt in a given year, makes the assumption
     # that this occurs in the same year. Ideally needs to be processed
     # on a snow season basis not on a yearly basis
-    max_swe <- max(x$snow_water_equivalent, na.rm=TRUE)
+    max_swe <- max(x$snow_water_equivalent[na_loc], na.rm=TRUE)
     max_swe_day <-
       x$date[which(x$snow_water_equivalent == max_swe)[1]]
 
