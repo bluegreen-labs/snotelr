@@ -9,6 +9,7 @@
 #'
 #' @param df a snotel data file or data frame
 #' @param threshold threshold for mapping continuous snow cover
+#' @importFrom stats na.action na.contiguous
 #' @export
 #' @examples
 #'

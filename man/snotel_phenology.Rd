@@ -4,10 +4,12 @@
 \alias{snotel_phenology}
 \title{Calculates snow phenology from the snow water equivalent data}
 \usage{
-snotel_phenology(df)
+snotel_phenology(df, threshold = 0)
 }
 \arguments{
 \item{df}{a snotel data file or data frame}
+
+\item{threshold}{threshold for mapping continuous snow cover}
 }
 \description{
 First snow melt, first continuous snow melt, first
