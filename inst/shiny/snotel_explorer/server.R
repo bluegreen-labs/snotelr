@@ -116,21 +116,21 @@ server <- function(input, output, session) {
   # won't need to change dynamically (at least, not unless the
   # entire map is being torn down and recreated).
   output$map <- renderLeaflet({
-    map <- leaflet(df) %>%
+    map <- leaflet(df) |>
       addTiles(
         "http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}.jpg",
         attribution = 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',
         group = "World Imagery"
-      ) %>%
-      addProviderTiles("OpenTopoMap", group = "Open Topo Map") %>%
+      ) |>
+      addProviderTiles("OpenTopoMap", group = "Open Topo Map") |>
       addMarkers(lat = ~ latitude, lng = ~ longitude,
-                 icon = myIcon, popup = ~ preview) %>%
+                 icon = myIcon, popup = ~ preview) |>
       # Layers control
       addLayersControl(
         baseGroups = c("World Imagery","Open Topo Map"),
         position = c("topleft"),
         options = layersControlOptions(collapsed = TRUE)
-      ) %>%
+      ) |>
       setView(lng = -116,
               lat = 41,
               zoom = 4)
@@ -140,8 +140,8 @@ server <- function(input, output, session) {
   # set of things that can change should be managed in its own observer.
   observe({
 
-    leafletProxy("map", data = filteredData()) %>%
-      clearMarkers() %>%
+    leafletProxy("map", data = filteredData()) |>
+      clearMarkers() |>
       addMarkers(
         lat = ~ latitude,
         lng = ~ longitude,
@@ -177,9 +177,9 @@ server <- function(input, output, session) {
       v1$lon <- NULL
       v2$lon <- NULL
 
-      leafletProxy("map", data = filteredData()) %>%
-        clearMarkers() %>%
-        clearShapes() %>%
+      leafletProxy("map", data = filteredData()) |>
+        clearMarkers() |>
+        clearShapes() |>
         addMarkers(
           lat = ~ latitude,
           lng = ~ longitude,
@@ -198,14 +198,14 @@ server <- function(input, output, session) {
       } else{
         v1$lat <- input$map_click$lat
         v1$lon <- input$map_click$lng
-        leafletProxy("map", data = filteredData()) %>%
-          clearMarkers() %>%
+        leafletProxy("map", data = filteredData()) |>
+          clearMarkers() |>
           addMarkers(
             lat = ~ latitude,
             lng = ~ longitude,
             icon = ~ myIcon,
             popup =  ~ preview
-          ) %>%
+          ) |>
           addCircleMarkers(
             lng = isolate(v1$lon),
             lat = isolate(v1$lat),
@@ -225,14 +225,14 @@ server <- function(input, output, session) {
       # check if the dataset is not empty
       if (dim(tmp)[1] != 0) {
         # update the map
-        leafletProxy("map", data = tmp) %>%
-          clearMarkers() %>%
+        leafletProxy("map", data = tmp) |>
+          clearMarkers() |>
           addMarkers(
             lat = ~ latitude,
             lng = ~ longitude,
             icon = ~ myIcon ,
             popup =  ~ preview
-          ) %>%
+          ) |>
           addRectangles(
             lng1 = isolate(v1$lon),
             lat1 = isolate(v1$lat),
@@ -264,9 +264,9 @@ server <- function(input, output, session) {
         v1$lon <- NULL
         v2$lon <- NULL
 
-        leafletProxy("map", data = filteredData()) %>%
-          clearMarkers() %>%
-          clearShapes() %>%
+        leafletProxy("map", data = filteredData()) |>
+          clearMarkers() |>
+          clearShapes() |>
           addMarkers(
             lat = ~ latitude,
             lng = ~ longitude,
@@ -383,7 +383,7 @@ server <- function(input, output, session) {
           mode = "text",
           type = "scatter",
           textfont = list(color = '#000000', size = 16)
-        ) %>%
+        ) |>
           layout(xaxis = ax, yaxis = ax)
       } else{
         p <- plot_ly(
@@ -393,7 +393,7 @@ server <- function(input, output, session) {
           mode = "text",
           type = "scatter",
           textfont = list(color = '#000000', size = 16)
-        ) %>%
+        ) |>
           layout(xaxis = ax, yaxis = ax)
       }
 
@@ -418,26 +418,19 @@ server <- function(input, output, session) {
       plot_data$year <- as.numeric(format(plot_data$date,"%Y"))
 
       # convert to transition dates
-      first_snow_melt <- as.Date(sprintf("%s-%s",transition_data$year,
-                                             transition_data$first_snow_melt),
-                                "%Y-%j")
+      first_snow_melt <- as.Date(transition_data$first_snow_melt)
+      cont_snow_acc <- as.Date(transition_data$cont_snow_acc)
+      last_snow_melt <- as.Date(transition_data$last_snow_melt)
+      first_snow_acc <- as.Date(transition_data$first_snow_acc)
 
-      cont_snow_acc <- as.Date(sprintf("%s-%s",transition_data$year,
-                                        transition_data$cont_snow_acc),
-                                "%Y-%j")
-
-      last_snow_melt <- as.Date(sprintf("%s-%s",transition_data$year,
-                                      transition_data$last_snow_melt),
-                              "%Y-%j")
-
-      first_snow_acc <- as.Date(sprintf("%s-%s",transition_data$year,
-                                      transition_data$first_snow_acc),
-                              "%Y-%j")
-
+      # convert to transition dates
+      first_snow_melt <- as.Date(transition_data$first_snow_melt)
+      cont_snow_acc <- as.Date(transition_data$cont_snow_acc)
+      last_snow_melt <- as.Date(transition_data$last_snow_melt)
+      first_snow_acc <- as.Date(transition_data$first_snow_acc)
+      
       # convert the max accumulation date
-      max_swe_date <- as.Date(sprintf("%s-%s",transition_data$year,
-                                       transition_data$max_swe_doy),
-                               "%Y-%j")
+      max_swe_date <- as.Date(transition_data$max_swe_day)
       
       # check the plotting type
       if (input$plot_type == "daily") {
@@ -466,7 +459,7 @@ server <- function(input, output, session) {
           type = 'scatter',
           name = covariate_label,
           line = list(color = covariate_col)
-        ) %>%
+        ) |>
         add_trace(
             y = ~primary,
             mode = "lines",
@@ -474,7 +467,7 @@ server <- function(input, output, session) {
             yaxis = "y1",
             line = list(color = primary_col),
             name = primary_label
-          ) %>%
+          ) |>
           add_trace(
             x = first_snow_melt,
             y = rep(0,length(first_snow_melt)),
@@ -484,7 +477,7 @@ server <- function(input, output, session) {
             marker = list(color = "red", symbol = "square"),
             line = list(width = 0),
             name = "first snow melt"
-          ) %>%
+          ) |>
           add_trace(
             x = last_snow_melt,
             y = rep(0,length(last_snow_melt)),
@@ -494,7 +487,7 @@ server <- function(input, output, session) {
             marker = list(color = "red", symbol = "circle"),
             line = list(width = 0),
             name = "last snow melt"
-          ) %>%
+          ) |>
           add_trace(
             x = first_snow_acc,
             y = rep(0,length(first_snow_acc)),
@@ -504,7 +497,7 @@ server <- function(input, output, session) {
             marker = list(color = "blue", symbol = "circle"),
             line = list(width = 0),
             name = "first snow accumulation"
-          ) %>%
+          ) |>
           add_trace(
             x = cont_snow_acc,
             y = rep(0,length(cont_snow_acc)),
@@ -514,7 +507,7 @@ server <- function(input, output, session) {
             marker = list(color = "blue", symbol = "square"),
             line = list(width = 0),
             name = "continuous snow accumulation"
-          ) %>%
+          ) |>
           add_trace(
             x = max_swe_date,
             y = transition_data$max_swe,
@@ -524,7 +517,7 @@ server <- function(input, output, session) {
             marker = list(color = "green", symbol = "square"),
             line = list(width = 0),
             name = "maximum SWE"
-          ) %>%
+          ) |>
           layout(
             xaxis = list(title = "Date"),
             yaxis = ay1,
@@ -539,8 +532,8 @@ server <- function(input, output, session) {
         year <- format(as.Date(plot_data$date, "%Y-%m-%d"),"%Y")
         
         # long term mean flux data
-        ltm <- plot_data %>% 
-          group_by(doy) %>%
+        ltm <- plot_data |> 
+          group_by(doy) |>
           summarise(mn = mean(primary),
                     sd = sd(primary),
                     doymn = mean(doy),
@@ -557,7 +550,7 @@ server <- function(input, output, session) {
             line = list(width = 0, color = "rgb(200,200,200)"),
             showlegend = FALSE,
             name = "SD"
-          ) %>%
+          ) |>
           add_trace(
             x = ~ snowdoy,
             y = ~ mn + sd,
@@ -568,7 +561,7 @@ server <- function(input, output, session) {
             line = list(width = 0, color = "rgb(200,200,200)"),
             showlegend = TRUE,
             name = "SD"
-          ) %>%
+          ) |>
           add_trace(
             x = ~ snowdoy,
             y = ~ mn,
@@ -576,7 +569,7 @@ server <- function(input, output, session) {
             type = 'scatter',
             name = "LTM",
             line = list(color = "black")
-          ) %>%
+          ) |>
           add_trace(data = plot_data,
                     x = ~ ifelse(doy < 182, doy, doy - 366),
                     y = ~ primary,
@@ -587,7 +580,7 @@ server <- function(input, output, session) {
                     line = list(color = "Set1"),
                     showlegend = TRUE,
                     inherit = FALSE
-          ) %>%
+          ) |>
           layout(
             xaxis = list(title = "DOY"),
             yaxis = list(title = primary_label),
@@ -595,111 +588,6 @@ server <- function(input, output, session) {
             filteredData()[as.numeric(input$table_row_last_clicked),11])
           )
 
-      } else if (input$plot_type == "snow_phen") {
-        if (is.null(transition_data)) {
-          # format x-axis
-          ax <- list(
-            title = "",
-            zeroline = FALSE,
-            showline = FALSE,
-            showticklabels = FALSE,
-            showgrid = FALSE
-          )
-          p <- plot_ly(
-            x = 0,
-            y = 0,
-            text = "NO SNOW PHENOLOGY DATA AVAILABLE",
-            mode = "text",
-            textfont = list(color = '#000000', size = 16)
-          ) %>% layout(xaxis = ax, yaxis = ax)
-        } else{
-
-          if (nrow(transition_data) < 9) {
-            # format x-axis
-            ax <- list(
-              title = "",
-              zeroline = FALSE,
-              showline = FALSE,
-              showticklabels = FALSE,
-              showgrid = FALSE
-            )
-            p <- plot_ly(
-              x = 0,
-              y = 0,
-              text = "NOT ENOUGH DATA FOR A MEANINGFUL ANALYSIS",
-              mode = "text",
-              textfont = list(color = '#000000', size = 16)
-            ) %>% layout(xaxis = ax, yaxis = ax)
-          } else {
-
-          # set colours
-          sos_col <- "rgb(231,41,138)"
-          eos_col <- "rgba(231,41,138,0.4)"
-          gsl_col <- "rgba(102,166,30,0.8)"
-
-          ay1 <-list(title = "DOY",
-                     showgrid = FALSE)
-
-          ay2 <-list(
-            overlaying = "y",
-            title = "Days",
-            side = "left",
-            showgrid = FALSE
-          )
-
-          # regression stats
-          reg_sos <- lm(transition_data$first_snow_melt ~ transition_data$year)
-          reg_eos <- lm(transition_data$cont_snow_acc ~ transition_data$year)
-
-          # summaries
-          reg_eos_sum <- summary(reg_eos)
-          reg_sos_sum <- summary(reg_sos)
-
-          # r-squared and slope
-          r2_sos <- round(reg_sos_sum$r.squared, 2)
-          slp_sos <- round(reg_sos_sum$coefficients[2, 1], 2)
-          r2_eos <- round(reg_eos_sum$r.squared, 2)
-          slp_eos <- round(reg_eos_sum$coefficients[2, 1], 2)
-
-          p <- plot_ly(
-            x = transition_data$year,
-            y = transition_data$first_snow_melt,
-            mode = "markers",
-            type = "scatter",
-            name = "EOS"
-            ) %>%
-            add_trace(
-              x = transition_data$year,
-              y = transition_data$cont_snow_acc,
-              mode = "markers",
-              type = "scatter",
-              name = "SOS"
-            ) %>%
-            add_trace(
-              x = transition_data$year[as.numeric(
-                names(reg_sos$fitted.values))],
-              y = reg_sos$fitted.values,
-              mode = "lines",
-              type = "scatter",
-              name = sprintf("R2: %s| slope: %s", r2_sos, slp_sos),
-              line = list(width = 2)
-            ) %>%
-            add_trace(
-              x = transition_data$year[as.numeric(
-                names(reg_eos$fitted.values))],
-              y = reg_eos$fitted.values,
-              type = "scatter",
-              mode = "lines",
-              name = sprintf("R2: %s| slope: %s", r2_eos, slp_eos),
-              line = list(width = 2)
-            ) %>%
-            layout(
-              xaxis = list(title = "Year"),
-              yaxis = ay1,
-              showlegend = TRUE
-            )
-          }
-        }
       }
     }
   }) # end plot function
