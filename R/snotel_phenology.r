@@ -67,7 +67,7 @@ snotel_phenology <- function(
   
   # pad and offset
   df <- dplyr::left_join(df, full_range) |>
-    mutate(
+    dplyr::mutate(
       date_offset = date - 180
     )
   
