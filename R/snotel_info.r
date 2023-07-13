@@ -3,7 +3,6 @@
 #' @param network network list to query (default = sntl, for SNOTEL)
 #' @param path path where to save the snotel information (site list)
 #' 
-#' @importFrom magrittr "%>%"
 #' @importFrom memoise memoise
 #' @importFrom rvest read_html
 #' 
@@ -34,10 +33,10 @@ snotel_info <- memoise::memoise(
   # query the data table
   df <- httr::GET(
     url = url,
-    query = query) %>%
-    rvest::read_html() %>%
-    rvest::html_nodes('h5~ table+ table') %>%
-    rvest::html_table() %>%
+    query = query) |>
+    rvest::read_html() |>
+    rvest::html_nodes('h5~ table+ table') |>
+    rvest::html_table() |>
     data.frame()
   
   # extract site id from site name
