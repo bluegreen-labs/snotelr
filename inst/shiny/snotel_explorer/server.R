@@ -430,7 +430,7 @@ server <- function(input, output, session) {
       first_snow_acc <- as.Date(transition_data$first_snow_acc)
       
       # convert the max accumulation date
-      max_swe_date <- as.Date(transition_data$max_swe_day)
+      max_swe_date <- as.Date(transition_data$max_swe_date)
       
       # check the plotting type
       if (input$plot_type == "daily") {
