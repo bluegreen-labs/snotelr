@@ -99,29 +99,60 @@ snotel_phenology <- function(
                       na.action(na.contiguous(x$snow_na))))
     
     # grab winter year
-    year <- format(min(x$date),"%Y")
+    year <- format(max(x$date),"%Y")
+    year_start <- as.Date(sprintf("%s-01-01", year), "%Y-%m-%d")
     
     # first occurrence of >0 cover
-    first_snow_acc <- x$date[min(minmax_loc, na.rm = TRUE)]
+    first_snow_acc <- as.numeric(
+      difftime(x$date[min(minmax_loc, na.rm = TRUE)],
+                               year_start,
+                               units = "days")
+    )
     
     # last occurrence of >0 cover (start of new accumulation)
-    last_snow_melt <- x$date[max(minmax_loc, na.rm = TRUE)]
+    last_snow_melt <- as.numeric(
+      difftime(
+        x$date[max(minmax_loc, na.rm = TRUE)], year_start,
+        units = "days"
+      )
+    )
     
     # first day of the longest continuous snow free period
-    cont_snow_acc <- x$date[dplyr::first(na_loc)]
+    cont_snow_acc <- 
+      as.numeric(
+        difftime(
+          x$date[dplyr::first(na_loc)], year_start,
+          units = "days"
+        )
+      )
+      
     
     # last day of the longest continuous snow free period
-    first_snow_melt <- x$date[dplyr::last(na_loc)]
+    first_snow_melt <- 
+      as.numeric(
+        difftime(
+          x$date[dplyr::last(na_loc)], year_start,
+          units = "days"
+        )
+      )
+      
 
     # highest value before snow melt in a given year, makes the assumption
     # that this occurs in the same year. Ideally needs to be processed
     # on a snow season basis not on a yearly basis
     max_swe <- max(x$snow_water_equivalent[na_loc], na.rm=TRUE)
     max_swe_day <-
-      x$date[which(x$snow_water_equivalent == max_swe)[1]]
-
+      as.numeric(
+        difftime(
+          x$date[which(x$snow_water_equivalent == max_swe)[1]], year_start,
+          units = "days"
+        )
+      )
+      
+    
     df <- data.frame(
       year,
+      #year_start,
       first_snow_acc,
       cont_snow_acc,
       first_snow_melt,
