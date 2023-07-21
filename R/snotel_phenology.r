@@ -102,6 +102,10 @@ snotel_phenology <- function(
     year <- format(max(x$date),"%Y")
     year_start <- as.Date(sprintf("%s-01-01", year), "%Y-%m-%d")
     
+    # correct type to numeric for easy
+    # regressions
+    year <- as.numeric(year)
+    
     # first occurrence of >0 cover
     first_snow_acc <- x$date[min(minmax_loc, na.rm = TRUE)]
     first_snow_acc_doy <- as.numeric(
@@ -140,11 +144,10 @@ snotel_phenology <- function(
         )
       )
       
-
     # highest value before snow melt in a given year, makes the assumption
     # that this occurs in the same year. Ideally needs to be processed
     # on a snow season basis not on a yearly basis
-    max_swe <- max(x$snow_water_equivalent[na_loc], na.rm=TRUE)
+    max_swe <- max(x$snow_water_equivalent, na.rm=TRUE)
     max_swe_date <- x$date[which(x$snow_water_equivalent == max_swe)[1]]
     max_swe_doy <- as.numeric(
         difftime(
