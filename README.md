@@ -62,7 +62,7 @@ snotel_explorer()
 
 This will start a shiny application with an R backend in your default browser. The first window will display all site locations, and allows for subsetting of the data based upon state or a bounding box. The bounding box can be selected by clicking top-left and bottom-right.
 
-![](https://github.com/bluegreen-labs/snotelr/raw/master/docs/map.png)
+![map](https://github.com/bluegreen-labs/snotelr/assets/1354258/f191081c-d5e9-4827-9cee-3e25376fc97c)
 
 The *plot data* tab allows for interactive viewing of the soil water equivalent (SWE) data together with a covariate (temperature, precipitation). The SWE time series will also mark snow phenology statistics, mainly the day of:
 
@@ -70,9 +70,11 @@ The *plot data* tab allows for interactive viewing of the soil water equivalent 
 - a continuous snow free season (last snow melt)
 - first snow accumulation (first snow deposited)
 - continuous snow accumulation (permanent snow cover)
-- maximum SWE (and its amount)
+- seasonal maximum SWE (and its amount)
 
-![](https://github.com/bluegreen-labs/snotelr/raw/master/docs/time_series.png)
+All values are provided as relative to January first of the year mentioned (spring), and absolute dates.
+
+![time_series](https://github.com/bluegreen-labs/snotelr/assets/1354258/c430abbc-b714-45e1-8e31-0fdecb7d3796)
 
 To access the full list of SNOTEL sites and associated meta-data use the **snotel_info()** function.
 
