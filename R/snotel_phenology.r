@@ -86,11 +86,11 @@ snotel_phenology <- function(
   minmax <- function(x, ...){
     
     if (nrow(x) < 365){
-      return(rep(NA, 7))
+      return(rep(NA, 12))
     }
     
     if ( all(is.na(x$snow_na)) ) {
-      return(rep(NA, 7))
+      return(rep(NA, 12))
     }
 
     # calculate timing of snow melt and accumulation
@@ -99,35 +99,77 @@ snotel_phenology <- function(
                       na.action(na.contiguous(x$snow_na))))
     
     # grab winter year
-    year <- format(min(x$date),"%Y")
+    year <- format(max(x$date),"%Y")
+    year_start <- as.Date(sprintf("%s-01-01", year), "%Y-%m-%d")
+    
+    # correct type to numeric for easy
+    # regressions
+    year <- as.numeric(year)
     
     # first occurrence of >0 cover
     first_snow_acc <- x$date[min(minmax_loc, na.rm = TRUE)]
+    first_snow_acc_doy <- as.numeric(
+      difftime(
+        first_snow_acc,
+        year_start,
+        units = "days")
+    )
     
     # last occurrence of >0 cover (start of new accumulation)
     last_snow_melt <- x$date[max(minmax_loc, na.rm = TRUE)]
+    last_snow_melt_doy <- as.numeric(
+      difftime(
+        last_snow_melt,
+        year_start,
+        units = "days"
+      )
+    )
     
     # first day of the longest continuous snow free period
-    cont_snow_acc <- x$date[dplyr::first(na_loc)]
+    cont_snow_acc <- x$date[dplyr::first(na_loc)] 
+    cont_snow_acc_doy <-as.numeric(
+        difftime(
+          cont_snow_acc,
+          year_start,
+          units = "days"
+        )
+      )
+      
     
     # last day of the longest continuous snow free period
-    first_snow_melt <- x$date[dplyr::last(na_loc)]
-
+    first_snow_melt <-  x$date[dplyr::last(na_loc)]
+    first_snow_melt_doy <- as.numeric(
+        difftime(first_snow_melt, year_start,
+          units = "days"
+        )
+      )
+      
     # highest value before snow melt in a given year, makes the assumption
     # that this occurs in the same year. Ideally needs to be processed
     # on a snow season basis not on a yearly basis
-    max_swe <- max(x$snow_water_equivalent[na_loc], na.rm=TRUE)
-    max_swe_day <-
-      x$date[which(x$snow_water_equivalent == max_swe)[1]]
-
+    max_swe <- max(x$snow_water_equivalent, na.rm=TRUE)
+    max_swe_date <- x$date[which(x$snow_water_equivalent == max_swe)[1]]
+    max_swe_doy <- as.numeric(
+        difftime(
+          max_swe_date,
+          year_start,
+          units = "days"
+        )
+      )
+      
     df <- data.frame(
       year,
       first_snow_acc,
+      first_snow_acc_doy,
       cont_snow_acc,
+      cont_snow_acc_doy,
       first_snow_melt,
+      first_snow_melt_doy,
       last_snow_melt,
+      last_snow_melt_doy,
       max_swe,
-      max_swe_day
+      max_swe_date,
+      max_swe_doy
     )
     
     # return a data frame (easier on the formatting)

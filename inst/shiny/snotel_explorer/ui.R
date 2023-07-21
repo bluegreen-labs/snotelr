@@ -142,7 +142,9 @@ body <- dashboardBody(
           selectInput("plot_type",
                       "Plot Type",
                       c("Time Series"="daily",
-                        "Yearly comparison"="yearly"),
+                        "Yearly comparison"="yearly",
+                        "Snow Phenology" = "snow_phen"
+                        ),
                       width="100%"))),
                    column(8,
                           box(width = NULL,

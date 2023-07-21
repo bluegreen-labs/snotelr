@@ -430,7 +430,7 @@ server <- function(input, output, session) {
       first_snow_acc <- as.Date(transition_data$first_snow_acc)
       
       # convert the max accumulation date
-      max_swe_date <- as.Date(transition_data$max_swe_day)
+      max_swe_date <- as.Date(transition_data$max_swe_date)
       
       # check the plotting type
       if (input$plot_type == "daily") {
@@ -588,6 +588,111 @@ server <- function(input, output, session) {
             filteredData()[as.numeric(input$table_row_last_clicked),11])
           )
 
+      } else if (input$plot_type == "snow_phen") {
+        if (is.null(transition_data)) {
+          # format x-axis
+          ax <- list(
+            title = "",
+            zeroline = FALSE,
+            showline = FALSE,
+            showticklabels = FALSE,
+            showgrid = FALSE
+          )
+          p <- plot_ly(
+            x = 0,
+            y = 0,
+            text = "NO SNOW PHENOLOGY DATA AVAILABLE",
+            mode = "text",
+            textfont = list(color = '#000000', size = 16)
+          ) %>% layout(xaxis = ax, yaxis = ax)
+        } else{
+          
+          if (nrow(transition_data) < 9) {
+            # format x-axis
+            ax <- list(
+              title = "",
+              zeroline = FALSE,
+              showline = FALSE,
+              showticklabels = FALSE,
+              showgrid = FALSE
+            )
+            p <- plot_ly(
+              x = 0,
+              y = 0,
+              text = "NOT ENOUGH DATA FOR A MEANINGFUL ANALYSIS",
+              mode = "text",
+              textfont = list(color = '#000000', size = 16)
+            ) %>% layout(xaxis = ax, yaxis = ax)
+          } else {
+            
+            # set colours
+            sos_col <- "rgb(231,41,138)"
+            eos_col <- "rgba(231,41,138,0.4)"
+            gsl_col <- "rgba(102,166,30,0.8)"
+            
+            ay1 <-list(title = "DOY",
+                       showgrid = FALSE)
+            
+            ay2 <-list(
+              overlaying = "y",
+              title = "Days",
+              side = "left",
+              showgrid = FALSE
+            )
+            
+            # regression stats
+            reg_sos <- lm(transition_data$first_snow_melt_doy ~ as.numeric(transition_data$year))
+            reg_eos <- lm(transition_data$cont_snow_acc_doy ~ as.numeric(transition_data$year))
+            
+            # summaries
+            reg_eos_sum <- summary(reg_eos)
+            reg_sos_sum <- summary(reg_sos)
+            
+            # r-squared and slope
+            r2_sos <- round(reg_sos_sum$r.squared, 2)
+            slp_sos <- round(reg_sos_sum$coefficients[2, 1], 2)
+            r2_eos <- round(reg_eos_sum$r.squared, 2)
+            slp_eos <- round(reg_eos_sum$coefficients[2, 1], 2)
+            
+            p <- plot_ly(
+              x = transition_data$year,
+              y = transition_data$first_snow_melt_doy,
+              mode = "markers",
+              type = "scatter",
+              name = "EOS"
+            ) %>%
+              add_trace(
+                x = transition_data$year,
+                y = transition_data$cont_snow_acc_doy,
+                mode = "markers",
+                type = "scatter",
+                name = "SOS"
+              ) %>%
+              add_trace(
+                x = transition_data$year[as.numeric(
+                  names(reg_sos$fitted.values))],
+                y = reg_sos$fitted.values,
+                mode = "lines",
+                type = "scatter",
+                name = sprintf("R2: %s| slope: %s", r2_sos, slp_sos),
+                line = list(width = 2)
+              ) %>%
+              add_trace(
+                x = transition_data$year[as.numeric(
+                  names(reg_eos$fitted.values))],
+                y = reg_eos$fitted.values,
+                type = "scatter",
+                mode = "lines",
+                name = sprintf("R2: %s| slope: %s", r2_eos, slp_eos),
+                line = list(width = 2)
+              ) %>%
+              layout(
+                xaxis = list(title = "Year"),
+                yaxis = ay1,
+                showlegend = TRUE
+              )
+          }
+        }
       }
     }
   }) # end plot function
