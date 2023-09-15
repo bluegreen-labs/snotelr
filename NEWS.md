@@ -1,6 +1,8 @@
 # snotelr 1.2
 
 * adding support for the SNOTEL lite network
+* correcting the calculation of snow phenology dates for edge cases
+* improving the shiny GUI
 
 # snotelr 1.1
 
