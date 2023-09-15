@@ -3,6 +3,7 @@
 * adding support for the SNOTEL lite network
 * correcting the calculation of snow phenology dates for edge cases
 * improving the shiny GUI
+* correcting the citation style
 
 # snotelr 1.1
 
