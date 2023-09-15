@@ -2,7 +2,7 @@ Dear CRAN team,
 
 This is an update of the {snotel} package (version 1.2). This package calculates and visualize 'SNOTEL' snow data and seasonality.
 
-The update includes a correction to the snow seasonality algorithm, adds access to the SNOTELITE network and improves the shiny GUI for downloads and visualization.
+The update includes a correction to the snow seasonality algorithm, adds access to the SNOTELITE network and improves the shiny GUI for downloads and visualization. A minor change to comply with the bibentry citation style is also provided.
 
 Kind regards,
 Koen Hufkens
