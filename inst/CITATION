@@ -1,6 +1,6 @@
 citHeader("To cite snotelr in publications use:")
 
-citEntry(entry = "Misc",
+bibentry(entry = "Misc",
          title = "snotelr: a toolbox to facilitate easy SNOTEL data exploration and downloads in R",
          author = c(as.person("Koen Hufkens")),
          year = "2022",
