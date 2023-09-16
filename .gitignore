@@ -21,3 +21,6 @@ vignettes/*.pdf
 
 # ignore docs
 docs/
+
+# cran submission
+CRAN-SUBMISSION
