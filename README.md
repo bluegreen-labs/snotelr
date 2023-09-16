@@ -1,12 +1,12 @@
 # snotelr <a href='https://bluegreen-labs.github.io/snotelr/'><img src='https://raw.githubusercontent.com/bluegreen-labs/snotelr/master/logo.png' align="right" height="139" /></a>
 
 [![R-CMD-check](https://github.com/bluegreen-labs/snotelr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/bluegreen-labs/snotelr/actions/workflows/R-CMD-check.yaml)
-[![codecov](https://codecov.io/gh/bluegreen-labs/snotelr/branch/master/graph/badge.svg)](https://codecov.io/gh/bluegreen-labs/snotelr)
+[![codecov](https://codecov.io/gh/bluegreen-labs/snotelr/branch/master/graph/badge.svg)](https://app.codecov.io/gh/bluegreen-labs/snotelr)
 [![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/snotelr)](https://cran.r-project.org/package=snotelr)
 [![](https://cranlogs.r-pkg.org/badges/grand-total/snotelr)](https://cran.r-project.org/package=snotelr)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7012728.svg)](https://doi.org/10.5281/zenodo.7012728)
 
-`snotelr` is an R toolbox to facilitate easy SNOTEL data exploration and downloads through a convenient R [shiny](http://shiny.rstudio.com/) based GUI. In addition it provides a routine to extract basic snow phenology metrics.
+`snotelr` is an R toolbox to facilitate easy SNOTEL data exploration and downloads through a convenient R [shiny](https://shiny.posit.co/) based GUI. In addition it provides a routine to extract basic snow phenology metrics.
 
 ## How to cite this package in your article
 
