@@ -13,7 +13,7 @@ Description: Programmatic interface to the 'SNOTEL' snow data
   (<https://www.nrcs.usda.gov/wps/portal/wcc/home>). Provides easy downloads of snow 
   data into your R work space or a local directory. Additional post-processing 
   routines to extract snow season indexes are provided.
-URL: https://github.com/bluegreen-labs/snotelr
+URL: https://github.com/bluegreen-labs/snotelr, https://bluegreen-labs.github.io/snotelr/
 BugReports: https://github.com/bluegreen-labs/snotelr/issues
 Depends:
     R (>= 4.2)
