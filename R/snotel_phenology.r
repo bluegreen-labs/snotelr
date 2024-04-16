@@ -9,6 +9,7 @@
 #'
 #' @param df a snotel data file or data frame
 #' @param threshold threshold for mapping continuous snow cover
+#' @param offset offset of the year relative to January first (DOY 1)
 #' @importFrom stats na.action na.contiguous
 #' @export
 #' @examples
@@ -27,7 +28,8 @@
 
 snotel_phenology <- function(
     df,
-    threshold = 0
+    threshold = 0,
+    offset = 180
     ){
 
   # read data if existing snotel file
@@ -69,7 +71,7 @@ snotel_phenology <- function(
   # pad and offset
   df <- dplyr::left_join(df, full_range) |>
     dplyr::mutate(
-      date_offset = date - 180
+      date_offset = date - offset
     )
   
   # offset year for grouping

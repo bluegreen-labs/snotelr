@@ -1,3 +1,7 @@
+# snotelr 1.3
+
+* surfacing the offset parameter in snotel_phenology() for high latitude sites
+
 # snotelr 1.2
 
 * adding support for the SNOTEL lite network
