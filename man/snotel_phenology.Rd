@@ -4,12 +4,14 @@
 \alias{snotel_phenology}
 \title{Calculates snow phenology from the snow water equivalent data}
 \usage{
-snotel_phenology(df, threshold = 0)
+snotel_phenology(df, threshold = 0, offset = 180)
 }
 \arguments{
 \item{df}{a snotel data file or data frame}
 
 \item{threshold}{threshold for mapping continuous snow cover}
+
+\item{offset}{offset of the year relative to January first (DOY 1)}
 }
 \description{
 First snow melt, first continuous snow melt, first
