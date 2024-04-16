@@ -19,10 +19,7 @@
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
 <script src="pkgdown.js"></script><!-- ropensci --><link href="bglabs.css" rel="stylesheet">
 <meta property="og:title" content="Calculate and Visualize SNOTEL Snow Data and Seasonality">
-<meta property="og:description" content="Programmatic interface to the SNOTEL snow data
-  (&lt;https://www.nrcs.usda.gov/wps/portal/wcc/home&gt;). Provides easy downloads of snow 
-  data into your R work space or a local directory. Additional post-processing 
-  routines to extract snow season indexes are provided.">
+<meta property="og:description" content="Programmatic interface to the SNOTEL snow data (&lt;https://www.nrcs.usda.gov/wps/portal/wcc/home&gt;). Provides easy downloads of snow data into your R work space or a local directory. Additional post-processing routines to extract snow season indexes are provided.">
 <meta property="og:image" content="/logo.png">
 <meta name="twitter:card" content="summary">
 </head>
@@ -48,7 +45,7 @@
         <a class="external-link hidden-md hidden-lg" href="https://bluegreenlabs.org">
           <img src="https://bluegreenlabs.org/img/logo.png" id="hexlogo" alt="bluegreen labs"></a>
         <a class="navbar-brand" href="index.html">
-           <i>snotelr <small>v1.2</small></i>
+           <i>snotelr <small>v1.3</small></i>
         </a>
       </div>
     </div>
@@ -143,8 +140,8 @@
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/bluegreen-labs/snotelr" class="external-link">snotelr</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="reference/snotel_explorer.html">snotel_explorer</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>This will start a shiny application with an R backend in your default browser. The first window will display all site locations, and allows for subsetting of the data based upon state or a bounding box. The bounding box can be selected by clicking top-left and bottom-right.</p>
-<div class="figure">
-<img src="https://github.com/bluegreen-labs/snotelr/assets/1354258/f191081c-d5e9-4827-9cee-3e25376fc97c" alt=""><p class="caption">map</p>
+<div class="float">
+<img src="https://github.com/bluegreen-labs/snotelr/assets/1354258/f191081c-d5e9-4827-9cee-3e25376fc97c" alt="map"><div class="figcaption">map</div>
 </div>
 <p>The <em>plot data</em> tab allows for interactive viewing of the soil water equivalent (SWE) data together with a covariate (temperature, precipitation). The SWE time series will also mark snow phenology statistics, mainly the day of:</p>
 <ul>
@@ -155,8 +152,8 @@
 <li>seasonal maximum SWE (and its amount)</li>
 </ul>
 <p>All values are provided as relative to January first of the year mentioned (spring), and absolute dates.</p>
-<div class="figure">
-<img src="https://github.com/bluegreen-labs/snotelr/assets/1354258/c430abbc-b714-45e1-8e31-0fdecb7d3796" alt=""><p class="caption">time_series</p>
+<div class="float">
+<img src="https://github.com/bluegreen-labs/snotelr/assets/1354258/c430abbc-b714-45e1-8e31-0fdecb7d3796" alt="time_series"><div class="figcaption">time_series</div>
 </div>
 <p>To access the full list of SNOTEL sites and associated meta-data use the <strong>snotel_info()</strong> function.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
