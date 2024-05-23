@@ -35,7 +35,7 @@ snotel_info <- memoise::memoise(
     url = url,
     query = query) |>
     rvest::read_html() |>
-    rvest::html_nodes('h5~ table+ table') |>
+    rvest::html_nodes('table') |>
     rvest::html_table() |>
     data.frame()
   
