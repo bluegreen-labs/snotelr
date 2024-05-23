@@ -10,7 +10,7 @@ Authors@R: c(person(
               person(given = "BlueGreen Labs",
                 role = c("cph", "fnd")))
 Description: Programmatic interface to the 'SNOTEL' snow data
-  (<https://www.nrcs.usda.gov/wps/portal/wcc/home>). Provides easy downloads of snow 
+  (<https://www.nrcs.usda.gov/programs-initiatives/sswsf-snow-survey-and-water-supply-forecasting-program>). Provides easy downloads of snow 
   data into your R work space or a local directory. Additional post-processing 
   routines to extract snow season indexes are provided.
 URL: https://github.com/bluegreen-labs/snotelr, https://bluegreen-labs.github.io/snotelr/
