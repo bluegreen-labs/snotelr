@@ -1,8 +1,6 @@
 Dear CRAN team,
 
-This is an update of the {snotel} package (version 1.3). This package calculates and visualize 'SNOTEL' snow data and seasonality.
-
-The update includes a correction to the snow seasonality algorithm. This fix surfaces the offset parameter in the snow_phenology() function, which allows for high latitude and souther hemisphere (out of network) sites to correctly estimate snow phenology.
+This is an update of the {snotel} package (version 1.4). This package calculates and visualize 'SNOTEL' snow data and seasonality. This update implements a new API endpoint to provide access to the SNOTEL data.
 
 Kind regards,
 Koen Hufkens
