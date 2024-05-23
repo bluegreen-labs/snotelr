@@ -1,3 +1,7 @@
+# snotelr 1.4
+
+* update snotel_info() to reflect new CSS (by @dfosterhill)
+
 # snotelr 1.3
 
 * surfacing the offset parameter in snotel_phenology() for high latitude sites
