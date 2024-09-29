@@ -24,7 +24,7 @@ snotel_metric <- function(df) {
   # check the file, if less than 7 columns
   # are present this is not a standard file,
   # stop processing
-  if (ncol(df) != 7) {
+  if (ncol(df) != 8) {
     stop("not a standard snotel file")
   }
   
@@ -32,6 +32,7 @@ snotel_metric <- function(df) {
   snotel_columns <- c(
     "date",
     "snow_water_equivalent",
+    "snow_depth",
     "precipitation_cumulative",
     "temperature_max",
     "temperature_min",
@@ -41,7 +42,7 @@ snotel_metric <- function(df) {
   
   # if the columns match those in the current data frame
   # return it as is (previously processed)
-  if(length(which(colnames(df) == snotel_columns)) == 7){
+  if(length(which(colnames(df) == snotel_columns)) == 8){
     message("File is already metric, returning original!")
     return(df)
   }
