@@ -45,11 +45,11 @@ test_that("metric conversion - not a proper size data frame",{
   expect_error(snotel_metric(df))
 })
 
-test_that("metric conversion - alread converted",{
+test_that("metric conversion - already converted",{
   skip_on_cran()
   df <- snotel_download(site_id = 429, internal = TRUE)
   df <- df[,12:18]
-  expect_message(snotel_metric(df))
+  expect_error(snotel_metric(df))
 })
 
 test_that("metric conversion - not a data frame",{
@@ -60,7 +60,7 @@ test_that("metric conversion - not a data frame",{
 
 test_that("metric conversion - not a data frame",{
   skip_on_cran()
-  df <- read.table("https://wcc.sc.egov.usda.gov/reportGenerator/view_csv/customSingleStationReport/daily/947:AK:SNTL|id=%22%22|name/POR_BEGIN,POR_END/WTEQ::value,PREC::value,TMAX::value,TMIN::value,TAVG::value,PRCP::value",
+  df <- read.table("https://wcc.sc.egov.usda.gov/reportGenerator/view_csv/customSingleStationReport/daily/947:AK:SNTL|id=%22%22|name/POR_BEGIN,POR_END/WTEQ::value,SNWD::value,PREC::value,TMAX::value,TMIN::value,TAVG::value,PRCP::value",
                  header = TRUE, sep = ",")
   expect_output(str(snotel_metric(df)))
 })
@@ -69,21 +69,21 @@ test_that("metric conversion - not a data frame",{
 test_that("check phenology routines",{
   skip_on_cran()
   df <- snotel_download(site_id = 670, internal = TRUE)
-  expect_output(str(snotel_phenology(df)))
+  expect_type(snotel_phenology(df), 'list')
 })
 
 test_that("check phenology routines - swe empty",{
   skip_on_cran()
   df <- snotel_download(site_id = 670, internal = TRUE)
   df$snow_water_equivalent <- NA
-  expect_output(str(snotel_phenology(df)))
+  expect_warning(snotel_phenology(df))
 })
 
 test_that("check phenology routines - swe 0",{
   skip_on_cran()
   df <- snotel_download(site_id = 670, internal = TRUE)
-  df$snow_water_equivalent <- 10
-  expect_output(str(snotel_phenology(df)))
+  df$snow_water_equivalent <- 0
+  expect_warning(snotel_phenology(df))
 })
 
 test_that("check phenology routines - not metric",{
@@ -99,11 +99,11 @@ test_that("check phenology routines - missing file",{
 })
 
 # find site with no snow (only rainfall) data to implement this
-#test_that("check phenology routines - no data returned",{
+# test_that("check phenology routines - no data returned",{
 #  skip_on_cran()
 #  df <- snotel_download(site_id = 429, internal = TRUE)
 #  expect_warning(snotel_phenology(df))
-#})
+# })
 
 test_that("check phenology routines - not a data frame",{
   skip_on_cran()
