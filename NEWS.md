@@ -1,3 +1,7 @@
+# snotelr 1.5
+
+* adding snow depth as a return variable
+
 # snotelr 1.4
 
 * update snotel_info() to reflect new CSS (by @dfosterhill)

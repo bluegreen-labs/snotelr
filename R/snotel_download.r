@@ -67,7 +67,7 @@ snotel_download <- function(
         meta_data$site_id[i], ":",
         meta_data$state[i], ":",
         meta_data$network[i],
-        "%7Cid=%22%22%7Cname/POR_BEGIN,POR_END/WTEQ::value,PREC::value,TMAX::value,TMIN::value,TAVG::value,PRCP::value"
+        "%7Cid=%22%22%7Cname/POR_BEGIN,POR_END/WTEQ::value,SNWD::value,PREC::value,TMAX::value,TMIN::value,TAVG::value,PRCP::value"
         )
       
       # try to download the data
