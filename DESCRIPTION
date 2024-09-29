@@ -1,6 +1,6 @@
 Package: snotelr
 Title: Calculate and Visualize 'SNOTEL' Snow Data and Seasonality
-Version: 1.4
+Version: 1.5
 Authors@R: c(person(
                family = "Hufkens",
                given = "Koen",
