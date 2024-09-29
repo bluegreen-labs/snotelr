@@ -19,12 +19,9 @@
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><!-- ropensci --><link href="../bglabs.css" rel="stylesheet">
 <meta property="og:title" content="snotelr functionality">
-<meta property="og:description" content="snotelr">
-<meta property="og:image" content="/logo.png">
-<meta name="twitter:card" content="summary">
 </head>
 <body data-spy="scroll" data-target="#toc">
-    
+
 
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -45,7 +42,7 @@
         <a class="external-link hidden-md hidden-lg" href="https://bluegreenlabs.org">
           <img src="https://bluegreenlabs.org/img/logo.png" id="hexlogo" alt="bluegreen labs"></a>
         <a class="navbar-brand" href="../index.html">
-           <i>snotelr <small>v1.4</small></i>
+           <i>snotelr <small>v1.5</small></i>
         </a>
       </div>
     </div>
@@ -58,7 +55,7 @@
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
-     
+
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
@@ -73,7 +70,7 @@
         <li>
   <a href="https://github.com/bluegreen-labs/snotelr/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
-     
+
   </a>
 </li>
       </ul>
@@ -84,7 +81,7 @@
 </div>
 <!--/.navbar -->
 
-      
+
 
       </header><div class="row">
   <div class="col-md-9 contents">
@@ -93,9 +90,9 @@
                         <h4 data-toc-skip class="author">Koen
 Hufkens</h4>
             
-            <h4 data-toc-skip class="date">2024-05-23</h4>
+            <h4 data-toc-skip class="date">2024-09-29</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/bluegreen-labs/snotelr/blob/HEAD/vignettes/snotelr-vignette.Rmd" class="external-link"><code>vignettes/snotelr-vignette.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/bluegreen-labs/snotelr/blob/master/vignettes/snotelr-vignette.Rmd" class="external-link"><code>vignettes/snotelr-vignette.Rmd</code></a></small>
       <div class="hidden name"><code>snotelr-vignette.Rmd</code></div>
 
     </div>
@@ -129,20 +126,27 @@ missing the data is returned as an <code>R</code> variable.</p>
 <code class="sourceCode R"><span><span class="co"># download and list site information</span></span>
 <span><span class="va">site_meta_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/snotel_info.html">snotel_info</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">site_meta_data</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   network state       site_name                                     description</span></span>
-<span><span class="co">#&gt; 1    SNTL    AK         hoonah  Port Fredrick-Frontal Icy Strait (190102110906)</span></span>
-<span><span class="co">#&gt; 2    SNTL    CA willow flat ca         Upper Little Walker River (160503020103)</span></span>
-<span><span class="co">#&gt; 3    SNTL    MT   elk peak alt                    Fourmile Creek (100301030104)</span></span>
-<span><span class="co">#&gt; 4    SNTL    MT  stryker basin             West Fork Swift Creek (170102100501)</span></span>
-<span><span class="co">#&gt; 5    SNTL    ID   couch summit          Lower Little Smoky Creek (170501130204)</span></span>
-<span><span class="co">#&gt; 6    SNTL    MT  chicago ridge                        Rock Creek (170102131301)</span></span>
-<span><span class="co">#&gt;        start        end latitude longitude elev        county site_id</span></span>
-<span><span class="co">#&gt; 1 2023-10-01 2024-05-23    58.12   -135.41  472 Hoonah-angoon    1318</span></span>
-<span><span class="co">#&gt; 2 2023-09-01 2024-05-23    38.27   -119.45 2504          Mono    1317</span></span>
-<span><span class="co">#&gt; 3 2023-07-01 2024-05-23    46.48   -110.72 2378       Meagher    1316</span></span>
-<span><span class="co">#&gt; 4 2023-09-01 2024-05-23    48.68   -114.66 1888      Flathead    1311</span></span>
-<span><span class="co">#&gt; 5 2021-10-01 2024-05-23    43.52   -114.80 2073         Camas    1306</span></span>
-<span><span class="co">#&gt; 6 2022-08-01 2024-05-23    48.06   -115.70 1768       Sanders    1312</span></span></code></pre></div>
+<span><span class="co">#&gt;   network state            site_name</span></span>
+<span><span class="co">#&gt; 1    SNTL    AK              hoonah </span></span>
+<span><span class="co">#&gt; 2    SNTL    AK pilgrim hot springs </span></span>
+<span><span class="co">#&gt; 3    SNTL    AK          seven mile </span></span>
+<span><span class="co">#&gt; 4    SNTL    CA          lost lakes </span></span>
+<span><span class="co">#&gt; 5    SNTL    CO         castle peak </span></span>
+<span><span class="co">#&gt; 6    SNTL    CO         elwood pass </span></span>
+<span><span class="co">#&gt;                                       description      start        end</span></span>
+<span><span class="co">#&gt; 1 Port Fredrick-Frontal Icy Strait (190102110906) 2023-10-01 2024-09-29</span></span>
+<span><span class="co">#&gt; 2    Paystreak Creek-Pilgrim River (190501050702) 2024-07-01 2024-09-29</span></span>
+<span><span class="co">#&gt; 3                 Outlet Ray River (190804040306) 2024-09-01 2024-09-29</span></span>
+<span><span class="co">#&gt; 4     Upper West Fork Carson River (160502010301) 2024-09-01 2024-09-29</span></span>
+<span><span class="co">#&gt; 5       Express Creek-Castle Creek (140100040202) 2024-09-01 2024-09-29</span></span>
+<span><span class="co">#&gt; 6         Headwaters Alamosa River (130100020302) 2024-08-01 2024-09-29</span></span>
+<span><span class="co">#&gt;   latitude longitude elev        county site_id</span></span>
+<span><span class="co">#&gt; 1    58.12   -135.41  472 Hoonah-angoon    1318</span></span>
+<span><span class="co">#&gt; 2    65.09   -164.92    6          Nome    1327</span></span>
+<span><span class="co">#&gt; 3    65.94   -149.86  201 Yukon-koyukuk    1330</span></span>
+<span><span class="co">#&gt; 4    38.65   -119.95 2633        Alpine    1331</span></span>
+<span><span class="co">#&gt; 5    39.00   -106.84 3505        Pitkin    1326</span></span>
+<span><span class="co">#&gt; 6    37.41   -106.64 3560    Rio Grande    1325</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="downloading-site-data">Downloading site data<a class="anchor" aria-label="anchor" href="#downloading-site-data"></a>
@@ -158,9 +162,8 @@ imperial values, are converted to metric measurements.</p>
 <span>  site_id <span class="op">=</span> <span class="fl">670</span>,</span>
 <span>  internal <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span>  <span class="op">)</span></span>
-<span><span class="co">#&gt; Downloading site: northeast entrance , with id: 670</span></span></code></pre></div>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
+<span><span class="co">#&gt; Downloading site: northeast entrance , with id: 670</span></span>
+<span></span>
 <span><span class="co"># show the data</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">snow_data</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   network state           site_name                           description</span></span>
@@ -171,19 +174,19 @@ imperial values, are converted to metric measurements.</p>
 <span><span class="co">#&gt; 5    SNTL    MT northeast entrance  Upper Soda Butte Creek (100700010602)</span></span>
 <span><span class="co">#&gt; 6    SNTL    MT northeast entrance  Upper Soda Butte Creek (100700010602)</span></span>
 <span><span class="co">#&gt;        start        end latitude longitude elev                    county</span></span>
-<span><span class="co">#&gt; 1 1937-10-01 2024-05-23    45.01   -110.01 2240 Yellowstone National Park</span></span>
-<span><span class="co">#&gt; 2 1937-10-01 2024-05-23    45.01   -110.01 2240 Yellowstone National Park</span></span>
-<span><span class="co">#&gt; 3 1937-10-01 2024-05-23    45.01   -110.01 2240 Yellowstone National Park</span></span>
-<span><span class="co">#&gt; 4 1937-10-01 2024-05-23    45.01   -110.01 2240 Yellowstone National Park</span></span>
-<span><span class="co">#&gt; 5 1937-10-01 2024-05-23    45.01   -110.01 2240 Yellowstone National Park</span></span>
-<span><span class="co">#&gt; 6 1937-10-01 2024-05-23    45.01   -110.01 2240 Yellowstone National Park</span></span>
-<span><span class="co">#&gt;   site_id       date snow_water_equivalent precipitation_cumulative</span></span>
-<span><span class="co">#&gt; 1     670 1966-10-01                   0.0                       NA</span></span>
-<span><span class="co">#&gt; 2     670 1966-10-02                   7.6                       NA</span></span>
-<span><span class="co">#&gt; 3     670 1966-10-03                   0.0                       NA</span></span>
-<span><span class="co">#&gt; 4     670 1966-10-04                   0.0                       NA</span></span>
-<span><span class="co">#&gt; 5     670 1966-10-05                   0.0                       NA</span></span>
-<span><span class="co">#&gt; 6     670 1966-10-06                   0.0                       NA</span></span>
+<span><span class="co">#&gt; 1 1937-10-01 2024-09-29    45.01   -110.01 2240 Yellowstone National Park</span></span>
+<span><span class="co">#&gt; 2 1937-10-01 2024-09-29    45.01   -110.01 2240 Yellowstone National Park</span></span>
+<span><span class="co">#&gt; 3 1937-10-01 2024-09-29    45.01   -110.01 2240 Yellowstone National Park</span></span>
+<span><span class="co">#&gt; 4 1937-10-01 2024-09-29    45.01   -110.01 2240 Yellowstone National Park</span></span>
+<span><span class="co">#&gt; 5 1937-10-01 2024-09-29    45.01   -110.01 2240 Yellowstone National Park</span></span>
+<span><span class="co">#&gt; 6 1937-10-01 2024-09-29    45.01   -110.01 2240 Yellowstone National Park</span></span>
+<span><span class="co">#&gt;   site_id       date snow_water_equivalent snow_depth precipitation_cumulative</span></span>
+<span><span class="co">#&gt; 1     670 1966-10-01                   0.0         NA                       NA</span></span>
+<span><span class="co">#&gt; 2     670 1966-10-02                   7.6         NA                       NA</span></span>
+<span><span class="co">#&gt; 3     670 1966-10-03                   0.0         NA                       NA</span></span>
+<span><span class="co">#&gt; 4     670 1966-10-04                   0.0         NA                       NA</span></span>
+<span><span class="co">#&gt; 5     670 1966-10-05                   0.0         NA                       NA</span></span>
+<span><span class="co">#&gt; 6     670 1966-10-06                   0.0         NA                       NA</span></span>
 <span><span class="co">#&gt;   temperature_max temperature_min temperature_mean precipitation</span></span>
 <span><span class="co">#&gt; 1              NA              NA               NA            NA</span></span>
 <span><span class="co">#&gt; 2              NA              NA               NA            NA</span></span>
@@ -191,7 +194,7 @@ imperial values, are converted to metric measurements.</p>
 <span><span class="co">#&gt; 4              NA              NA               NA            NA</span></span>
 <span><span class="co">#&gt; 5              NA              NA               NA            NA</span></span>
 <span><span class="co">#&gt; 6              NA              NA               NA            NA</span></span></code></pre></div>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># A plot of snow accummulation through the years</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="va">snow_data</span><span class="op">$</span><span class="va">date</span><span class="op">)</span>,</span>
 <span>     <span class="va">snow_data</span><span class="op">$</span><span class="va">snow_water_equivalent</span>,</span>
@@ -207,11 +210,11 @@ imperial values, are converted to metric measurements.</p>
 <p>Although the main function of the package is to provide easy access
 to the SNOTEL data a function <code><a href="../reference/snotel_phenology.html">snotel_phenology()</a></code> is
 provided to calculate seasonal metrics of snow deposition.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># calculate snow phenology</span></span>
 <span><span class="va">phenology</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/snotel_phenology.html">snotel_phenology</a></span><span class="op">(</span><span class="va">snow_data</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Joining with `by = join_by(date)`</span></span></code></pre></div>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># subset data to the first decade of the century</span></span>
 <span><span class="va">snow_data_subset</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">snow_data</span>, <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="va">date</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2000-01-01"</span><span class="op">)</span> <span class="op">&amp;</span></span>
 <span>                             <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="va">date</span><span class="op">)</span> <span class="op">&lt;</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2010-01-01"</span><span class="op">)</span><span class="op">)</span></span>
@@ -286,9 +289,7 @@ research purposes.</p>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
 
-        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
-    </nav>
-</div>
+      </div>
 
 </div>
 
@@ -336,10 +337,10 @@ research purposes.</p>
       </footer>
 </div>
 
-  
 
 
-  
+
+
 
   </body>
 </html>
