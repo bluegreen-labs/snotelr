@@ -36,7 +36,6 @@ Suggests:
     DT
 VignetteBuilder: knitr
 License: AGPL-3
-LazyData: true
 ByteCompile: true
 RoxygenNote: 7.2.3
 Encoding: UTF-8
