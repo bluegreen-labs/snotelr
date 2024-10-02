@@ -63,6 +63,7 @@ snotel_metric <- function(df) {
     # precipitation (inches)
     df$precipitation_cumulative <- df$precipitation_cumulative * 25.4
     df$precipitation <- df$precipitation * 25.4
+    df$snow_depth <- df$snow_depth * 25.4
 
     # temperature (fahrenheit to celcius)
     df$temperature_max <- (df$temperature_max - 32) * 5/9

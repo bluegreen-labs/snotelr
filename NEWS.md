@@ -1,3 +1,7 @@
+# snotelr 1.5.1
+
+* adding metric conversion to snow depth
+
 # snotelr 1.5
 
 * adding snow depth as a return variable
