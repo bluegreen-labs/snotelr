@@ -1,7 +1,7 @@
 Dear CRAN team,
 
 This is an update of the {snotelr} package (version 1.5.1). This package calculates and visualizes 'SNOTEL' snow data and seasonality. This update implements the correct conversion of snow depth
-values to metric, which escaped me during the last release - apologies.
+values to metric, which escaped me during the last release as I've been over-extended - apologies.
 
 No further changes were made to the package so the update does not affect previous code coverage and testing metrics (which remained the same).
 
