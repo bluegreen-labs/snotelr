@@ -45,7 +45,7 @@
         <a class="external-link hidden-md hidden-lg" href="https://bluegreenlabs.org">
           <img src="https://bluegreenlabs.org/img/logo.png" id="hexlogo" alt="bluegreen labs"></a>
         <a class="navbar-brand" href="index.html">
-           <i>snotelr <small>v1.5.1</small></i>
+           <i>snotelr <small>v1.5.2</small></i>
         </a>
       </div>
     </div>
@@ -172,6 +172,11 @@
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># with df a SNOTEL file or data frame in your R workspace</span></span>
 <span><span class="fu"><a href="reference/snotel_phenology.html">snotel_phenology</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="data-units">Data (units)<a class="anchor" aria-label="anchor" href="#data-units"></a>
+</h2>
+<p>By default all data is converted to metric. Depths of snow and snow water equivalent are reported in mm, although it must be noted that when stations measure snow depth (in metric) they round values to the nearest inch or cm. You can use the <code>metric</code> parameter to download the raw data. Note that batch downloads might fail in this instance as column names might not match due to the dual use of metric and imperial units across stations. This is for niche and debugging use mostly.</p>
 </div>
 </div>
 <div class="section level1">
