@@ -4,6 +4,8 @@
 #' @param site_id subset of the sites listed by snotel_info()
 #' @param network network list to query (default = sntl, for SNOTEL)
 #' @param path where to save downloaded files (default = tempdir())
+#' @param metric return metric values, \code{TRUE} or \code{FALSE}
+#' (default = \code{TRUE}), when false returns the raw data files
 #' @param internal return data to workspace, \code{TRUE} or \code{FALSE}
 #' (default = \code{FALSE})
 #' @export
@@ -22,6 +24,7 @@ snotel_download <- function(
   site_id,
   network = "sntl",
   path = tempdir(),
+  metric = TRUE,
   internal = FALSE
   ){
   
@@ -88,8 +91,10 @@ snotel_download <- function(
                              sep = ",",
                              stringsAsFactors = FALSE)
       
-      # subsitute column names
-      df <- snotelr::snotel_metric(df)
+      if(metric) {
+        # subsitute column names
+        df <- snotelr::snotel_metric(df)  
+      }
       
       # combine with the corresponding meta-data
       # (remove warning on non matching size)
