@@ -1,3 +1,7 @@
+# snotelr 1.5.2
+
+* creating consistent metric output, conversion of cm to mm for metric snow depth
+
 # snotelr 1.5.1
 
 * adding metric conversion to snow depth

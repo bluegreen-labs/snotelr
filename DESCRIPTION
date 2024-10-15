@@ -1,6 +1,6 @@
 Package: snotelr
 Title: Calculate and Visualize 'SNOTEL' Snow Data and Seasonality
-Version: 1.5.1
+Version: 1.5.2
 Authors@R: c(person(
                family = "Hufkens",
                given = "Koen",
@@ -37,5 +37,5 @@ Suggests:
 VignetteBuilder: knitr
 License: AGPL-3
 ByteCompile: true
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.1
 Encoding: UTF-8
