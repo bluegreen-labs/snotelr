@@ -5,7 +5,13 @@
 \title{Dowloads snotel data based upon a subset of the
 sno-tel info as provided by snotel_info()}
 \usage{
-snotel_download(site_id, network = "sntl", path = tempdir(), internal = FALSE)
+snotel_download(
+  site_id,
+  network = "sntl",
+  path = tempdir(),
+  metric = TRUE,
+  internal = FALSE
+)
 }
 \arguments{
 \item{site_id}{subset of the sites listed by snotel_info()}
@@ -13,6 +19,9 @@ snotel_download(site_id, network = "sntl", path = tempdir(), internal = FALSE)
 \item{network}{network list to query (default = sntl, for SNOTEL)}
 
 \item{path}{where to save downloaded files (default = tempdir())}
+
+\item{metric}{return metric values, \code{TRUE} or \code{FALSE}
+(default = \code{TRUE}), when false returns the raw data files}
 
 \item{internal}{return data to workspace, \code{TRUE} or \code{FALSE}
 (default = \code{FALSE})}
