@@ -53,6 +53,9 @@ snotel_metric <- function(df) {
     
     # rename columns
     colnames(df) <- snotel_columns
+    
+    # convert snow depth in metric to mm (from cm)
+    df$snow_depth <- df$snow_depth * 10
 
   } else {
     
