@@ -102,6 +102,10 @@ For in depth analysis the statistics in the GUI can be retrieved using the **sno
 snotel_phenology(df)
 ```
 
+## Data (units)
+
+By default all data is converted to metric. Depths of snow and snow water equivalent are reported in mm, although it must be noted that when stations measure snow depth (in metric) they round values to the nearest inch or cm. You can use the `metric` parameter to download the raw data. Note that batch downloads might fail in this instance as column names might not match due to the dual use of metric and imperial units across stations. This is for niche and debugging use mostly.
+
 # References
 
 Hufkens, K. (2022). snotelr: a toolbox to facilitate easy SNOTEL data exploration and downloads in R. Zenodo. https://doi.org/10.5281/zenodo.7012728.
